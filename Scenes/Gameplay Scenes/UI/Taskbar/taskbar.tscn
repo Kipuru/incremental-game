@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rvnyestc2j4k"]
 
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="1_3swdq"]
+[ext_resource type="PackedScene" uid="uid://ct8m35trdpw3q" path="res://Scenes/Gameplay Scenes/UI/Taskbar/radio_button.tscn" id="1_3swdq"]
 
 [node name="Taskbar" type="Control"]
 layout_mode = 3
@@ -34,23 +34,5 @@ layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(75, 75)
+[node name="RadioButton" parent="PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("1_3swdq")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("1_3swdq")
-
-[node name="TextureButton2" type="TextureButton" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("1_3swdq")
-
-[node name="TextureButton3" type="TextureButton" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("1_3swdq")
