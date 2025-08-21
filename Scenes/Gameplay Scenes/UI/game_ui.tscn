@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ox8ophv67m71"]
+
+[ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_xcjfi"]
+[ext_resource type="PackedScene" uid="uid://bga3nuxnrcu7v" path="res://Scenes/Gameplay Scenes/UI/playfield.tscn" id="2_7qdnd"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TEMPBG" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xcjfi")
+
+[node name="Playfield" parent="." instance=ExtResource("2_7qdnd")]
+layout_mode = 1

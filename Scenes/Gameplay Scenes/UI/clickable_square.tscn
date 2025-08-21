@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmthr2tjqt7t7"]
+
+[ext_resource type="Script" uid="uid://po4d5dkk166h" path="res://Scripts/Gameplay/ClickableSquare/clickable_square.gd" id="1_wkhls"]
+[ext_resource type="Script" uid="uid://pa5oo2mbaqat" path="res://Scripts/Gameplay/ClickableSquare/square_timer.gd" id="2_gw7dn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gttih"]
+bg_color = Color(1, 0.649567, 0.644465, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkhls"]
+bg_color = Color(1, 0.649567, 0.644465, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gw7dn"]
+bg_color = Color(1, 0.649567, 0.644465, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed8ky"]
+bg_color = Color(1, 0.57, 0.57, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjx4b"]
+bg_color = Color(1, 0.57, 0.57, 1)
+
+[sub_resource type="Theme" id="Theme_mwc3x"]
+Button/styles/focus = SubResource("StyleBoxFlat_gttih")
+Button/styles/hover = SubResource("StyleBoxFlat_wkhls")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_gw7dn")
+Button/styles/normal = SubResource("StyleBoxFlat_ed8ky")
+Button/styles/pressed = SubResource("StyleBoxFlat_xjx4b")
+
+[node name="ClickableSquare" type="Button"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 8.0
+offset_bottom = 8.0
+theme = SubResource("Theme_mwc3x")
+script = ExtResource("1_wkhls")
+
+[node name="SquareTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+script = ExtResource("2_gw7dn")
+
+[connection signal="timeout" from="SquareTimer" to="." method="_on_square_timer_timeout"]

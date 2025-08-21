@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bga3nuxnrcu7v"]
+
+[ext_resource type="PackedScene" uid="uid://cmthr2tjqt7t7" path="res://Scenes/Gameplay Scenes/UI/clickable_square.tscn" id="1_d55vt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d55vt"]
+bg_color = Color(0, 0, 0, 0.505882)
+
+[node name="Playfield" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OutermostMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 450
+theme_override_constants/margin_bottom = 200
+
+[node name="PanelContainer" type="PanelContainer" parent="OutermostMargin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d55vt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OutermostMargin/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="ClickableSquare" parent="OutermostMargin/PanelContainer/HBoxContainer" instance=ExtResource("1_d55vt")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ClickableSquare2" parent="OutermostMargin/PanelContainer/HBoxContainer" instance=ExtResource("1_d55vt")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ClickableSquare3" parent="OutermostMargin/PanelContainer/HBoxContainer" instance=ExtResource("1_d55vt")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
