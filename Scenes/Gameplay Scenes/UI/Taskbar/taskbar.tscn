@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://rvnyestc2j4k"]
+[gd_scene load_steps=4 format=3 uid="uid://rvnyestc2j4k"]
 
 [ext_resource type="PackedScene" uid="uid://ct8m35trdpw3q" path="res://Scenes/Gameplay Scenes/UI/Taskbar/radio_button.tscn" id="1_3swdq"]
+[ext_resource type="PackedScene" uid="uid://ca41iwp0vw5jo" path="res://Scenes/Gameplay Scenes/UI/Taskbar/uprades_button.tscn" id="2_uugsq"]
+[ext_resource type="PackedScene" uid="uid://biofqxyhdo1jn" path="res://Scenes/Gameplay Scenes/UI/Taskbar/menu_button.tscn" id="3_40gfl"]
 
 [node name="Taskbar" type="Control"]
 layout_mode = 3
@@ -35,4 +37,10 @@ theme_override_constants/separation = 25
 alignment = 1
 
 [node name="RadioButton" parent="PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("1_3swdq")]
+layout_mode = 2
+
+[node name="UpradesButton" parent="PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_uugsq")]
+layout_mode = 2
+
+[node name="MenuButton" parent="PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
 layout_mode = 2

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca41iwp0vw5jo"]
+
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="1_ta7am"]
+
+[node name="UpradesButton" type="TextureButton"]
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_ta7am")

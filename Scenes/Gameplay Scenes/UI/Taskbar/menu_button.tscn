@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://biofqxyhdo1jn"]
+
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="1_c1ahw"]
+
+[node name="MenuButton" type="TextureButton"]
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_c1ahw")
