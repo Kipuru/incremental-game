@@ -12,6 +12,7 @@ var original_mouse_pos: Vector2
 
 func _ready() -> void:
 	drag_mode = DragModes.NONE
+	resize_area.position = ui.size
 
 func _process(delta: float) -> void:
 	if drag_mode == DragModes.MOVE:
