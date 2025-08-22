@@ -16,6 +16,8 @@ var original_state: Vector2
 var original_mouse_pos: Vector2
 
 func _ready() -> void:
+	assert(ui and title_bar and title_label and content and resize_area)
+	
 	content.custom_minimum_size = initial_size
 	resize_area.position = ui.size
 	title_label.text = title
