@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var ui: Control
-@export var title_bar: Control
-@export var content: Control
-@export var resize_area: Node2D
+@onready var ui: Control = %UI
+@onready var title_bar: Control = %TitleBar
+@onready var content: Control = %Content
+@onready var resize_area: Node2D = %ResizeArea
 
 enum DragModes { NONE, MOVE_HOVER, MOVE, RESIZE_HOVER, RESIZE }
 var drag_mode: DragModes

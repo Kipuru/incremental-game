@@ -27,14 +27,11 @@ gradient = SubResource("Gradient_sseq7")
 [sub_resource type="CircleShape2D" id="CircleShape2D_rb4y1"]
 radius = 26.0
 
-[node name="Window" type="Node2D" node_paths=PackedStringArray("ui", "title_bar", "content", "resize_area")]
+[node name="Window" type="Node2D"]
 script = ExtResource("1_rb4y1")
-ui = NodePath("UI")
-title_bar = NodePath("UI/VBoxContainer/TitleBar")
-content = NodePath("UI/VBoxContainer/Content")
-resize_area = NodePath("ResizeArea")
 
 [node name="UI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
@@ -44,6 +41,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rb4y1")
 layout_mode = 2
 
 [node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -100,12 +98,14 @@ mouse_default_cursor_shape = 2
 text = " X "
 
 [node name="Content" type="Control" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(800, 300)
 layout_mode = 2
 mouse_filter = 1
 
 [node name="ResizeArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(806, 360)
 collision_mask = 0
 monitoring = false
