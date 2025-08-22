@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=8 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="1_7prq6"]
+[ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Scripts/Gameplay/Windows/window.gd" id="1_rb4y1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
@@ -23,60 +24,82 @@ offsets = PackedFloat32Array(0.0264901, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7prq6"]
 gradient = SubResource("Gradient_sseq7")
 
-[node name="Window" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rb4y1"]
+radius = 26.0
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Window" type="Node2D" node_paths=PackedStringArray("ui", "content", "resize_area")]
+script = ExtResource("1_rb4y1")
+ui = NodePath("UI")
+content = NodePath("UI/VBoxContainer/Content")
+resize_area = NodePath("ResizeArea")
+
+[node name="UI" type="PanelContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rb4y1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 2
 
-[node name="TitleBar" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+[node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_q6fkp")
 
-[node name="TitleBarBG" type="TextureRect" parent="PanelContainer/VBoxContainer/TitleBar"]
+[node name="TitleBarBG" type="TextureRect" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
 texture = SubResource("GradientTexture1D_7prq6")
 expand_mode = 1
 
-[node name="IconMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/TitleBar"]
+[node name="IconMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/TitleBar/IconMargin"]
+[node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/IconMargin"]
 layout_mode = 2
 texture = ExtResource("1_7prq6")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ButtonsMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/TitleBar"]
+[node name="ButtonsMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="Buttons" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TitleBar/ButtonsMargin"]
+[node name="Buttons" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/ButtonsMargin"]
 clip_contents = true
 layout_mode = 2
 alignment = 2
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="PanelContainer/VBoxContainer/TitleBar/ButtonsMargin/Buttons"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI/VBoxContainer/TitleBar/ButtonsMargin/Buttons"]
 layout_mode = 2
 stretch_mode = 1
 alignment_horizontal = 2
 
-[node name="CloseButton" type="Button" parent="PanelContainer/VBoxContainer/TitleBar/ButtonsMargin/Buttons/AspectRatioContainer"]
+[node name="CloseButton" type="Button" parent="UI/VBoxContainer/TitleBar/ButtonsMargin/Buttons/AspectRatioContainer"]
 layout_mode = 2
 text = " X "
 
-[node name="Content" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Content" type="Control" parent="UI/VBoxContainer"]
 custom_minimum_size = Vector2(800, 300)
 layout_mode = 2
+mouse_filter = 1
+
+[node name="ResizeArea" type="Area2D" parent="."]
+position = Vector2(806, 360)
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResizeArea"]
+shape = SubResource("CircleShape2D_rb4y1")
+
+[connection signal="mouse_entered" from="ResizeArea" to="." method="_on_resize_area_mouse_entered"]
+[connection signal="mouse_exited" from="ResizeArea" to="." method="_on_resize_area_mouse_exited"]

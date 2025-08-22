@@ -1,0 +1,54 @@
+extends Node2D
+
+@export var ui: Control
+@export var content: Control
+@export var resize_area: Node2D
+
+enum DragModes { NONE, RESIZE_HOVER, RESIZE }
+var drag_mode: DragModes
+var original_state: Vector2
+var original_mouse_pos: Vector2
+
+func _ready() -> void:
+	drag_mode = DragModes.NONE
+
+func _process(delta: float) -> void:
+	if drag_mode == DragModes.RESIZE:
+		handle_resize()
+
+func _input(event: InputEvent):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		handle_click(event)
+
+func _on_resize_area_mouse_entered() -> void:
+	if drag_mode == DragModes.NONE:
+		drag_mode = DragModes.RESIZE_HOVER
+		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_FDIAGSIZE)
+
+func _on_resize_area_mouse_exited() -> void:
+	if drag_mode == DragModes.RESIZE_HOVER:
+		drag_mode = DragModes.NONE
+		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_ARROW)
+
+func handle_click(event: InputEventMouseButton):
+	if event.pressed:
+		if drag_mode == DragModes.RESIZE_HOVER:
+			# start resize
+			original_state = content.custom_minimum_size
+			original_mouse_pos = get_viewport().get_mouse_position()
+			drag_mode = DragModes.RESIZE
+			Input.set_default_cursor_shape(Input.CursorShape.CURSOR_DRAG)
+	else:
+		if drag_mode == DragModes.RESIZE:
+			# stop resize
+			drag_mode = DragModes.RESIZE_HOVER
+			Input.set_default_cursor_shape(Input.CursorShape.CURSOR_FDIAGSIZE)
+
+func handle_resize():
+	# resize content based on mouse position delta and original size
+	var mouse_pos = get_viewport().get_mouse_position()
+	var delta = mouse_pos - original_mouse_pos
+	content.custom_minimum_size = original_state + delta
+	
+	# reposition resize area
+	resize_area.position = ui.size
