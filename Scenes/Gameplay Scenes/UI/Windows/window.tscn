@@ -96,6 +96,7 @@ alignment_horizontal = 2
 
 [node name="CloseButton" type="Button" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/AspectRatioContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = " X "
 
 [node name="Content" type="Control" parent="UI/VBoxContainer"]
@@ -114,5 +115,6 @@ shape = SubResource("CircleShape2D_rb4y1")
 
 [connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="." method="_on_title_bar_mouse_entered"]
 [connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="." method="_on_title_bar_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/AspectRatioContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="mouse_entered" from="ResizeArea" to="." method="_on_resize_area_mouse_entered"]
 [connection signal="mouse_exited" from="ResizeArea" to="." method="_on_resize_area_mouse_exited"]

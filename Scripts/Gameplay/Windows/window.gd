@@ -41,6 +41,9 @@ func _on_resize_area_mouse_exited() -> void:
 		drag_mode = DragModes.NONE
 		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_ARROW)
 
+func _on_close_button_pressed() -> void:
+	queue_free() # kill window - temp behaviour for demo purposes
+
 func handle_click(event: InputEventMouseButton):
 	if event.pressed:
 		if drag_mode == DragModes.MOVE_HOVER:
