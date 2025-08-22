@@ -19,10 +19,14 @@ func _ready() -> void:
 	assert(ui and title_bar and title_label and content and resize_area)
 	
 	content.custom_minimum_size = initial_size
-	resize_area.position = ui.size
 	title_label.text = title
 	
 	load_scene_into_content_node()
+	
+	# small hack where we wait one frame
+	# so ui can update before we grab its size
+	await get_tree().process_frame
+	resize_area.position = ui.size
 
 func _process(delta: float) -> void:
 	if drag_mode == DragModes.MOVE:
