@@ -70,7 +70,8 @@ texture = ExtResource("1_7prq6")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="WindowName" type="Label" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
+[node name="TitleLabel" type="Label" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Window Name"

@@ -1,18 +1,26 @@
 extends Node2D
 
+@export var title := "Window Name"
+@export var initial_size := Vector2(800., 300.)
+@export var scene_to_load := "uid://bga3nuxnrcu7v"
+
 @onready var ui: Control = %UI
 @onready var title_bar: Control = %TitleBar
+@onready var title_label: Label = %TitleLabel
 @onready var content: Control = %Content
 @onready var resize_area: Node2D = %ResizeArea
 
 enum DragModes { NONE, MOVE_HOVER, MOVE, RESIZE_HOVER, RESIZE }
-var drag_mode: DragModes
+var drag_mode: DragModes = DragModes.NONE
 var original_state: Vector2
 var original_mouse_pos: Vector2
 
 func _ready() -> void:
-	drag_mode = DragModes.NONE
+	content.custom_minimum_size = initial_size
 	resize_area.position = ui.size
+	title_label.text = title
+	
+	load_scene_into_content_node()
 
 func _process(delta: float) -> void:
 	if drag_mode == DragModes.MOVE:
@@ -44,6 +52,18 @@ func _on_resize_area_mouse_exited() -> void:
 
 func _on_close_button_pressed() -> void:
 	queue_free() # kill window - temp behaviour for demo purposes
+
+func load_scene_into_content_node():
+	if not ResourceLoader.exists(scene_to_load):
+		print("Window '" + title + "' could not find scene to load.")
+		return
+	
+	var loaded_res = load(scene_to_load)
+	assert(loaded_res is PackedScene)
+	assert(loaded_res.can_instantiate())
+	var scene_instance = loaded_res.instantiate()
+	assert(scene_instance is Control)
+	content.add_child(scene_instance)
 
 func handle_click(event: InputEventMouseButton):
 	if event.pressed:
