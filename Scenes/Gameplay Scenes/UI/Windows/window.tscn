@@ -54,37 +54,47 @@ layout_mode = 2
 texture = SubResource("GradientTexture1D_7prq6")
 expand_mode = 1
 
-[node name="IconMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
+[node name="LeftSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/IconMargin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/LeftSideMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("1_7prq6")
-expand_mode = 1
+expand_mode = 3
 stretch_mode = 4
 
-[node name="ButtonsMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
+[node name="WindowName" type="Label" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Window Name"
+
+[node name="RightSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="Buttons" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/ButtonsMargin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin"]
 clip_contents = true
 layout_mode = 2
+theme_override_constants/separation = 3
 alignment = 2
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI/VBoxContainer/TitleBar/ButtonsMargin/Buttons"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
 layout_mode = 2
 stretch_mode = 1
 alignment_horizontal = 2
 
-[node name="CloseButton" type="Button" parent="UI/VBoxContainer/TitleBar/ButtonsMargin/Buttons/AspectRatioContainer"]
+[node name="CloseButton" type="Button" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/AspectRatioContainer"]
 layout_mode = 2
 text = " X "
 
