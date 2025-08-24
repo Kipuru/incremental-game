@@ -57,7 +57,7 @@ func _on_resize_area_mouse_exited() -> void:
 		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_ARROW)
 
 func _on_close_button_pressed() -> void:
-	queue_free() # kill window - temp behaviour for demo purposes
+	set_visible(false)
 
 func load_scene_into_content_node():
 	if not ResourceLoader.exists(scene_to_load):
