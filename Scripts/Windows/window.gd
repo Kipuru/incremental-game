@@ -1,5 +1,9 @@
 extends Node2D
 
+# we want to square this value so we can calculate distance
+# without having to do sqrt which is expensive
+const corner_detection_rad_sq = 26. ** 2.
+
 @export var title := "Window Name"
 @export var initial_size := Vector2(800., 300.)
 @export var scene_to_load := "uid://bga3nuxnrcu7v"
@@ -8,7 +12,6 @@ extends Node2D
 @onready var title_bar: Control = %TitleBar
 @onready var title_label: Label = %TitleLabel
 @onready var content: Control = %Content
-@onready var resize_area: Node2D = %ResizeArea
 
 enum DragModes { NONE, MOVE_HOVER, MOVE, RESIZE_HOVER, RESIZE }
 var drag_mode: DragModes = DragModes.NONE
@@ -16,20 +19,22 @@ var original_state: Vector2
 var original_mouse_pos: Vector2
 
 func _ready() -> void:
-	assert(ui and title_bar and title_label and content and resize_area)
+	assert(ui and title_bar and title_label and content)
 	
 	content.custom_minimum_size = initial_size
 	title_label.text = title
 	
 	load_scene_into_content_node()
-	
-	# small hack where we wait one frame
-	# so ui can update before we grab its size
-	await get_tree().process_frame
-	resize_area.position = ui.size
 
 func _process(delta: float) -> void:
-	if drag_mode == DragModes.MOVE:
+	if not visible:
+		return
+	
+	if drag_mode == DragModes.NONE and mouse_is_touching_corner():
+		on_mouse_touching_corner()
+	elif drag_mode == DragModes.RESIZE_HOVER and not mouse_is_touching_corner():
+		on_mouse_untouching_corner()
+	elif drag_mode == DragModes.MOVE:
 		handle_move()
 	elif drag_mode == DragModes.RESIZE:
 		handle_resize()
@@ -46,15 +51,13 @@ func _on_title_bar_mouse_exited() -> void:
 	if drag_mode == DragModes.MOVE_HOVER:
 		drag_mode = DragModes.NONE
 
-func _on_resize_area_mouse_entered() -> void:
-	if drag_mode == DragModes.NONE:
-		drag_mode = DragModes.RESIZE_HOVER
-		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_FDIAGSIZE)
+func on_mouse_touching_corner() -> void:
+	drag_mode = DragModes.RESIZE_HOVER
+	Input.set_default_cursor_shape(Input.CursorShape.CURSOR_FDIAGSIZE)
 
-func _on_resize_area_mouse_exited() -> void:
-	if drag_mode == DragModes.RESIZE_HOVER:
-		drag_mode = DragModes.NONE
-		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_ARROW)
+func on_mouse_untouching_corner() -> void:
+	drag_mode = DragModes.NONE
+	Input.set_default_cursor_shape(Input.CursorShape.CURSOR_ARROW)
 
 func _on_close_button_pressed() -> void:
 	set_visible(false)
@@ -70,6 +73,11 @@ func load_scene_into_content_node():
 	var scene_instance = loaded_res.instantiate()
 	assert(scene_instance is Control)
 	content.add_child(scene_instance)
+
+func mouse_is_touching_corner() -> bool:
+	var mouse_pos = get_global_mouse_position()
+	var corner_pos = global_position + ui.size
+	return corner_pos.distance_squared_to(mouse_pos) <= corner_detection_rad_sq
 
 func handle_click(event: InputEventMouseButton):
 	if event.pressed:
@@ -106,6 +114,3 @@ func handle_resize():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var delta = mouse_pos - original_mouse_pos
 	content.custom_minimum_size = original_state + delta
-	
-	# reposition resize area
-	resize_area.position = ui.size
