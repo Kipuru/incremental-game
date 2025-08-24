@@ -27,10 +27,13 @@ layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="RadioButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_3swdq")]
+[node name="GameplayButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
 layout_mode = 2
 
 [node name="UpradesButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_uugsq")]
+layout_mode = 2
+
+[node name="RadioButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_3swdq")]
 layout_mode = 2
 
 [node name="MenuButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
