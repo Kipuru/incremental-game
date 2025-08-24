@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_d05bn"]
-[ext_resource type="PackedScene" uid="uid://bga3nuxnrcu7v" path="res://Scenes/Gameplay Scenes/UI/playfield.tscn" id="1_p0w41"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/Gameplay Scenes/UI/Taskbar/taskbar.tscn" id="2_d05bn"]
+[ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Scenes/Windows/window.tscn" id="3_fyndk"]
 
 [node name="MainGame" type="Node2D"]
 
@@ -21,10 +21,7 @@ grow_vertical = 2
 texture = ExtResource("1_d05bn")
 metadata/_edit_lock_ = true
 
-[node name="PlayfieldWindow (Temp)" type="Node2D" parent="."]
-metadata/_edit_group_ = true
-
-[node name="Playfield" parent="PlayfieldWindow (Temp)" instance=ExtResource("1_p0w41")]
+[node name="Window" parent="." instance=ExtResource("3_fyndk")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
