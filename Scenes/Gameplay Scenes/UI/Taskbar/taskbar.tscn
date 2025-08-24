@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://rvnyestc2j4k"]
+[gd_scene load_steps=6 format=3 uid="uid://rvnyestc2j4k"]
 
 [ext_resource type="Script" uid="uid://c7oaoeuu4uo4g" path="res://Scripts/UI/taskbar.gd" id="1_00r8f"]
 [ext_resource type="PackedScene" uid="uid://ct8m35trdpw3q" path="res://Scenes/Gameplay Scenes/UI/Taskbar/radio_button.tscn" id="1_3swdq"]
 [ext_resource type="PackedScene" uid="uid://ca41iwp0vw5jo" path="res://Scenes/Gameplay Scenes/UI/Taskbar/uprades_button.tscn" id="2_uugsq"]
 [ext_resource type="PackedScene" uid="uid://biofqxyhdo1jn" path="res://Scenes/Gameplay Scenes/UI/Taskbar/menu_button.tscn" id="3_40gfl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00r8f"]
+bg_color = Color(0.1886, 0.346917, 0.46, 0.690196)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.783558, 0.875897, 0.943141, 0.415686)
+border_blend = true
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(600, 100)
@@ -17,6 +25,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_00r8f")
 script = ExtResource("1_00r8f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
