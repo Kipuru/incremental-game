@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://rvnyestc2j4k"]
+[gd_scene load_steps=5 format=3 uid="uid://rvnyestc2j4k"]
 
+[ext_resource type="Script" uid="uid://c7oaoeuu4uo4g" path="res://Scripts/UI/taskbar.gd" id="1_00r8f"]
 [ext_resource type="PackedScene" uid="uid://ct8m35trdpw3q" path="res://Scenes/Gameplay Scenes/UI/Taskbar/radio_button.tscn" id="1_3swdq"]
 [ext_resource type="PackedScene" uid="uid://ca41iwp0vw5jo" path="res://Scenes/Gameplay Scenes/UI/Taskbar/uprades_button.tscn" id="2_uugsq"]
 [ext_resource type="PackedScene" uid="uid://biofqxyhdo1jn" path="res://Scenes/Gameplay Scenes/UI/Taskbar/menu_button.tscn" id="3_40gfl"]
@@ -16,6 +17,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("1_00r8f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -38,3 +40,5 @@ layout_mode = 2
 
 [node name="MenuButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
 layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/GameplayButton" to="." method="_on_gameplay_button_pressed"]

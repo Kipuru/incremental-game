@@ -21,9 +21,16 @@ grow_vertical = 2
 texture = ExtResource("1_d05bn")
 metadata/_edit_lock_ = true
 
-[node name="Window" parent="." instance=ExtResource("3_fyndk")]
+[node name="Windows" type="Node2D" parent="."]
+
+[node name="GameplayWindow" parent="Windows" instance=ExtResource("3_fyndk")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Taskbar" parent="UI" instance=ExtResource("2_d05bn")]
+[node name="Taskbar" parent="UI" node_paths=PackedStringArray("gameplay_window") instance=ExtResource("2_d05bn")]
+offset_left = -343.5
+offset_top = -128.0
+offset_right = 343.5
+scale = Vector2(0.998407, 1)
+gameplay_window = NodePath("../../Windows/GameplayWindow")
