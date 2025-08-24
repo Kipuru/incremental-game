@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://de7lvnyp8gqh2"]
+
+[ext_resource type="Script" uid="uid://5mg3hrft4af1" path="res://Scripts/Gameplay/bubble.gd" id="1_faaug"]
+[ext_resource type="Texture2D" uid="uid://brpjt7kn6e5j4" path="res://Assets/bubbletemp.png" id="1_y8cj2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8cj2"]
+radius = 64.0
+
+[node name="Bubble" type="CharacterBody2D"]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_faaug")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_y8cj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y8cj2")

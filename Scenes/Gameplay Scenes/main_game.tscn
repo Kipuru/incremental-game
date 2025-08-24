@@ -1,17 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=5 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_d05bn"]
-[ext_resource type="PackedScene" uid="uid://bga3nuxnrcu7v" path="res://Scenes/Gameplay Scenes/UI/playfield.tscn" id="1_p0w41"]
-[ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/Gameplay Scenes/UI/Taskbar/taskbar.tscn" id="2_d05bn"]
+[ext_resource type="Script" uid="uid://dwkwt3typkbsr" path="res://Scripts/Gameplay/bubbles.gd" id="1_p0w41"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0w41"]
+size = Vector2(64, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d05bn"]
+size = Vector2(2048, 64)
 
 [node name="MainGame" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Bubbles" type="Node2D" parent="."]
+script = ExtResource("1_p0w41")
+
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -2
 
 [node name="TEMPBG (DELETE THIS)" type="TextureRect" parent="Background"]
+modulate = Color(0.55, 0.55, 0.55, 1)
 custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,12 +30,34 @@ grow_vertical = 2
 texture = ExtResource("1_d05bn")
 metadata/_edit_lock_ = true
 
-[node name="PlayfieldWindow (Temp)" type="Node2D" parent="."]
-metadata/_edit_group_ = true
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
 
-[node name="Playfield" parent="PlayfieldWindow (Temp)" instance=ExtResource("1_p0w41")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-992, 0)
+shape = SubResource("RectangleShape2D_p0w41")
 
-[node name="UI" type="CanvasLayer" parent="."]
-layer = -1
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(992, 0)
+shape = SubResource("RectangleShape2D_p0w41")
 
-[node name="Taskbar" parent="UI" instance=ExtResource("2_d05bn")]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -576)
+shape = SubResource("RectangleShape2D_d05bn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 576)
+shape = SubResource("RectangleShape2D_d05bn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Add Bubble" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Add Bubble"
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Add Bubble" to="Bubbles" method="_on_add_bubble_pressed"]
