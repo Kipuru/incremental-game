@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=7 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Scripts/Windows/window.gd" id="1_28hdt"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="2_vip54"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
@@ -62,6 +63,7 @@ theme_override_constants/separation = 10
 
 [node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
 layout_mode = 2
+texture = ExtResource("2_vip54")
 expand_mode = 3
 stretch_mode = 4
 
