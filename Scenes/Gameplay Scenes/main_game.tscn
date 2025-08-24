@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_d05bn"]
-[ext_resource type="Script" uid="uid://dwkwt3typkbsr" path="res://Scripts/Gameplay/bubbles.gd" id="1_p0w41"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/bubbles.gd" id="1_p0w41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0w41"]
 size = Vector2(64, 1088)
@@ -20,7 +20,6 @@ script = ExtResource("1_p0w41")
 layer = -2
 
 [node name="TEMPBG (DELETE THIS)" type="TextureRect" parent="Background"]
-modulate = Color(0.55, 0.55, 0.55, 1)
 custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
