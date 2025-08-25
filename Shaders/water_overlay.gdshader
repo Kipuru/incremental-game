@@ -8,37 +8,37 @@ uniform float fill : hint_range(0, 1);
 
 bool is_equal_approx(float a, float b) {
 	const float range = 0.0005;
-	
+
 	return abs(a - b) < range;
 }
 
 vec2 displace_uv(vec2 uv) {
-	const float uv_scroll_speed = 1. / 50.;
-	const vec2 uv_scroll_dir = vec2(1., 1.);
-	const float uv_displacement_scale = 1. / 20.;
-	
-	vec2 velocity = vec2(uv_scroll_dir.x + (TIME * uv_scroll_speed), uv_scroll_dir.y + (TIME * uv_scroll_speed));
+	const float scroll_speed = 1. / 50.;
+	const vec2 scroll_dir = vec2(1., 1.);
+	const float disp_scale = 1. / 20.;
+
+	vec2 velocity = vec2(scroll_dir.x + (TIME * scroll_speed), scroll_dir.y + (TIME * scroll_speed));
 	vec2 sample_coord = vec2(uv.x + velocity.x, uv.y + velocity.y);
-	
-	float sampled_x = (texture(displacement_noise_x, sample_coord).r - 0.5) * uv_displacement_scale;
-	float sampled_y = (texture(displacement_noise_y, sample_coord).r - 0.5) * uv_displacement_scale;
+
+	float sampled_x = (texture(displacement_noise_x, sample_coord).r - 0.5) * disp_scale;
+	float sampled_y = (texture(displacement_noise_y, sample_coord).r - 0.5) * disp_scale;
 	sampled_x = clamp(sampled_x, 0., 1.);
 	sampled_y = clamp(sampled_y, 0., 1.);
-	
+
 	return vec2(uv.x + sampled_x, uv.y + sampled_y);
 }
 
 float displace_height(float height, vec2 uv) {
-	const float height_scroll_speed =  1. / 30.;
-	const vec2 height_scroll_dir = vec2(1., 0.);
-	const float height_displacement_scale = 1. / 10.;
-	
-	vec2 velocity = vec2(height_scroll_dir.x + (TIME * height_scroll_speed), height_scroll_dir.y + (TIME * height_scroll_speed));
+	const float scroll_speed =  1. / 30.;
+	const vec2 scroll_dir = vec2(1., 0.);
+	const float disp_scale = 1. / 10.;
+
+	vec2 velocity = vec2(scroll_dir.x + (TIME * scroll_speed), scroll_dir.y + (TIME * scroll_speed));
 	vec2 sample_coord = vec2(uv.x + velocity.x, uv.y + velocity.y);
-	
-	float sampled = (texture(displacement_noise_height, sample_coord).r - 0.5) * height_displacement_scale;
+
+	float sampled = (texture(displacement_noise_height, sample_coord).r - 0.5) * disp_scale;
 	sampled = clamp(sampled, 0., 1.);
-	
+
 	return height + sampled;
 }
 
@@ -47,9 +47,9 @@ vec4 sample_with_blur(vec2 displaced_uv, vec2 screen_pixel_size) {
 	const float directions = 4.0; // BLUR DIRECTIONS (Default 16.0 - More is better but slower)
 	const float quality = 4.0; // BLUR QUALITY (Default 4.0 - More is better but slower)
 	const float size = 4.0; // BLUR SIZE (Radius)
-	
+
 	vec4 color = texture(SCREEN_TEXTURE, displaced_uv);
-	
+
 	// Blur calculations
 	vec2 radius = size * screen_pixel_size;
 	for(float angle=0.0; angle<PI; angle+=PI/directions) {
@@ -58,7 +58,7 @@ vec4 sample_with_blur(vec2 displaced_uv, vec2 screen_pixel_size) {
 		}
 	}
 	color = vec4(color.rgb / (quality * directions + 1.), 1.); // divide by number of iterations + 1
-	
+
 	color = vec4(color.r * 0.6, color.g * 0.9, color.b, 1.); // tint blue
 	return color;
 }
@@ -66,19 +66,18 @@ vec4 sample_with_blur(vec2 displaced_uv, vec2 screen_pixel_size) {
 void fragment() {
 	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
 	COLOR = screen_color;
-	
+
 	vec2 displaced_uv = displace_uv(SCREEN_UV);
 	vec4 water_color = sample_with_blur(displaced_uv, SCREEN_PIXEL_SIZE);
-	
+
 	float height = (fill - (1.-UV.y)); // calculate height relative to fill
 	if (fill > 0.) {
 		height = displace_height(height, UV);
-		
+
 		if (is_equal_approx(height, 0.)) {
 			COLOR = vec4(1., 1., 1., 1.);
 		} else if (height > 0.) {
 			COLOR = water_color;
 		}
 	}
-
 }
