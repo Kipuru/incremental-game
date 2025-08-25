@@ -46,16 +46,14 @@ vec4 sample_with_blur(vec2 displaced_uv, vec2 screen_pixel_size) {
 	
 	// Blur calculations
 	vec2 radius = size * screen_pixel_size;
-	for(float d=0.0; d<PI; d+=PI/directions) {
+	for(float angle=0.0; angle<PI; angle+=PI/directions) {
 		for(float i=1.0/quality; i<=1.001; i+=1.0/quality) {
-			color += texture(SCREEN_TEXTURE, displaced_uv+vec2(cos(d),sin(d))*radius*i);
+			color += texture(SCREEN_TEXTURE, displaced_uv + vec2(cos(angle),sin(angle))*radius*i);
 		}
 	}
-	color = vec4(color.rgb / (quality * directions + 1.), 1.);
+	color = vec4(color.rgb / (quality * directions + 1.), 1.); // divide by number of iterations + 1
 	
-	// tint blue
-	color = vec4(color.r * 0.6, color.g * 0.9, color.b, 1.);
-	
+	color = vec4(color.r * 0.6, color.g * 0.9, color.b, 1.); // tint blue
 	return color;
 }
 
@@ -65,12 +63,13 @@ void fragment() {
 	vec2 displaced_uv = displace_uv(SCREEN_UV);
 	vec4 water_color = sample_with_blur(displaced_uv, SCREEN_PIXEL_SIZE);
 	
-	float height = (fill - (1.-UV.y));
-	height = displace_height(height, UV);
-	if (height < 0.) {
-		COLOR = screen_color;
-	} else {
-		COLOR = water_color;
+	float height = (fill - (1.-UV.y)); // calculate height relative to fill
+	if (fill > 0.) {
+		height = displace_height(height, UV);
 	}
-	//COLOR = vec4(height, 0., 0., 1.);
+	if (height > 0.) {
+		COLOR = water_color;
+	} else {
+		COLOR = screen_color;
+	}
 }
