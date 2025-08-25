@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqegup4gnccd3"]
+
+[ext_resource type="Script" uid="uid://cvie1ke8k8b4b" path="res://Scripts/Gameplay/bubble.gd" id="1_faaug"]
+[ext_resource type="Texture2D" uid="uid://bhf7qvhkjtf70" path="res://Assets/bubbletemp.png" id="1_y8cj2"]
+[ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="2_um1kw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7a34"]
+shader = ExtResource("2_um1kw")
+
+[sub_resource type="Gradient" id="Gradient_um1kw"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e7a34"]
+gradient = SubResource("Gradient_um1kw")
+width = 128
+height = 128
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8cj2"]
+radius = 64.0
+
+[node name="Bubble" type="CharacterBody2D"]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_faaug")
+
+[node name="Refraction" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e7a34")
+texture = SubResource("GradientTexture2D_e7a34")
+
+[node name="Overlay" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_y8cj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y8cj2")
