@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=6 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_d05bn"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/Gameplay Scenes/UI/Taskbar/taskbar.tscn" id="2_d05bn"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Scenes/Windows/window.tscn" id="3_fyndk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d05bn"]
+size = Vector2(1920, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyndk"]
+size = Vector2(32, 1088)
 
 [node name="MainGame" type="Node2D"]
 
@@ -21,6 +27,26 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_d05bn")
 metadata/_edit_lock_ = true
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 2
+metadata/_edit_lock_ = true
+
+[node name="Wall Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -552)
+shape = SubResource("RectangleShape2D_d05bn")
+
+[node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 544)
+shape = SubResource("RectangleShape2D_d05bn")
+
+[node name="Wall Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-976, 0)
+shape = SubResource("RectangleShape2D_fyndk")
+
+[node name="Wall Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(976, 0)
+shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
 
