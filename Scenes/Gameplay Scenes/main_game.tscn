@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/Gameplay Scenes/UI/Taskbar/taskbar.tscn" id="2_d05bn"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Scenes/Windows/window.tscn" id="3_fyndk"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="4_y3rpi"]
-[ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/watertest.gd" id="5_pwppc"]
+[ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/Gameplay/water_overlay.gd" id="5_pwppc"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
 
@@ -50,7 +50,7 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_y3rpi")
 script = ExtResource("5_pwppc")
 
-[node name="FillAmount" type="HSlider" parent="WaterOverlay"]
+[node name="FillAmountSlider (TEMP)" type="HSlider" parent="WaterOverlay"]
 offset_right = 480.0
 offset_bottom = 56.0
 max_value = 1.0
@@ -90,4 +90,4 @@ offset_right = 343.5
 scale = Vector2(0.998407, 1)
 gameplay_window = NodePath("../../Windows/GameplayWindow")
 
-[connection signal="value_changed" from="WaterOverlay/FillAmount" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
+[connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
