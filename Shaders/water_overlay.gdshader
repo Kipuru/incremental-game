@@ -6,6 +6,12 @@ uniform sampler2D displacement_noise_y : repeat_enable;
 uniform sampler2D displacement_noise_height : repeat_enable;
 uniform float fill : hint_range(0, 1);
 
+bool is_equal_approx(float a, float b) {
+	const float range = 0.0005;
+	
+	return abs(a - b) < range;
+}
+
 vec2 displace_uv(vec2 uv) {
 	const float uv_scroll_speed = 1. / 50.;
 	const vec2 uv_scroll_dir = vec2(1., 1.);
@@ -59,6 +65,7 @@ vec4 sample_with_blur(vec2 displaced_uv, vec2 screen_pixel_size) {
 
 void fragment() {
 	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	COLOR = screen_color;
 	
 	vec2 displaced_uv = displace_uv(SCREEN_UV);
 	vec4 water_color = sample_with_blur(displaced_uv, SCREEN_PIXEL_SIZE);
@@ -66,10 +73,12 @@ void fragment() {
 	float height = (fill - (1.-UV.y)); // calculate height relative to fill
 	if (fill > 0.) {
 		height = displace_height(height, UV);
+		
+		if (is_equal_approx(height, 0.)) {
+			COLOR = vec4(1., 1., 1., 1.);
+		} else if (height > 0.) {
+			COLOR = water_color;
+		}
 	}
-	if (height > 0.) {
-		COLOR = water_color;
-	} else {
-		COLOR = screen_color;
-	}
+
 }
