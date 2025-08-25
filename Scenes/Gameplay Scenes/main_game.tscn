@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=10 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_d05bn"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/Gameplay Scenes/UI/Taskbar/taskbar.tscn" id="2_d05bn"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Scenes/Windows/window.tscn" id="3_fyndk"]
+[ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="4_y3rpi"]
+[ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/watertest.gd" id="5_pwppc"]
+
+[sub_resource type="Gradient" id="Gradient_ohkr6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y3rpi"]
+gradient = SubResource("Gradient_ohkr6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d05bn"]
 size = Vector2(1920, 32)
@@ -27,6 +34,27 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_d05bn")
 metadata/_edit_lock_ = true
+
+[node name="WaterOverlay" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Texture" type="TextureRect" parent="WaterOverlay"]
+material = ExtResource("4_y3rpi")
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_y3rpi")
+script = ExtResource("5_pwppc")
+
+[node name="FillAmount" type="HSlider" parent="WaterOverlay"]
+offset_right = 480.0
+offset_bottom = 56.0
+max_value = 1.0
+step = 0.001
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -61,3 +89,5 @@ offset_top = -128.0
 offset_right = 343.5
 scale = Vector2(0.998407, 1)
 gameplay_window = NodePath("../../Windows/GameplayWindow")
+
+[connection signal="value_changed" from="WaterOverlay/FillAmount" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
