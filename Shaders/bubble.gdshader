@@ -24,6 +24,6 @@ void fragment() {
 			COLOR = texture(SCREEN_TEXTURE, new_uv);
 		}
 	} else { // unaltered pixels
-		COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
+		discard;
 	}
 }
