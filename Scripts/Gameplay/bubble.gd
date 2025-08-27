@@ -44,10 +44,11 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 		bounce(collision)
 		return
 	
-	handle_bubble_collision_same_tier(bubble)
+	bounce(collision) # temp, prevent merging until mechanic is fully implemented
+	#merge_bubbles(bubble)
 
 # Bubble with higher coordinate will spawn new bubble
-func handle_bubble_collision_same_tier(collided_with: Bubble) -> void:
+func merge_bubbles(collided_with: Bubble) -> void:
 	if position.x < collided_with.position.x:
 		queue_free()
 		return
