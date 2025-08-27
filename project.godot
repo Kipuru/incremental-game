@@ -34,3 +34,4 @@ version_control/autoload_on_startup=true
 
 2d_physics/layer_1="bubble"
 2d_physics/layer_2="wall"
+2d_physics/layer_16="mouse_interactable"

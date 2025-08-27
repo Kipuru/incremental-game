@@ -20,7 +20,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent):
 	if touching_mouse and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			handle_pop()
+			if not BubbleSpawner.touching_mouse: # small hack to prevent popping bubbles under the spawner
+				handle_pop()
 
 func _mouse_enter() -> void:
 	touching_mouse = true

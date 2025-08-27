@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=11 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_d05bn"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/Gameplay/UI/Taskbar/taskbar.tscn" id="2_d05bn"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Scenes/Windows/window.tscn" id="3_fyndk"]
+[ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Scenes/Gameplay/bubble_spawner.tscn" id="4_ci3uv"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="4_y3rpi"]
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/Gameplay/water_overlay.gd" id="5_pwppc"]
 
@@ -55,6 +56,12 @@ offset_right = 480.0
 offset_bottom = 56.0
 max_value = 1.0
 step = 0.001
+
+[node name="Bubbles" type="Node2D" parent="."]
+
+[node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_ci3uv")]
+position = Vector2(-792, 392)
+bubble_container = NodePath("../Bubbles")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
