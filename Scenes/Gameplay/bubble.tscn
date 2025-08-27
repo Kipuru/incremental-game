@@ -4,7 +4,10 @@
 [ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="2_2oi1d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7a34"]
+resource_local_to_scene = true
 shader = ExtResource("2_2oi1d")
+shader_parameter/color_adjustment = Vector3(1, 1, 1)
+shader_parameter/adjust_using_grayscale = false
 
 [sub_resource type="Gradient" id="Gradient_um1kw"]
 
@@ -23,6 +26,7 @@ motion_mode = 1
 script = ExtResource("1_rtvwa")
 
 [node name="Refraction" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_e7a34")
 texture = SubResource("GradientTexture2D_e7a34")
 
