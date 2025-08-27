@@ -22,7 +22,11 @@ input_pickable = true
 motion_mode = 1
 script = ExtResource("1_rtvwa")
 
-[node name="Refraction" type="Sprite2D" parent="."]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+rect = Rect2(-512, -512, 1024, 1024)
+
+[node name="Refraction" type="Sprite2D" parent="BackBufferCopy"]
 material = SubResource("ShaderMaterial_e7a34")
 texture = SubResource("GradientTexture2D_e7a34")
 
