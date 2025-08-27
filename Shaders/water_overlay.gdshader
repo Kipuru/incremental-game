@@ -74,7 +74,7 @@ void fragment() {
 	if (fill > 0.) {
 		height = displace_height(height, UV);
 
-		if (is_equal_approx(height, 0.)) {
+		if (is_equal_approx(height, 0.) && !is_equal_approx(fill, 1.)) {
 			COLOR = vec4(1., 1., 1., 1.);
 		} else if (height > 0.) {
 			COLOR = water_color;
