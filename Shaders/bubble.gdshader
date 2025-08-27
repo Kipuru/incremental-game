@@ -7,24 +7,23 @@ const float refraction_strength = 0.1;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, repeat_disable, filter_nearest;
 
 bool is_equal_approx(float a, float b) {
-	const float range = 0.005;
+	const float range = 0.01;
 	return abs(a - b) < range;
 }
 
 void fragment() {
 	vec2 dir = UV - center;
 	float dist = length(dir);
-	vec2 new_uv = SCREEN_UV;
 
-	if (is_equal_approx(dist, radius)) {
-		// white outline
-		COLOR = vec4(1., 1., 1., 1.);
-	} else {
-		if (dist < radius) {
+	if (dist < radius) {
+		if (is_equal_approx(dist, radius)) { // white outline
+			COLOR = vec4(1., 1., 1., 1.);
+		} else { // refracted inside
 			float effect = sqrt(radius*radius - dist*dist) / radius;
-			new_uv += dir * effect * refraction_strength;
+			vec2 new_uv = SCREEN_UV + dir * effect * refraction_strength;
+			COLOR = texture(SCREEN_TEXTURE, new_uv);
 		}
-		vec4 screen_color = texture(SCREEN_TEXTURE, new_uv);
-		COLOR = screen_color;
+	} else { // unaltered pixels
+		COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
 	}
 }
