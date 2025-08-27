@@ -16,10 +16,11 @@ height = 32
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qa33k"]
 particle_flag_disable_z = true
 emission_shape = 2
-emission_sphere_radius = 40.0
+emission_sphere_radius = 60.0
 direction = Vector3(0, -20, 0)
+spread = 61.479
 initial_velocity_max = 92.39
-gravity = Vector3(0, 98, 0)
+gravity = Vector3(0, 300, 0)
 collision_mode = 2
 
 [node name="BubbleDroplets" type="GPUParticles2D"]
@@ -31,7 +32,6 @@ lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
-trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_qa33k")
 script = ExtResource("2_hk0dr")
 
