@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3smntwdp16bv"
+path="res://.godot/imported/ok maybe 2.mp3-a02bf8583ddfd7ba2be731d3e39b89ab.mp3str"
+
+[deps]
+
+source_file="res://Assets/Demo Songs/ok maybe 2.mp3"
+dest_files=["res://.godot/imported/ok maybe 2.mp3-a02bf8583ddfd7ba2be731d3e39b89ab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
