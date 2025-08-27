@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bga3nuxnrcu7v"]
 
-[ext_resource type="PackedScene" uid="uid://cmthr2tjqt7t7" path="res://Scenes/Gameplay/UI/clickable_square.tscn" id="1_d55vt"]
+[ext_resource type="PackedScene" uid="uid://cmthr2tjqt7t7" path="res://Scenes/UI/Misc/clickable_square.tscn" id="1_d55vt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d55vt"]
 bg_color = Color(0, 0, 0, 0.505882)
