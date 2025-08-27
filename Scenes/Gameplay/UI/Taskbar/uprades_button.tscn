@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca41iwp0vw5jo"]
 
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="1_ta7am"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icon.svg" id="1_ta7am"]
 
 [node name="UpradesButton" type="TextureButton"]
 custom_minimum_size = Vector2(75, 75)

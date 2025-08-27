@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ct8m35trdpw3q"]
 
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://icon.svg" id="1_cmkfe"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icon.svg" id="1_cmkfe"]
 
 [node name="RadioButton" type="TextureButton"]
 custom_minimum_size = Vector2(75, 75)
