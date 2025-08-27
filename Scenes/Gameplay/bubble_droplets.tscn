@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtcbmrnwmh1m6"]
+[gd_scene load_steps=7 format=3 uid="uid://dtcbmrnwmh1m6"]
 
 [ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="1_opxuk"]
+[ext_resource type="Script" uid="uid://6n0nxanpn2wp" path="res://Scripts/Gameplay/bubble_droplets.gd" id="2_hk0dr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gj4l"]
 shader = ExtResource("1_opxuk")
@@ -32,3 +33,6 @@ explosiveness = 1.0
 fixed_fps = 60
 trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_qa33k")
+script = ExtResource("2_hk0dr")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
