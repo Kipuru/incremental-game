@@ -86,6 +86,7 @@ shape = SubResource("RectangleShape2D_fyndk")
 [node name="Windows" type="Node2D" parent="."]
 
 [node name="GameplayWindow" parent="Windows" instance=ExtResource("3_fyndk")]
+visible = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
