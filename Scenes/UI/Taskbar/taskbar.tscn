@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://rvnyestc2j4k"]
 
 [ext_resource type="Script" uid="uid://c7oaoeuu4uo4g" path="res://Scripts/UI/taskbar.gd" id="1_00r8f"]
-[ext_resource type="PackedScene" uid="uid://ct8m35trdpw3q" path="res://Scenes/UI/Taskbar/radio_button.tscn" id="1_3swdq"]
 [ext_resource type="PackedScene" uid="uid://ca41iwp0vw5jo" path="res://Scenes/UI/Taskbar/uprades_button.tscn" id="2_uugsq"]
 [ext_resource type="PackedScene" uid="uid://biofqxyhdo1jn" path="res://Scenes/UI/Taskbar/menu_button.tscn" id="3_40gfl"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icon.svg" id="4_48apg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00r8f"]
 bg_color = Color(0.1886, 0.346917, 0.46, 0.690196)
@@ -44,8 +44,10 @@ layout_mode = 2
 [node name="UpradesButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_uugsq")]
 layout_mode = 2
 
-[node name="RadioButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_3swdq")]
+[node name="MusicButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+texture_normal = ExtResource("4_48apg")
 
 [node name="MenuButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
 layout_mode = 2

@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://crukf30s30kkm"]
+
+[ext_resource type="Script" uid="uid://bf2fpu4uiipqf" path="res://Scripts/UI/Music/song_item.gd" id="1_tea1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4difg"]
+bg_color = Color(0.93, 0.93, 0.93, 1)
+
+[node name="SongItem" type="PanelContainer" node_paths=PackedStringArray("name_label")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4difg")
+script = ExtResource("1_tea1u")
+name_label = NodePath("MarginContainer/HBoxContainer/Name")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "SONG NAME"
+
+[node name="PlayNow" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="Queue" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Q"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PlayNow" to="." method="_on_play_now_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Queue" to="." method="_on_queue_pressed"]

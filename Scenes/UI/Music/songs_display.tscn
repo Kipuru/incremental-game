@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce87r5gr2kp3g"]
+
+[ext_resource type="Script" uid="uid://b3x11b6cdrvym" path="res://Scripts/UI/Music/songs_display.gd" id="1_vx41s"]
+
+[node name="SongsDisplay" type="ScrollContainer"]
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+script = ExtResource("1_vx41s")
+
+[node name="ItemContainer" type="FlowContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

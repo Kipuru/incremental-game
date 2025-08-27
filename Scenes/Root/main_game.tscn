@@ -88,6 +88,12 @@ shape = SubResource("RectangleShape2D_fyndk")
 [node name="GameplayWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 visible = false
 
+[node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
+position = Vector2(-797, -409)
+title = "Music"
+initial_size = Vector2(1000, 700)
+scene_to_load = "uid://c2vv44w75e4en"
+
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
 
