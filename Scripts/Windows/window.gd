@@ -4,10 +4,10 @@ extends Node2D
 # without having to do sqrt which is expensive
 const corner_detection_rad_sq = 26. ** 2.
 
-@export var title := "Window Name"
-@export var initial_size := Vector2(800., 300.)
-@export var scene_to_load := "uid://bga3nuxnrcu7v"
 @export var window_icon := "uid://b21msh4k62j8q"
+@export var title := "Window Name"
+@export var scene_to_load := "uid://bga3nuxnrcu7v"
+@export var initial_size := Vector2(800., 300.)
 
 @onready var ui: Control = %UI
 @onready var title_bar: Control = %TitleBar
