@@ -38,9 +38,6 @@ layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="GameplayButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
-layout_mode = 2
-
 [node name="UpradesButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_uugsq")]
 layout_mode = 2
 
@@ -52,5 +49,4 @@ texture_normal = ExtResource("4_48apg")
 [node name="MenuButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
 layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/GameplayButton" to="." method="_on_gameplay_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]

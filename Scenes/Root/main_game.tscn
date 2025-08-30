@@ -85,9 +85,6 @@ shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
 
-[node name="GameplayWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-visible = false
-
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 position = Vector2(-797, -409)
 title = "StreamPlay (trial).exe"
@@ -103,7 +100,7 @@ offset_left = -343.5
 offset_top = -128.0
 offset_right = 343.5
 scale = Vector2(0.998407, 1)
-gameplay_window = NodePath("../../Windows/GameplayWindow")
+gameplay_window = NodePath("")
 music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
