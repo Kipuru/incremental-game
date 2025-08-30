@@ -90,18 +90,19 @@ visible = false
 
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 position = Vector2(-797, -409)
-title = "Music"
+title = "StreamPlay (trial).exe"
+scene_to_load = "uid://dwtelixwjtlsk"
 initial_size = Vector2(1000, 700)
-scene_to_load = "uid://c2vv44w75e4en"
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Taskbar" parent="UI" node_paths=PackedStringArray("gameplay_window") instance=ExtResource("6_nqh8o")]
+[node name="Taskbar" parent="UI" node_paths=PackedStringArray("gameplay_window", "music_window") instance=ExtResource("6_nqh8o")]
 offset_left = -343.5
 offset_top = -128.0
 offset_right = 343.5
 scale = Vector2(0.998407, 1)
 gameplay_window = NodePath("../../Windows/GameplayWindow")
+music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]

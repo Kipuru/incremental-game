@@ -1,4 +1,4 @@
-extends Control
+extends PanelContainer
 
 const song_item_scene: PackedScene = preload("uid://crukf30s30kkm")
 

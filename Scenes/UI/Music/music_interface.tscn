@@ -1,16 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwtelixwjtlsk"]
+[gd_scene load_steps=10 format=3 uid="uid://dwtelixwjtlsk"]
 
 [ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_h6i6e"]
 [ext_resource type="PackedScene" uid="uid://b7bibqo7h508x" path="res://Scenes/Audio/music_player.tscn" id="2_wpb7c"]
-[ext_resource type="Script" uid="uid://cyfrmaitlhhxu" path="res://Scripts/UI/Music/currently_playing_label.gd" id="3_wiyj6"]
-[ext_resource type="Script" uid="uid://bxf0a61gvdy03" path="res://Scripts/UI/Music/playback_controls.gd" id="4_vw141"]
-[ext_resource type="Script" uid="uid://b3x11b6cdrvym" path="res://Scripts/UI/Music/songs_display.gd" id="4_wiyj6"]
-[ext_resource type="Script" uid="uid://bxatqxof3rnw4" path="res://Scripts/UI/Music/seeker.gd" id="5_vv0yo"]
-[ext_resource type="Script" uid="uid://bw8onbr85n0nx" path="res://Scripts/UI/Music/queue_display.gd" id="6_vv0yo"]
+[ext_resource type="Script" uid="uid://cyfrmaitlhhxu" path="res://Scripts/UI/Music/TopBar/currently_playing_label.gd" id="3_wiyj6"]
+[ext_resource type="PackedScene" uid="uid://c42f4mmycgf2n" path="res://Scenes/UI/Music/playback_controls.tscn" id="4_vv0yo"]
+[ext_resource type="Script" uid="uid://bxatqxof3rnw4" path="res://Scripts/UI/Music/TopBar/seeker.gd" id="5_vv0yo"]
+[ext_resource type="PackedScene" uid="uid://b205oftfnimor" path="res://Scenes/UI/Music/queue_display.tscn" id="6_vv0yo"]
+[ext_resource type="Script" uid="uid://b63xehxpycfcx" path="res://Scripts/UI/Music/TopBar/time_label.gd" id="6_vw141"]
+[ext_resource type="PackedScene" uid="uid://ce87r5gr2kp3g" path="res://Scenes/UI/Music/songs_display.tscn" id="7_vw141"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66iin"]
 
 [node name="MusicInterface" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,77 +33,53 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_66iin")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopBar"]
 layout_mode = 2
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="CurrentlyPlaying" type="Label" parent="VBoxContainer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Not Playing"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
 script = ExtResource("3_wiyj6")
 
-[node name="PlaybackControls" type="MarginContainer" parent="VBoxContainer/TopBar/HBoxContainer"]
+[node name="PlaybackControls" parent="VBoxContainer/TopBar/HBoxContainer" instance=ExtResource("4_vv0yo")]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
-script = ExtResource("4_vw141")
-
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/TopBar/HBoxContainer/PlaybackControls"]
-layout_mode = 2
-alignment = 1
-
-[node name="Previous" type="Button" parent="VBoxContainer/TopBar/HBoxContainer/PlaybackControls/Buttons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "<"
-
-[node name="PlayPause" type="Button" parent="VBoxContainer/TopBar/HBoxContainer/PlaybackControls/Buttons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "> ||"
-
-[node name="Next" type="Button" parent="VBoxContainer/TopBar/HBoxContainer/PlaybackControls/Buttons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = ">>"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
 
 [node name="Seeker" type="HSlider" parent="VBoxContainer/TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 1
+step = 0.1
 script = ExtResource("5_vv0yo")
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0:00 / 0:00"
+clip_text = true
+script = ExtResource("6_vw141")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="SongsDisplay" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="QueueDisplay" parent="VBoxContainer/HBoxContainer" instance=ExtResource("6_vv0yo")]
 layout_mode = 2
-size_flags_horizontal = 3
-horizontal_scroll_mode = 0
-script = ExtResource("4_wiyj6")
 
-[node name="SongItemContainer" type="FlowContainer" parent="VBoxContainer/HBoxContainer/SongsDisplay"]
-unique_name_in_owner = true
+[node name="SongsDisplay" parent="VBoxContainer/HBoxContainer" instance=ExtResource("7_vw141")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="QueueDisplay" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-script = ExtResource("6_vv0yo")
-
-[node name="QueueItemContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/QueueDisplay"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
 
 [connection signal="curr_changed" from="MusicPlayer" to="VBoxContainer/TopBar/HBoxContainer/CurrentlyPlaying" method="_on_music_player_curr_changed"]
+[connection signal="curr_changed" from="MusicPlayer" to="VBoxContainer/TopBar/HBoxContainer/Seeker" method="_on_music_player_curr_changed"]
 [connection signal="queue_changed" from="MusicPlayer" to="VBoxContainer/HBoxContainer/QueueDisplay" method="_on_music_player_queue_changed"]
-[connection signal="pressed" from="VBoxContainer/TopBar/HBoxContainer/PlaybackControls/Buttons/Previous" to="VBoxContainer/TopBar/HBoxContainer/PlaybackControls" method="_on_previous_pressed"]
-[connection signal="pressed" from="VBoxContainer/TopBar/HBoxContainer/PlaybackControls/Buttons/PlayPause" to="VBoxContainer/TopBar/HBoxContainer/PlaybackControls" method="_on_play_pause_pressed"]
-[connection signal="pressed" from="VBoxContainer/TopBar/HBoxContainer/PlaybackControls/Buttons/Next" to="VBoxContainer/TopBar/HBoxContainer/PlaybackControls" method="_on_next_pressed"]
+[connection signal="drag_ended" from="VBoxContainer/TopBar/HBoxContainer/Seeker" to="VBoxContainer/TopBar/HBoxContainer/Seeker" method="_on_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/TopBar/HBoxContainer/Seeker" to="VBoxContainer/TopBar/HBoxContainer/Seeker" method="_on_drag_started"]
+[connection signal="value_changed" from="VBoxContainer/TopBar/HBoxContainer/Seeker" to="VBoxContainer/TopBar/HBoxContainer/TimeLabel" method="_on_seeker_value_changed"]

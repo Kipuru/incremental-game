@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crukf30s30kkm"]
 
-[ext_resource type="Script" uid="uid://bf2fpu4uiipqf" path="res://Scripts/UI/Music/song_item.gd" id="1_tea1u"]
+[ext_resource type="Script" uid="uid://bf2fpu4uiipqf" path="res://Scripts/UI/Music/SongsDisplay/song_item.gd" id="1_tea1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4difg"]
 bg_color = Color(0.93, 0.93, 0.93, 1)

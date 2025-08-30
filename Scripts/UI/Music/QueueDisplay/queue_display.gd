@@ -1,12 +1,14 @@
-extends Control
+extends PanelContainer
 
 const queue_item_scene: PackedScene = preload("uid://bovn8jo24ixaj")
 
 @onready var container: Control = %QueueItemContainer
+@onready var player: MusicPlayer = %MusicPlayer
 
 func _ready() -> void:
 	assert(queue_item_scene is PackedScene)
 	assert(queue_item_scene.can_instantiate())
+	assert(player)
 
 func _on_music_player_queue_changed() -> void:
 	for child in container.get_children():
@@ -19,6 +21,7 @@ func _on_music_player_queue_changed() -> void:
 		var instance = instantiate_queue_item()
 		instance.index = i
 		instance.song_name = queue[i].name
+		instance.dequeue.connect(player.dequeue)
 		container.add_child(instance)
 
 func instantiate_queue_item() -> QueueItem:

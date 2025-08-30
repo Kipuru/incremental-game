@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bovn8jo24ixaj"]
 
-[ext_resource type="Script" uid="uid://htgtc7gk5njd" path="res://Scripts/UI/Music/queue_item.gd" id="1_be6pl"]
+[ext_resource type="Script" uid="uid://htgtc7gk5njd" path="res://Scripts/UI/Music/QueueDisplay/queue_item.gd" id="1_be6pl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4difg"]
 bg_color = Color(0.93, 0.93, 0.93, 1)

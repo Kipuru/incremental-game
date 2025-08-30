@@ -12,6 +12,14 @@ static var queue: Array[AudioStreamWrapper] = []
 
 # *** Public ***
 
+# Stops playback and clears the currently playing song.
+func clear_curr():
+	stop()
+	stream = null
+	current = null
+	
+	curr_changed.emit(current)
+
 # If queue is empty, plays the song right away.
 # Loads the given audio file into memory and adds it to the queue.
 # Does not load anything if the queue is full.
@@ -44,7 +52,7 @@ func play_next():
 	stop()
 	
 	if queue.size() == 0:
-		current = null
+		clear_curr()
 		return
 	_push_history()
 	current = queue.pop_front()
@@ -58,10 +66,10 @@ func play_next():
 # Plays the previous song from history.
 # Does nothing if history is empty.
 func play_prev():
-	
 	stop()
+	
 	if history.size() == 0:
-		current = null
+		clear_curr()
 		return
 	queue.push_front(current)
 	current = history.pop_back()
@@ -72,6 +80,14 @@ func play_prev():
 	
 	play()
 
+# Removes the song from the queue at the selected index.
+# Does nothing if the queue is empty.
+func dequeue(index: int):
+	if queue.is_empty():
+		return
+	
+	queue.remove_at(index)
+	queue_changed.emit()
 
 # *** Private ***
 
@@ -79,11 +95,13 @@ static func _load_audio_file(song_name: String, location: String) -> AudioStream
 	assert(ResourceLoader.exists(location))
 	var loaded_res = load(location)
 	assert(loaded_res is AudioStream)
+	var aud_stream = loaded_res as AudioStream
 	
 	var wrapper = AudioStreamWrapper.new()
 	wrapper.name = song_name
 	wrapper.location = location
-	wrapper.stream = loaded_res
+	wrapper.stream = aud_stream
+	wrapper.length = aud_stream.get_length()
 	
 	return wrapper
 

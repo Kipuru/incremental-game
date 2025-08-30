@@ -1,13 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce87r5gr2kp3g"]
+[gd_scene load_steps=4 format=3 uid="uid://ce87r5gr2kp3g"]
 
-[ext_resource type="Script" uid="uid://b3x11b6cdrvym" path="res://Scripts/UI/Music/songs_display.gd" id="1_vx41s"]
+[ext_resource type="Script" uid="uid://b3x11b6cdrvym" path="res://Scripts/UI/Music/SongsDisplay/songs_display.gd" id="1_fspqt"]
+[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_vx41s"]
 
-[node name="SongsDisplay" type="ScrollContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw141"]
+bg_color = Color(0.95, 0.95, 0.95, 1)
+
+[node name="SongsDisplay" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vx41s")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vw141")
+script = ExtResource("1_fspqt")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
 size_flags_horizontal = 3
 horizontal_scroll_mode = 0
-script = ExtResource("1_vx41s")
 
-[node name="ItemContainer" type="FlowContainer" parent="."]
+[node name="SongItemContainer" type="FlowContainer" parent="ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
