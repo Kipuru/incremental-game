@@ -22,7 +22,7 @@ func _on_music_player_curr_changed(curr: AudioStreamWrapper) -> void:
 func _on_drag_started() -> void:
 	dragging = true
 
-func _on_drag_ended(value_changed: bool) -> void:
-	if value_changed:
+func _on_drag_ended(value_was_changed: bool) -> void:
+	if value_was_changed:
 		player.seek(value)
 	dragging = false

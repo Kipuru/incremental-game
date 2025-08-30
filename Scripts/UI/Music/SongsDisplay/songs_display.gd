@@ -26,7 +26,6 @@ const song_locs = [
 @onready var player: MusicPlayer = %MusicPlayer
 
 func _ready() -> void:
-	assert(song_item_scene is PackedScene)
 	assert(song_item_scene.can_instantiate())
 	assert(player)
 	

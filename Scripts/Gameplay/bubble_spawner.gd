@@ -6,7 +6,6 @@ const bubble_scene = preload("uid://cqegup4gnccd3")
 static var touching_mouse := false
 
 func _ready() -> void:
-	assert(bubble_scene is PackedScene)
 	assert(bubble_scene.can_instantiate())
 
 func _mouse_enter() -> void:

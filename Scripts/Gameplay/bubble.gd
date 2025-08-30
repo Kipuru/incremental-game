@@ -9,9 +9,7 @@ var tier := 0
 var touching_mouse := false
 
 func _ready() -> void:
-	assert(bubble_scene is PackedScene)
 	assert(bubble_scene.can_instantiate())
-	assert(droplets_scene is PackedScene)
 	assert(droplets_scene.can_instantiate())
 	
 	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * 128

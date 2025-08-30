@@ -6,7 +6,6 @@ const queue_item_scene: PackedScene = preload("uid://bovn8jo24ixaj")
 @onready var player: MusicPlayer = %MusicPlayer
 
 func _ready() -> void:
-	assert(queue_item_scene is PackedScene)
 	assert(queue_item_scene.can_instantiate())
 	assert(player)
 
