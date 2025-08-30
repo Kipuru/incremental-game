@@ -8,6 +8,7 @@ const corner_detection_rad_sq = 26. ** 2.
 @export var title := "Window Name"
 @export var scene_to_load := "uid://bga3nuxnrcu7v"
 @export var initial_size := Vector2(800., 300.)
+@export var minimum_size := Vector2(800., 300.)
 
 @onready var ui: Control = %UI
 @onready var title_bar: Control = %TitleBar
@@ -133,4 +134,5 @@ func handle_resize():
 	# resize content based on mouse position delta and original size
 	var mouse_pos = get_viewport().get_mouse_position()
 	var delta = mouse_pos - original_mouse_pos
-	content.custom_minimum_size = original_state + delta
+	var new_size = original_state + delta
+	content.custom_minimum_size = new_size.max(minimum_size)
