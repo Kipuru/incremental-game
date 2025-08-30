@@ -17,7 +17,6 @@ func clear_curr():
 	stop()
 	stream = null
 	current = null
-	
 	curr_changed.emit(current)
 
 # If queue is empty, plays the song right away.
@@ -38,11 +37,12 @@ func play_now(song_name: String, location: String):
 	stop()
 	
 	queue.clear()
-	current = _load_audio_file(song_name, location)
-	stream = current.stream
-	
-	curr_changed.emit(current)
 	queue_changed.emit()
+	
+	current = _load_audio_file(song_name, location)
+	curr_changed.emit(current)
+	
+	stream = current.stream
 	
 	play()
 
@@ -51,15 +51,17 @@ func play_now(song_name: String, location: String):
 func play_next():
 	stop()
 	
+	_push_history()
+	
 	if queue.size() == 0:
 		clear_curr()
 		return
-	_push_history()
-	current = queue.pop_front()
-	stream = current.stream
 	
-	curr_changed.emit(current)
+	current = queue.pop_front()
 	queue_changed.emit()
+	curr_changed.emit(current)
+	
+	stream = current.stream
 	
 	play()
 
@@ -68,15 +70,17 @@ func play_next():
 func play_prev():
 	stop()
 	
+	if current != null:
+		queue.push_front(current)
+		queue_changed.emit()
+	
 	if history.size() == 0:
 		clear_curr()
 		return
-	queue.push_front(current)
-	current = history.pop_back()
-	stream = current.stream
 	
+	current = history.pop_back()
 	curr_changed.emit(current)
-	queue_changed.emit()
+	stream = current.stream
 	
 	play()
 
@@ -106,6 +110,9 @@ static func _load_audio_file(song_name: String, location: String) -> AudioStream
 	return wrapper
 
 static func _push_history():
+	if (current == null):
+		return
+	
 	history.push_back(current)
 	current = null
 	if history.size() > history_max_size:
