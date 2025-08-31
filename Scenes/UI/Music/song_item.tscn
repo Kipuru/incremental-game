@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://crukf30s30kkm"]
+[gd_scene load_steps=4 format=3 uid="uid://crukf30s30kkm"]
 
 [ext_resource type="Script" uid="uid://bf2fpu4uiipqf" path="res://Scripts/UI/Music/SongsDisplay/song_item.gd" id="1_tea1u"]
+[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_vdgla"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4difg"]
 bg_color = Color(0.93, 0.93, 0.93, 1)
@@ -10,6 +11,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 39.0
 grow_horizontal = 2
+theme = ExtResource("1_vdgla")
 theme_override_styles/panel = SubResource("StyleBoxFlat_4difg")
 script = ExtResource("1_tea1u")
 name_label = NodePath("MarginContainer/HBoxContainer/Name")

@@ -86,11 +86,10 @@ shape = SubResource("RectangleShape2D_fyndk")
 [node name="Windows" type="Node2D" parent="."]
 
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-position = Vector2(-797, -409)
+position = Vector2(-448, -240)
 title = "StreamPlay (trial).exe"
 scene_to_load = "uid://dwtelixwjtlsk"
-initial_size = Vector2(900, 600)
-minimum_size = Vector2(775, 150)
+minimum_size = Vector2(256, 128)
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
