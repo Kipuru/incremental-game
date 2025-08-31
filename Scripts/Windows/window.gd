@@ -7,8 +7,8 @@ const corner_detection_rad_sq = 26. ** 2.
 @export var window_icon := "uid://b21msh4k62j8q"
 @export var title := "Window Name"
 @export var scene_to_load := "uid://bga3nuxnrcu7v"
-@export var initial_size := Vector2(800., 300.)
-@export var minimum_size := Vector2(800., 300.)
+@export var initial_size := Vector2(512., 256.)
+@export var minimum_size := Vector2(512., 256.)
 
 @onready var ui: Control = %UI
 @onready var title_bar: Control = %TitleBar
