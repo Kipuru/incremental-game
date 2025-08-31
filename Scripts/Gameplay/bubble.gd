@@ -12,7 +12,7 @@ func _ready() -> void:
 	assert(bubble_scene.can_instantiate())
 	assert(droplets_scene.can_instantiate())
 	
-	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * 128
+	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * 64
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
@@ -64,7 +64,7 @@ func merge_bubbles(collided_with: Bubble) -> void:
 
 func bounce(collision: KinematicCollision2D) -> void:
 	var bounced = velocity.bounce(collision.get_normal())
-	position += bounced / 128
+	position += bounced / 64
 	velocity = bounced
 
 func handle_pop() -> void:
