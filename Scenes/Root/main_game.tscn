@@ -13,10 +13,10 @@
 gradient = SubResource("Gradient_ohkr6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d05bn"]
-size = Vector2(1920, 32)
+size = Vector2(960, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fyndk"]
-size = Vector2(32, 1088)
+size = Vector2(32, 608)
 
 [node name="MainGame" type="Node2D"]
 
@@ -25,15 +25,15 @@ size = Vector2(32, 1088)
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -2
 
-[node name="TEMPBG (DELETE THIS)" type="TextureRect" parent="Background"]
-custom_minimum_size = Vector2(1920, 1080)
+[node name="TextureRect" type="TextureRect" parent="Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = ExtResource("1_ohyf1")
+expand_mode = 3
+stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="WaterOverlay" type="CanvasLayer" parent="."]
@@ -41,7 +41,7 @@ layer = -1
 
 [node name="Texture" type="TextureRect" parent="WaterOverlay"]
 material = ExtResource("2_byrwq")
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(960, 540)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -52,15 +52,15 @@ texture = SubResource("GradientTexture2D_y3rpi")
 script = ExtResource("3_oj68k")
 
 [node name="FillAmountSlider (TEMP)" type="HSlider" parent="WaterOverlay"]
-offset_right = 480.0
-offset_bottom = 56.0
+offset_right = 208.0
+offset_bottom = 24.0
 max_value = 1.0
 step = 0.001
 
 [node name="Bubbles" type="Node2D" parent="."]
 
 [node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_yboij")]
-position = Vector2(-792, 392)
+position = Vector2(-384, 176)
 bubble_container = NodePath("../Bubbles")
 
 [node name="Walls" type="StaticBody2D" parent="."]
@@ -68,19 +68,19 @@ collision_layer = 2
 metadata/_edit_lock_ = true
 
 [node name="Wall Top" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, -552)
+position = Vector2(0, -288)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 544)
+position = Vector2(0, 288)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Left" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-976, 0)
+position = Vector2(-496, 0)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Wall Right" type="CollisionShape2D" parent="Walls"]
-position = Vector2(976, 0)
+position = Vector2(496, 0)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
