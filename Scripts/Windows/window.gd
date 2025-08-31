@@ -128,6 +128,7 @@ func handle_move():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var delta = mouse_pos - original_mouse_pos
 	position = original_state + delta
+	position = position.round()
 
 
 func handle_resize():
