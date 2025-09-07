@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=8 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Scripts/Windows/window.gd" id="1_28hdt"]
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icon.svg" id="2_vip54"]
+[ext_resource type="Texture2D" uid="uid://bjug04l732ho0" path="res://Assets/buttons/IMG_9937.PNG" id="3_vip54"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
@@ -40,7 +41,7 @@ theme_override_constants/separation = 0
 
 [node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q6fkp")
@@ -53,13 +54,11 @@ expand_mode = 1
 [node name="LeftSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/LeftSideMargin"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
 layout_mode = 2
@@ -70,15 +69,12 @@ stretch_mode = 4
 [node name="TitleLabel" type="Label" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Window Name"
 
 [node name="RightSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin"]
 clip_contents = true
@@ -86,15 +82,12 @@ layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 2
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
-layout_mode = 2
-stretch_mode = 1
-alignment_horizontal = 2
-
-[node name="CloseButton" type="Button" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/AspectRatioContainer"]
+[node name="CloseButton" type="TextureButton" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
+custom_minimum_size = Vector2(46, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = " X "
+texture_normal = ExtResource("3_vip54")
+stretch_mode = 6
 
 [node name="Content" type="Control" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
@@ -105,4 +98,4 @@ mouse_filter = 1
 
 [connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="." method="_on_title_bar_mouse_entered"]
 [connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="." method="_on_title_bar_mouse_exited"]
-[connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/AspectRatioContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

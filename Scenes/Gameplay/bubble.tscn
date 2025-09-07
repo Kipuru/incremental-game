@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqegup4gnccd3"]
+[gd_scene load_steps=8 format=3 uid="uid://cqegup4gnccd3"]
 
 [ext_resource type="Script" uid="uid://cvie1ke8k8b4b" path="res://Scripts/Gameplay/bubble.gd" id="1_rtvwa"]
 [ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="2_2oi1d"]
+[ext_resource type="Texture2D" uid="uid://b0rdfllhpf2bl" path="res://Assets/bubbles/x64 with shiny.PNG" id="3_rtvwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7a34"]
 resource_local_to_scene = true
@@ -13,11 +14,11 @@ shader_parameter/adjust_using_grayscale = false
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_e7a34"]
 gradient = SubResource("Gradient_um1kw")
-width = 96
-height = 96
+width = 128
+height = 128
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8cj2"]
-radius = 48.0
+radius = 64.0
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 3
@@ -31,7 +32,8 @@ material = SubResource("ShaderMaterial_e7a34")
 texture = SubResource("GradientTexture2D_e7a34")
 
 [node name="Overlay" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(2, 2)
+texture = ExtResource("3_rtvwa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhri1ctnqiamt"
+path="res://.godot/imported/Can someone put a melody over this.mp3-a58c10ba5446fea3017d0e3e656a6f2c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Demo Songs/Can someone put a melody over this.mp3"
+dest_files=["res://.godot/imported/Can someone put a melody over this.mp3-a58c10ba5446fea3017d0e3e656a6f2c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

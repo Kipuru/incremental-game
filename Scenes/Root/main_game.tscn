@@ -97,9 +97,8 @@ minimum_size = Vector2(775, 150)
 layer = -1
 
 [node name="Taskbar" parent="UI" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
-offset_left = -343.5
-offset_top = -128.0
-offset_right = 343.5
+offset_left = -343.0
+offset_right = 344.0
 scale = Vector2(0.998407, 1)
 music_window = NodePath("../../Windows/MusicPlayerWindow")
 

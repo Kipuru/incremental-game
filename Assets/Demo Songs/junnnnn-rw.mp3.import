@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bakkde01svais"
+path="res://.godot/imported/junnnnn-rw.mp3-326ad28e5de434ccbaae93c6874506ea.mp3str"
+
+[deps]
+
+source_file="res://Assets/Demo Songs/junnnnn-rw.mp3"
+dest_files=["res://.godot/imported/junnnnn-rw.mp3-326ad28e5de434ccbaae93c6874506ea.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

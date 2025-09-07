@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dlc264dafv8d"
+path="res://.godot/imported/Style Savvy Pop.mp3-ac3ae5c73eb83850ab3866e006dc7c02.mp3str"
+
+[deps]
+
+source_file="res://Assets/Demo Songs/Style Savvy Pop.mp3"
+dest_files=["res://.godot/imported/Style Savvy Pop.mp3-ac3ae5c73eb83850ab3866e006dc7c02.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
