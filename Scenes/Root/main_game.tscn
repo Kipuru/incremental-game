@@ -89,7 +89,7 @@ shape = SubResource("RectangleShape2D_fyndk")
 position = Vector2(-448, -240)
 title = "StreamPlay (trial).exe"
 scene_to_load = "uid://dwtelixwjtlsk"
-minimum_size = Vector2(256, 128)
+initial_size = Vector2(580, 310)
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
