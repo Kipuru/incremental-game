@@ -95,9 +95,7 @@ minimum_size = Vector2(256, 128)
 layer = -1
 
 [node name="Taskbar" parent="UI" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
-offset_left = -173.0
-offset_top = -66.0
-offset_right = 173.0
+offset_top = -38.0
 music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
