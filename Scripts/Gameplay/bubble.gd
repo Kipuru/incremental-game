@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		handle_collision(collision)
+	position = position.round()
 
 func _input(event: InputEvent):
 	if touching_mouse and event is InputEventMouseButton:
