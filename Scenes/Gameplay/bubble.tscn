@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvie1ke8k8b4b" path="res://Scripts/Gameplay/bubble.gd" id="1_rtvwa"]
 [ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="2_2oi1d"]
-[ext_resource type="Texture2D" uid="uid://b8vraqy4cm245" path="res://Assets/bubbles/x64 with shiny.PNG" id="3_rtvwa"]
+[ext_resource type="Texture2D" uid="uid://bnt701v7d6n7y" path="res://Assets/bubbles/x32 with shiny.PNG" id="3_rtvwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7a34"]
 resource_local_to_scene = true
@@ -14,9 +14,11 @@ shader_parameter/adjust_using_grayscale = false
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_e7a34"]
 gradient = SubResource("Gradient_um1kw")
+width = 32
+height = 32
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8cj2"]
-radius = 32.0
+radius = 16.0
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_mask = 3

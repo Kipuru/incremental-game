@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6qv4h7006s3o"]
 
-[ext_resource type="Texture2D" uid="uid://c51kl2tii5m0m" path="res://Assets/temp_bg.png" id="1_ohyf1"]
+[ext_resource type="Texture2D" uid="uid://byvaftq4luexb" path="res://Assets/IMG_9981.png" id="1_ohyf1"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/Gameplay/water_overlay.gd" id="3_oj68k"]
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Scenes/Gameplay/bubble_spawner.tscn" id="4_yboij"]
@@ -41,7 +41,6 @@ layer = -1
 
 [node name="Texture" type="TextureRect" parent="WaterOverlay"]
 material = ExtResource("2_byrwq")
-custom_minimum_size = Vector2(960, 540)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,7 +59,7 @@ step = 0.001
 [node name="Bubbles" type="Node2D" parent="."]
 
 [node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_yboij")]
-position = Vector2(-416, 200)
+position = Vector2(-256, 112)
 bubble_container = NodePath("../Bubbles")
 
 [node name="Walls" type="StaticBody2D" parent="."]
@@ -68,24 +67,25 @@ collision_layer = 2
 metadata/_edit_lock_ = true
 
 [node name="Wall Top" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, -288)
+position = Vector2(0, -200)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 288)
+position = Vector2(0, 200)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Left" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-496, 0)
+position = Vector2(-336, 0)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Wall Right" type="CollisionShape2D" parent="Walls"]
-position = Vector2(496, 0)
+position = Vector2(336, 0)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
 
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
+visible = false
 position = Vector2(-448, -240)
 title = "StreamPlay (trial).exe"
 scene_to_load = "uid://dwtelixwjtlsk"
@@ -95,7 +95,9 @@ initial_size = Vector2(580, 310)
 layer = -1
 
 [node name="Taskbar" parent="UI" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
+offset_left = -112.0
 offset_top = -38.0
+offset_right = 112.0
 music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
