@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvie1ke8k8b4b" path="res://Scripts/Gameplay/bubble.gd" id="1_rtvwa"]
 [ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="2_2oi1d"]
-[ext_resource type="Texture2D" uid="uid://b0rdfllhpf2bl" path="res://Assets/bubbles/x64 with shiny.PNG" id="3_rtvwa"]
+[ext_resource type="Texture2D" uid="uid://df5slqta222ni" path="res://Assets/art/IMG_9977.PNG" id="3_rtvwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7a34"]
 resource_local_to_scene = true
@@ -32,7 +32,7 @@ material = SubResource("ShaderMaterial_e7a34")
 texture = SubResource("GradientTexture2D_e7a34")
 
 [node name="Overlay" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_rtvwa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

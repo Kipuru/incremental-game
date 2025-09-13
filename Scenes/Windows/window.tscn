@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Scripts/Windows/window.gd" id="1_28hdt"]
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icon.svg" id="2_vip54"]
-[ext_resource type="Texture2D" uid="uid://bjug04l732ho0" path="res://Assets/buttons/IMG_9937.PNG" id="3_vip54"]
+[ext_resource type="Texture2D" uid="uid://dx6rhsbf7736n" path="res://Assets/art/IMG_9952.PNG" id="3_vip54"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
@@ -74,19 +74,19 @@ text = "Window Name"
 
 [node name="RightSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
-theme_override_constants/margin_right = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin"]
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 0
 alignment = 2
 
 [node name="CloseButton" type="TextureButton" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
-custom_minimum_size = Vector2(46, 0)
+custom_minimum_size = Vector2(59, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_vip54")
+ignore_texture_size = true
 stretch_mode = 6
 
 [node name="Content" type="Control" parent="UI/VBoxContainer"]
