@@ -2,18 +2,25 @@ extends PanelContainer
 
 const song_item_scene: PackedScene = preload("uid://crukf30s30kkm")
 
-# !!!!! These are temp, better solution should be implemented later using a json file or something !!!!!
-const song_folder = "res://Assets/Demo Songs/"
-func load_songs():
-	var files = ResourceLoader.list_directory(song_folder)
-	for i in range(files.size()):
-		var instance = instantiate_song_item()
-		instance.song_name = files[i].split(".")[0]
-		instance.location = song_folder + files[i]
-		instance.play_now.connect(play_now)
-		instance.enqueue.connect(enqueue)
-		container.add_child(instance)
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# These are temp, better solution should be implemented later using a json file or something
+const song_names = [
+	"Aeropop",
+	"floott",
+	"merbe",
+	"ok maybe 2",
+	"uhhhh 5",
+	"wheeeee",
+	"Wii Aeropop Demo"
+]
+const song_locs = [
+	"uid://bw16oceepad4s",
+	"uid://bbys8joyxkkug",
+	"uid://dbl0pf4cueu10",
+	"uid://b3smntwdp16bv",
+	"uid://t43rkmkwyf2d",
+	"uid://bmxfhphbbfspd",
+	"uid://b6baqodyaokkp"
+]
 
 @onready var container: Control = %SongItemContainer
 @onready var player: MusicPlayer = %MusicPlayer
@@ -21,7 +28,14 @@ func load_songs():
 func _ready() -> void:
 	assert(song_item_scene.can_instantiate())
 	assert(player)
-	load_songs()
+	
+	for i in range(song_names.size()):
+		var instance = instantiate_song_item()
+		instance.song_name = song_names[i]
+		instance.location = song_locs[i]
+		instance.play_now.connect(play_now)
+		instance.enqueue.connect(enqueue)
+		container.add_child(instance)
 
 func instantiate_song_item() -> SongItem:
 	var instance = song_item_scene.instantiate()
