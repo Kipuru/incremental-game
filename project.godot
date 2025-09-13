@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Incremental Game"
-run/main_scene="uid://b6vwi8p5kam04"
+run/main_scene="uid://c6qv4h7006s3o"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://Assets/icon.svg"
@@ -22,10 +22,10 @@ DebugHelper="*res://Scripts/debug_helper.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/mode=3
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [layer_names]
@@ -33,3 +33,7 @@ window/stretch/aspect="expand"
 2d_physics/layer_1="bubble"
 2d_physics/layer_2="wall"
 2d_physics/layer_16="mouse_interactable"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

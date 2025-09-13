@@ -4,10 +4,10 @@
 
 [node name="PlaybackControls" type="MarginContainer"]
 size_flags_horizontal = 4
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 4
 script = ExtResource("1_wm1yd")
 
 [node name="Buttons" type="HBoxContainer" parent="."]
@@ -16,17 +16,17 @@ alignment = 1
 
 [node name="Previous" type="Button" parent="Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 12
 text = "<"
 
 [node name="PlayPause" type="Button" parent="Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 12
 text = "> ||"
 
 [node name="Next" type="Button" parent="Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 12
 text = ">>"
 
 [connection signal="pressed" from="Buttons/Previous" to="." method="_on_previous_pressed"]

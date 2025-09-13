@@ -34,7 +34,7 @@ void fragment() {
 	float dist = length(dir);
 
 	if (dist < radius) {
-		if (is_equal_approx(dist, radius)) { // white outline
+		if (false) { // white outline
 			COLOR = vec4(1., 1., 1., 1.);
 		} else { // refracted inside
 			float effect = sqrt(radius*radius - dist*dist) / radius;
