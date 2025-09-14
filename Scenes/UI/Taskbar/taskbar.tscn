@@ -1,60 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://rvnyestc2j4k"]
+[gd_scene load_steps=5 format=3 uid="uid://rvnyestc2j4k"]
 
 [ext_resource type="Script" uid="uid://c7oaoeuu4uo4g" path="res://Scripts/UI/taskbar.gd" id="1_00r8f"]
-[ext_resource type="PackedScene" uid="uid://ca41iwp0vw5jo" path="res://Scenes/UI/Taskbar/uprades_button.tscn" id="2_uugsq"]
-[ext_resource type="PackedScene" uid="uid://biofqxyhdo1jn" path="res://Scenes/UI/Taskbar/menu_button.tscn" id="3_40gfl"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icons/icon.svg" id="2_1g1x5"]
 [ext_resource type="Texture2D" uid="uid://dvy1d2j4t6lrf" path="res://Assets/icons/IMG_9938.PNG" id="3_48apg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00r8f"]
 bg_color = Color(0.1886, 0.346917, 0.46, 0.690196)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0.783558, 0.875897, 0.943141, 0.415686)
 
 [node name="PanelContainer" type="PanelContainer"]
-custom_minimum_size = Vector2(224, 38)
+custom_minimum_size = Vector2(224, 32)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = -37.0
-offset_right = 96.0
+offset_left = -112.0
+offset_top = -32.0
+offset_right = 112.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_00r8f")
 script = ExtResource("1_00r8f")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="UpradesButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_uugsq")]
+[node name="UpradesButton" type="TextureButton" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture_normal = ExtResource("2_1g1x5")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="MusicButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+[node name="MusicButton" type="TextureButton" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture_normal = ExtResource("3_48apg")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="MenuButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_40gfl")]
+[node name="MenuButton" type="TextureButton" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture_normal = ExtResource("2_1g1x5")
 ignore_texture_size = true
 stretch_mode = 4
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]

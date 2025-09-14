@@ -1,13 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c42f4mmycgf2n"]
+[gd_scene load_steps=3 format=3 uid="uid://c42f4mmycgf2n"]
 
+[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_h3kdf"]
 [ext_resource type="Script" uid="uid://bxf0a61gvdy03" path="res://Scripts/UI/Music/TopBar/playback_controls.gd" id="1_wm1yd"]
 
 [node name="PlaybackControls" type="MarginContainer"]
 size_flags_horizontal = 4
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 4
+theme = ExtResource("1_h3kdf")
 script = ExtResource("1_wm1yd")
 
 [node name="Buttons" type="HBoxContainer" parent="."]
@@ -16,17 +14,14 @@ alignment = 1
 
 [node name="Previous" type="Button" parent="Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "<"
 
 [node name="PlayPause" type="Button" parent="Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "> ||"
 
 [node name="Next" type="Button" parent="Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = ">>"
 
 [connection signal="pressed" from="Buttons/Previous" to="." method="_on_previous_pressed"]

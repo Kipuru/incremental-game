@@ -14,7 +14,7 @@ config/name="Incremental Game"
 run/main_scene="uid://c6qv4h7006s3o"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://Assets/icon.svg"
+config/icon="res://Assets/icons/icon.svg"
 
 [autoload]
 

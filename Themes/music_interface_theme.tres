@@ -1,7 +1,13 @@
-[gd_resource type="Theme" format=3 uid="uid://cypdfrldw1wws"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cypdfrldw1wws"]
+
+[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/fonts/HelvetiPixel.ttf" id="1_6n581"]
 
 [resource]
-Button/font_sizes/font_size = 12
+BoxContainer/constants/separation = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_6n581")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
-Label/font_sizes/font_size = 14
+Label/constants/line_spacing = 3
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_6n581")

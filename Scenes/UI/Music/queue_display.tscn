@@ -7,6 +7,8 @@
 bg_color = Color(0.73, 0.73, 0.73, 1)
 
 [node name="QueueDisplay" type="PanelContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(96, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,11 +23,10 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "Queue"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0

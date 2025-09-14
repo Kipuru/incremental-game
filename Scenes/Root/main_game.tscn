@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6qv4h7006s3o"]
 
-[ext_resource type="Texture2D" uid="uid://byvaftq4luexb" path="res://Assets/IMG_9981.png" id="1_ohyf1"]
+[ext_resource type="Texture2D" uid="uid://byvaftq4luexb" path="res://Assets/backgrounds/IMG_9981.png" id="1_ohyf1"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/Gameplay/water_overlay.gd" id="3_oj68k"]
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Scenes/Gameplay/bubble_spawner.tscn" id="4_yboij"]
@@ -85,19 +85,17 @@ shape = SubResource("RectangleShape2D_fyndk")
 [node name="Windows" type="Node2D" parent="."]
 
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-visible = false
-position = Vector2(-448, -240)
-title = "StreamPlay (trial).exe"
+position = Vector2(-296, -160)
+window_icon = "uid://dvy1d2j4t6lrf"
+title = "Music Player"
 scene_to_load = "uid://dwtelixwjtlsk"
-initial_size = Vector2(580, 310)
+initial_size = Vector2(384, 192)
+minimum_size = Vector2(384, 192)
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="Taskbar" parent="UI" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
-offset_left = -112.0
-offset_top = -38.0
-offset_right = 112.0
 music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]

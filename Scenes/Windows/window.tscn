@@ -1,22 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=9 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Scripts/Windows/window.gd" id="1_28hdt"]
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icon.svg" id="2_vip54"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icons/icon.svg" id="2_vip54"]
+[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/fonts/HelvetiPixel.ttf" id="3_o7yh4"]
 [ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/buttons/IMG_9937.PNG" id="3_vip54"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
 border_color = Color(0.793212, 0.793211, 0.793211, 1)
 shadow_color = Color(0, 0, 0, 0.101961)
 shadow_size = 5
 shadow_offset = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6fkp"]
-border_width_bottom = 2
 border_color = Color(0.792157, 0.792157, 0.792157, 1)
 
 [sub_resource type="Gradient" id="Gradient_sseq7"]
@@ -41,6 +37,7 @@ theme_override_constants/separation = 0
 
 [node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q6fkp")
@@ -52,10 +49,10 @@ expand_mode = 1
 
 [node name="LeftSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
-theme_override_constants/margin_right = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/LeftSideMargin"]
 layout_mode = 2
+theme_override_constants/separation = 4
 
 [node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
 layout_mode = 2
@@ -67,7 +64,8 @@ stretch_mode = 4
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("3_o7yh4")
+theme_override_font_sizes/font_size = 16
 text = "Window Name"
 vertical_alignment = 1
 
@@ -76,13 +74,11 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin"]
 clip_contents = true
-custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 2
 
 [node name="CloseButton" type="TextureButton" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
-custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_vip54")
@@ -91,7 +87,7 @@ stretch_mode = 6
 [node name="Content" type="Control" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
 clip_contents = true
-custom_minimum_size = Vector2(512, 256)
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 mouse_filter = 1
 
