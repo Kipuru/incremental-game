@@ -20,8 +20,10 @@ layout_mode = 2
 theme = ExtResource("2_eh2ri")
 
 [node name="Name" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 text = "SONG NAME"
+clip_text = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
