@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=13 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://byvaftq4luexb" path="res://Assets/Backgrounds/IMG_9981.png" id="1_ohyf1"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Scenes/Gameplay/bubble_spawner.tscn" id="4_yboij"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Scenes/Windows/window.tscn" id="5_ruc4l"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Scenes/UI/Taskbar/taskbar.tscn" id="6_nqh8o"]
+[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="7_byrwq"]
+[ext_resource type="Script" uid="uid://b1on52mnvvph4" path="res://Scripts/UI/bubble_counter.gd" id="8_oj68k"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
 
@@ -37,10 +39,10 @@ expand_mode = 3
 stretch_mode = 6
 metadata/_edit_lock_ = true
 
-[node name="WaterOverlay" type="CanvasLayer" parent="."]
+[node name="Underlay" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Texture" type="TextureRect" parent="WaterOverlay"]
+[node name="Water" type="TextureRect" parent="Underlay"]
 material = ExtResource("2_byrwq")
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,16 +53,18 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_y3rpi")
 script = ExtResource("3_oj68k")
 
-[node name="FillAmountSlider (TEMP)" type="HSlider" parent="WaterOverlay"]
+[node name="FillAmountSlider (TEMP)" type="HSlider" parent="Underlay"]
 offset_right = 208.0
 offset_bottom = 24.0
 max_value = 1.0
 step = 0.001
 
+[node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
+music_window = NodePath("../../Windows/MusicPlayerWindow")
+
 [node name="Bubbles" type="Node2D" parent="."]
 
 [node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_yboij")]
-position = Vector2(-256, 112)
 bubble_container = NodePath("../Bubbles")
 
 [node name="Walls" type="StaticBody2D" parent="."]
@@ -86,17 +90,27 @@ shape = SubResource("RectangleShape2D_fyndk")
 [node name="Windows" type="Node2D" parent="."]
 
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-position = Vector2(-296, -160)
+visible = false
+position = Vector2(16, -160)
 window_icon = "uid://dvy1d2j4t6lrf"
 title = "Music Player"
 scene_to_load = "uid://dwtelixwjtlsk"
 initial_size = Vector2(384, 192)
 minimum_size = Vector2(384, 192)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Overlay" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Taskbar" parent="UI" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
-music_window = NodePath("../../Windows/MusicPlayerWindow")
+[node name="BubbleCounter" type="Label" parent="Overlay"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 16.0
+grow_horizontal = 0
+theme = ExtResource("7_byrwq")
+text = "0 bubbles"
+horizontal_alignment = 2
+script = ExtResource("8_oj68k")
 
-[connection signal="value_changed" from="WaterOverlay/FillAmountSlider (TEMP)" to="WaterOverlay/Texture" method="_on_fill_amount_value_changed"]
+[connection signal="value_changed" from="Underlay/FillAmountSlider (TEMP)" to="Underlay/Water" method="_on_fill_amount_value_changed"]
