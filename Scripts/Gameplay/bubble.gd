@@ -65,7 +65,7 @@ func merge_bubbles(collided_with: Bubble) -> void:
 
 func bounce(collision: KinematicCollision2D) -> void:
 	var bounced = velocity.bounce(collision.get_normal())
-	position += bounced / 64
+	position += bounced / 128
 	velocity = bounced.ceil()
 
 func handle_pop() -> void:
