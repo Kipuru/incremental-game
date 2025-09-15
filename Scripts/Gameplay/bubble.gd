@@ -66,7 +66,7 @@ func merge_bubbles(collided_with: Bubble) -> void:
 func bounce(collision: KinematicCollision2D) -> void:
 	var bounced = velocity.bounce(collision.get_normal())
 	position += bounced / 128
-	velocity = bounced.ceil()
+	velocity = bounced
 
 func handle_pop() -> void:
 	#var droplets_instance = droplets_scene.instantiate()
