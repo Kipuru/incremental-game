@@ -18,7 +18,7 @@ float grayscale(vec4 input) {
 }
 vec4 adjust_color(vec4 input) {
 	if (color_adjustment == vec3(1., 1., 1.)) return input;
-	
+
 	vec4 i = input;
 	vec3 a = color_adjustment;
 	if (adjust_using_grayscale) {
