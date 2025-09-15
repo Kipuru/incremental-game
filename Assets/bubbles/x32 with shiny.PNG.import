@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnt701v7d6n7y"
-path="res://.godot/imported/x32 with shiny.PNG-f94819a6dcf09dcd96edeeb84c2b83e6.ctex"
+path="res://.godot/imported/x32 with shiny.PNG-bfd1f645ba965fb8ecb22cb4d339b9e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bubbles/x32 with shiny.PNG"
-dest_files=["res://.godot/imported/x32 with shiny.PNG-f94819a6dcf09dcd96edeeb84c2b83e6.ctex"]
+source_file="res://Assets/Bubbles/x32 with shiny.PNG"
+dest_files=["res://.godot/imported/x32 with shiny.PNG-bfd1f645ba965fb8ecb22cb4d339b9e7.ctex"]
 
 [params]
 

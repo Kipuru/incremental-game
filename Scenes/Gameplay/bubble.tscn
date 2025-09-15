@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvie1ke8k8b4b" path="res://Scripts/Gameplay/bubble.gd" id="1_rtvwa"]
 [ext_resource type="Shader" uid="uid://cl8loumgpv24t" path="res://Shaders/bubble.gdshader" id="2_2oi1d"]
-[ext_resource type="Texture2D" uid="uid://bnt701v7d6n7y" path="res://Assets/bubbles/x32 with shiny.PNG" id="3_rtvwa"]
+[ext_resource type="Texture2D" uid="uid://bnt701v7d6n7y" path="res://Assets/Bubbles/x32 with shiny.PNG" id="3_rtvwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7a34"]
 resource_local_to_scene = true

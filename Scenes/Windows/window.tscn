@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Scripts/Windows/window.gd" id="1_28hdt"]
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icons/icon.svg" id="2_vip54"]
-[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/fonts/HelvetiPixel.ttf" id="3_o7yh4"]
-[ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/buttons/IMG_9937.PNG" id="3_vip54"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_vip54"]
+[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="3_o7yh4"]
+[ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/Buttons/IMG_9937.PNG" id="3_vip54"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)

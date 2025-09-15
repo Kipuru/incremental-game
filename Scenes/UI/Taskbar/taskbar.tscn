@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://rvnyestc2j4k"]
 
 [ext_resource type="Script" uid="uid://c7oaoeuu4uo4g" path="res://Scripts/UI/taskbar.gd" id="1_00r8f"]
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/icons/icon.svg" id="2_1g1x5"]
-[ext_resource type="Texture2D" uid="uid://dvy1d2j4t6lrf" path="res://Assets/icons/IMG_9938.PNG" id="3_48apg"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_1g1x5"]
+[ext_resource type="Texture2D" uid="uid://dvy1d2j4t6lrf" path="res://Assets/Icons/IMG_9938.PNG" id="3_48apg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00r8f"]
 bg_color = Color(0.1886, 0.346917, 0.46, 0.690196)

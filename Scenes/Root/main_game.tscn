@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6qv4h7006s3o"]
 
-[ext_resource type="Texture2D" uid="uid://byvaftq4luexb" path="res://Assets/backgrounds/IMG_9981.png" id="1_ohyf1"]
+[ext_resource type="Texture2D" uid="uid://byvaftq4luexb" path="res://Assets/Backgrounds/IMG_9981.png" id="1_ohyf1"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Scripts/Gameplay/water_overlay.gd" id="3_oj68k"]
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Scenes/Gameplay/bubble_spawner.tscn" id="4_yboij"]

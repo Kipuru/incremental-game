@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cypdfrldw1wws"]
 
-[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/fonts/HelvetiPixel.ttf" id="1_6n581"]
+[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="1_6n581"]
 
 [resource]
 BoxContainer/constants/separation = 0
