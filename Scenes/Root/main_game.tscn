@@ -72,19 +72,19 @@ collision_layer = 2
 metadata/_edit_lock_ = true
 
 [node name="Wall Top" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, -196)
+position = Vector2(0, -286)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 196)
+position = Vector2(0, 286)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Left" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-336, 0)
+position = Vector2(-496, 0)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Wall Right" type="CollisionShape2D" parent="Walls"]
-position = Vector2(336, 0)
+position = Vector2(496, 0)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
