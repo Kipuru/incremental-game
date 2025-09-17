@@ -1,18 +1,27 @@
 class_name Bubble extends CharacterBody2D
 
 const bubble_scene = preload("uid://cqegup4gnccd3")
-#const droplets_scene = preload("uid://dtcbmrnwmh1m6")
+const droplets_scene = preload("uid://dtcbmrnwmh1m6")
+
+const base_speed = 64
+const base_health = 50
+const base_decay_damage = 1
+const base_click_damage = 1
+const base_bounce_damage = 5
 
 @onready var refraction: Sprite2D = %Refraction
+@onready var visual: Node2D = %Visual
 
-var tier := 0
+var health := base_health
 var touching_mouse := false
 
 func _ready() -> void:
 	assert(bubble_scene.can_instantiate())
-	#assert(droplets_scene.can_instantiate())
+	assert(droplets_scene.can_instantiate())
 	
-	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * 64
+	assert(refraction)
+	
+	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * base_speed
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
@@ -20,59 +29,61 @@ func _physics_process(delta: float) -> void:
 		handle_collision(collision)
 	position = position.round()
 
-func _input(event: InputEvent):
-	if touching_mouse and event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if not BubbleSpawner.touching_mouse: # small hack to prevent popping bubbles under the spawner
-				handle_pop()
-
-func _mouse_enter() -> void:
-	touching_mouse = true
-
-func _mouse_exit() -> void:
-	touching_mouse = false
-
 func handle_collision(collision: KinematicCollision2D) -> void:
-	var collider = collision.get_collider()
-	if collider is not Bubble:
-		bounce(collision)
-		return
-	
-	var bubble = collider as Bubble
-	if bubble.tier != tier:
-		bounce(collision)
-		return
-	
 	bounce(collision)
-	#merge_bubbles(bubble)
-
-# Bubble with higher coordinate will spawn new bubble
-func merge_bubbles(collided_with: Bubble) -> void:
-	if position.x < collided_with.position.x:
-		queue_free()
-		return
-	elif position.x == collided_with.position.x and position.y < collided_with.position.y:
-		queue_free()
-		return
-	
-	var bubble_instance = bubble_scene.instantiate()
-	assert(bubble_instance is Bubble)
-	bubble_instance.position = position.lerp(collided_with.position, 0.5) # avg position of both bubbles
-	bubble_instance.velocity = velocity.lerp(collided_with.velocity, 0.5) # avg velocity of both bubbles
-	get_parent().add_child(bubble_instance)
-	bubble_instance.tier = tier + 1
-	queue_free()
+	hurt(base_bounce_damage)
 
 func bounce(collision: KinematicCollision2D) -> void:
 	var bounced = velocity.bounce(collision.get_normal())
 	position += bounced / 128
 	velocity = bounced
 
+func hurt(damage: int):
+	health -= damage
+	if health <= 0:
+		handle_pop()
+	
+	# temp damage visualizer
+	shake(damage)
+	var c = (float(health) / base_health)
+	modulate = Color(1., c, c)
+
 func handle_pop() -> void:
-	#var droplets_instance = droplets_scene.instantiate()
-	#assert(droplets_instance is GPUParticles2D)
-	#droplets_instance.global_position = global_position
-	#get_parent().add_child(droplets_instance)
-	#droplets_instance.emitting = true
+	var droplets_instance = droplets_scene.instantiate()
+	assert(droplets_instance is GPUParticles2D)
+	droplets_instance.global_position = global_position
+	get_parent().add_child(droplets_instance)
+	droplets_instance.emitting = true
 	GameState.bubbles += 1
 	queue_free()
+
+func _input(event: InputEvent):
+	if touching_mouse and event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if not BubbleSpawner.touching_mouse: # small hack to prevent popping bubbles under the spawner
+				hurt(base_click_damage)
+
+func _mouse_enter() -> void:
+	touching_mouse = true
+
+func _mouse_exit() -> void:
+	touching_mouse = false
+	
+func _on_decay_timer_timeout() -> void:
+	hurt(base_decay_damage)
+
+func shake(magnitude: int) -> void:
+	var duration := 0.1
+	var interval := 0.02
+	
+	var tween := create_tween()
+	var elapsed := 0.0
+	
+	while elapsed < duration:
+		var offset = Vector2(
+			randf_range(-magnitude, magnitude),
+			randf_range(-magnitude, magnitude)
+		)
+		tween.tween_property(visual, "position", Vector2.ZERO + offset, interval)
+		elapsed += interval
+	tween.tween_property(visual, "position", Vector2.ZERO, interval)

@@ -24,14 +24,22 @@ input_pickable = true
 motion_mode = 1
 script = ExtResource("1_rtvwa")
 
-[node name="Refraction" type="Sprite2D" parent="."]
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Refraction" type="Sprite2D" parent="Visual"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_e7a34")
 texture = SubResource("GradientTexture2D_e7a34")
 
-[node name="Overlay" type="Sprite2D" parent="."]
+[node name="Overlay" type="Sprite2D" parent="Visual"]
 texture = ExtResource("3_rtvwa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_y8cj2")
+
+[node name="DecayTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="DecayTimer" to="." method="_on_decay_timer_timeout"]
