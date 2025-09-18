@@ -7,7 +7,7 @@ uniform sampler2D displacement_noise_height : repeat_enable;
 uniform float fill : hint_range(0, 1);
 
 bool is_equal_approx(float a, float b) {
-	const float range = 0.0005;
+	const float range = 0.001;
 
 	return abs(a - b) < range;
 }
