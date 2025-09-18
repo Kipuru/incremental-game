@@ -42,7 +42,7 @@ metadata/_edit_lock_ = true
 [node name="Underlay" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Water" type="TextureRect" parent="Underlay"]
+[node name="Water" type="TextureRect" parent="Underlay" node_paths=PackedStringArray("timer", "rate_label")]
 material = ExtResource("2_byrwq")
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,12 +52,11 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_y3rpi")
 script = ExtResource("3_oj68k")
+timer = NodePath("Timer")
+rate_label = NodePath("../../Overlay/VBoxContainer/BubbleRate")
 
-[node name="FillAmountSlider (TEMP)" type="HSlider" parent="Underlay"]
-offset_right = 208.0
-offset_bottom = 24.0
-max_value = 1.0
-step = 0.001
+[node name="Timer" type="Timer" parent="Underlay/Water"]
+wait_time = 0.25
 
 [node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
 music_window = NodePath("../../Windows/MusicPlayerWindow")
@@ -100,16 +99,25 @@ minimum_size = Vector2(384, 192)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
-[node name="BubbleCounter" type="Label" parent="Overlay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -72.0
-offset_bottom = 16.0
+offset_left = -53.0
+offset_bottom = 40.0
 grow_horizontal = 0
+
+[node name="BubbleCounter" type="Label" parent="Overlay/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("7_byrwq")
 text = "0 bubbles"
 horizontal_alignment = 2
 script = ExtResource("8_oj68k")
 
-[connection signal="value_changed" from="Underlay/FillAmountSlider (TEMP)" to="Underlay/Water" method="_on_fill_amount_value_changed"]
+[node name="BubbleRate" type="Label" parent="Overlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "0 bub/s"
+horizontal_alignment = 2
+
+[connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]

@@ -1,7 +1,7 @@
 class_name BubbleSpawner extends Area2D
 
 const bubble_scene = preload("uid://cqegup4gnccd3")
-const base_spawn_cooldown_duration = 5.
+const base_spawn_cooldown_duration = 0.5
 
 @export var bubble_container: Node2D
 static var touching_mouse := false
