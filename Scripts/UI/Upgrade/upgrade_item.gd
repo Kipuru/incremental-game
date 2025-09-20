@@ -1,5 +1,7 @@
 class_name UpgradeItem extends PanelContainer
 
+const MAX_TEXT = "MAX"
+
 @export var _name_label: Label
 @export var _buy_button: Button
 
@@ -26,11 +28,14 @@ func init(upgrade_name: String, current_tier: int):
 	on_bubbles_updated(GameState.get_bubbles())
 
 func on_bubbles_updated(bubbles: int):
+	if _buy_button.text == MAX_TEXT:
+		return
+	
 	_buy_button.disabled = bubbles < _cost
 
 func on_tier_updated(tier: int):
 	if (tier >= lookup_array.size() - 1):
-		_buy_button.text = str("MAX")
+		_buy_button.text = str(MAX_TEXT)
 		_buy_button.disabled = true
 		return
 	
