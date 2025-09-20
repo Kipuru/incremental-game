@@ -58,7 +58,8 @@ rate_label = NodePath("../../Overlay/VBoxContainer/BubbleRate")
 [node name="Timer" type="Timer" parent="Underlay/Water"]
 wait_time = 0.25
 
-[node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("music_window") instance=ExtResource("6_nqh8o")]
+[node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("upgrades_window", "music_window") instance=ExtResource("6_nqh8o")]
+upgrades_window = NodePath("../../Windows/UpgradesWindow")
 music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [node name="Bubbles" type="Node2D" parent="."]
@@ -88,9 +89,18 @@ shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
 
+[node name="UpgradesWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
+visible = false
+position = Vector2(-280, -168)
+window_icon = "uid://dv0l1mpllt0un"
+title = "Upgreades"
+scene_to_load = "uid://b5xi2ilu6u1g6"
+initial_size = Vector2(384, 192)
+minimum_size = Vector2(384, 192)
+
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 visible = false
-position = Vector2(16, -160)
+position = Vector2(24, -168)
 window_icon = "uid://dvy1d2j4t6lrf"
 title = "Music Player"
 scene_to_load = "uid://dwtelixwjtlsk"
