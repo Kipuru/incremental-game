@@ -78,14 +78,14 @@ func handle_pop() -> void:
 
 func deal_click_damage():
 	var tier = GameState.bubble_click_damage_tier
-	var lua = TierHelper.bubble_click_damage_lua
-	var damage = TierHelper.value_lookup(tier, lua)
+	var lua = TierLookup.bubble_click_damage_lua
+	var damage = TierLookup.value_lookup(tier, lua)
 	hurt(damage)
 
 func deal_decay_damage():
 	var tier = GameState.bubble_click_damage_tier
-	var lua = TierHelper.bubble_click_damage_lua
-	var damage = TierHelper.value_lookup(tier, lua)
+	var lua = TierLookup.bubble_click_damage_lua
+	var damage = TierLookup.value_lookup(tier, lua)
 	hurt(damage)
 
 func shake(magnitude: int) -> void:

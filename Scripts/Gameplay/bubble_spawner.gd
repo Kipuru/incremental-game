@@ -41,5 +41,5 @@ func tick_timer(delta: float) -> void:
 
 func get_cooldown_duration() -> float:
 	var tier = GameState.bubble_spawner_cooldown_tier
-	var lua = TierHelper.bubble_spawner_cooldown_lua
-	return TierHelper.value_lookup(tier, lua)
+	var lua = TierLookup.bubble_spawner_cooldown_lua
+	return TierLookup.value_lookup(tier, lua)
