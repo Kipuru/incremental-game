@@ -29,4 +29,10 @@ func on_bubbles_updated(bubbles: int):
 	_buy_button.disabled = bubbles < _cost
 
 func on_tier_updated(tier: int):
+	if (tier >= lookup_array.size() - 1):
+		_buy_button.text = str("MAX")
+		_buy_button.disabled = true
+		return
+	
 	_cost = TierLookup.cost_lookup(tier, lookup_array)
+	_buy_button.text = str(_cost)
