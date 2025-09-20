@@ -95,8 +95,8 @@ position = Vector2(-280, -168)
 window_icon = "uid://dv0l1mpllt0un"
 title = "Upgrades"
 scene_to_load = "uid://b5xi2ilu6u1g6"
-initial_size = Vector2(256, 128)
-minimum_size = Vector2(256, 128)
+initial_size = Vector2(304, 128)
+minimum_size = Vector2(304, 128)
 
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 visible = false

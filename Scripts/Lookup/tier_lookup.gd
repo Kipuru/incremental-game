@@ -21,6 +21,8 @@ static func cost_lookup(tier: int, lookup_array: Array) -> Variant:
 		return lookup_array[last_index][COST_INDEX]
 	return lookup_array[tier][COST_INDEX]
 
+static var bubble_spawner_cooldown_name = "Decrease Bubble Spawner Cooldown"
+static var bubble_spawner_cooldown_unit = "s"
 static var bubble_spawner_cooldown_lua = [
 	[10, 1],
 	[6, 2],
@@ -33,6 +35,8 @@ static var bubble_spawner_cooldown_lua = [
 	[0.2, 9],
 	[0.1, 10],
 ]
+static var bubble_decay_damage_name = "Increase Bubble Decay Damage"
+static var bubble_decay_damage_unit = ""
 static var bubble_decay_damage_lua = [
 	[1, 1],
 	[2, 2],
@@ -45,6 +49,8 @@ static var bubble_decay_damage_lua = [
 	[9, 9],
 	[10, 10]
 ]
+static var bubble_click_damage_name = "Increase Bubble Click Damage"
+static var bubble_click_damage_unit = ""
 static var bubble_click_damage_lua = [
 	[1, 1],
 	[2, 2],

@@ -5,6 +5,8 @@ const MAX_TEXT = "MAX"
 @export var _name_label: Label
 @export var _buy_button: Button
 
+var upgrade_name: String
+var unit: String
 var lookup_array: Array
 var increment_tier: Callable
 var _cost: int
@@ -18,12 +20,12 @@ func _on_buy_pressed() -> void:
 	increment_tier.call()
 
 # call this to properly set up the node
-func init(upgrade_name: String, current_tier: int):
+func init(current_tier: int):
 	assert(upgrade_name)
+	assert(unit != null)
 	assert(lookup_array)
 	assert(increment_tier)
 	
-	_name_label.text = upgrade_name
 	on_tier_updated(current_tier)
 	on_bubbles_updated(GameState.get_bubbles())
 
@@ -39,5 +41,8 @@ func on_tier_updated(tier: int):
 		_buy_button.disabled = true
 		return
 	
+	var before_value = TierLookup.value_lookup(tier, lookup_array)
+	var after_value = TierLookup.value_lookup(tier + 1, lookup_array)
+	_name_label.text = upgrade_name + " (" + str(before_value) + unit + "->" + str(after_value) + unit + ")"
 	_cost = TierLookup.cost_lookup(tier, lookup_array)
 	_buy_button.text = str(_cost)
