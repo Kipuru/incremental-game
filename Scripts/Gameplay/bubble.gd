@@ -31,6 +31,11 @@ func _physics_process(delta: float) -> void:
 
 func handle_collision(collision: KinematicCollision2D) -> void:
 	bounce(collision)
+	
+	var collider = collision.get_collider()
+	if collider is not Bubble:
+		return
+	
 	hurt(base_bounce_damage)
 
 func bounce(collision: KinematicCollision2D) -> void:
