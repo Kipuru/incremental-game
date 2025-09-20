@@ -3,13 +3,13 @@ extends TextureRect
 const TIMER_RATE = 4. # 4 times per second
 const EVALUATE_DURATION = 10. # 10 seconds
 const ARRAY_LENGTH = EVALUATE_DURATION * TIMER_RATE 
-const BASE_PRESTIEGE_THRESHOLD = 5. # 5 bubbles per second
 const SHADER_SPEED = 0.5
 
 @export var timer: Timer
 @export var rate_label: Label
 
 var bubbles_history: Array[int]
+var threshold := PrestigeLookup.threshold_lua[0]
 var shader_tween: Tween
 var shader_target := 0.
 var shader_value := 0.
@@ -37,9 +37,16 @@ func _on_timer_timeout() -> void:
 	bubbles_history.push_back(now)
 	
 	var rate = calculate_rate(then, now)
-	shader_target = rate / BASE_PRESTIEGE_THRESHOLD
+	shader_target = rate / threshold
 	rate_label.text = str(rate) + " bub/s"
+	
+	if shader_target >= 1.:
+		on_fill()
 
 func calculate_rate(then: int, now: int) -> float:
 	var delta = now - then
 	return float(delta) / EVALUATE_DURATION
+
+func on_fill():
+	GameState.prestiege_points += 1
+	threshold = PrestigeLookup.rate_lookup(GameState.prestiege_points)
