@@ -73,7 +73,7 @@ func handle_pop() -> void:
 	droplets_instance.global_position = global_position
 	get_parent().add_child(droplets_instance)
 	droplets_instance.emitting = true
-	GameState.bubbles += 1
+	GameState.increase_bubbles(1)
 	queue_free()
 
 func deal_click_damage():

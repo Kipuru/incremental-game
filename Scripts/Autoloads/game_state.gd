@@ -1,11 +1,22 @@
 extends Node
 
-signal bubbles_updated(bubbles: int)
-var bubbles := 0:
-	set(value):
-		bubbles = value
-		bubbles_updated.emit(value)
+func increase_bubbles(amount: int) -> void:
+	_bubbles += _total_bubbles
+	_total_bubbles += amount
+func get_bubbles() -> int:
+	return _bubbles
+func get_total_bubbles() -> int:
+	return _total_bubbles
 
+# private vars
+signal bubbles_updated(bubbles: int)
+var _bubbles := 0:
+	set(value):
+		_bubbles = value
+		bubbles_updated.emit(value)
+var _total_bubbles := 0
+
+# public vars
 signal stage_updated(tier: int)
 var stage := 0:
 	set(value):

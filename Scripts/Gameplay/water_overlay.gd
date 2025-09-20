@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	var then = bubbles_history.pop_front()
-	var now = GameState.bubbles
+	var now = GameState.get_total_bubbles()
 	bubbles_history.push_back(now)
 	
 	var rate = calculate_rate(then, now)
