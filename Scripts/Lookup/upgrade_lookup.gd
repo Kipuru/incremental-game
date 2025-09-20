@@ -1,6 +1,6 @@
 # Helper class for looking up values for upgrades
 # Lookup arrays (luas) contain subarrays with format: [value, cost]
-@abstract class_name TierLookup
+@abstract class_name UpgradeLookup
 
 const VALUE_INDEX = 0
 const COST_INDEX = 1

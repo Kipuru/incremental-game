@@ -15,9 +15,9 @@ func add_items() -> void:
 	var item: UpgradeItem
 	
 	item = create_upgrade_item()
-	item.upgrade_name = TierLookup.bubble_spawner_cooldown_name
-	item.unit = TierLookup.bubble_spawner_cooldown_unit
-	item.lookup_array = TierLookup.bubble_spawner_cooldown_lua
+	item.upgrade_name = UpgradeLookup.bubble_spawner_cooldown_name
+	item.unit = UpgradeLookup.bubble_spawner_cooldown_unit
+	item.lookup_array = UpgradeLookup.bubble_spawner_cooldown_lua
 	item.increment_tier = func():
 		GameState.bubble_spawner_cooldown_tier += 1
 	item.init(GameState.bubble_spawner_cooldown_tier)
@@ -26,9 +26,9 @@ func add_items() -> void:
 	container.add_child(item)
 	
 	item = create_upgrade_item()
-	item.upgrade_name = TierLookup.bubble_decay_damage_name
-	item.unit = TierLookup.bubble_decay_damage_unit
-	item.lookup_array = TierLookup.bubble_decay_damage_lua
+	item.upgrade_name = UpgradeLookup.bubble_decay_damage_name
+	item.unit = UpgradeLookup.bubble_decay_damage_unit
+	item.lookup_array = UpgradeLookup.bubble_decay_damage_lua
 	item.increment_tier = func():
 		GameState.bubble_decay_damage_tier += 1
 	item.init(GameState.bubble_decay_damage_tier)
@@ -37,9 +37,9 @@ func add_items() -> void:
 	container.add_child(item)
 	
 	item = create_upgrade_item()
-	item.upgrade_name = TierLookup.bubble_click_damage_name
-	item.unit = TierLookup.bubble_click_damage_unit
-	item.lookup_array = TierLookup.bubble_click_damage_lua
+	item.upgrade_name = UpgradeLookup.bubble_click_damage_name
+	item.unit = UpgradeLookup.bubble_click_damage_unit
+	item.lookup_array = UpgradeLookup.bubble_click_damage_lua
 	item.increment_tier = func():
 		GameState.bubble_click_damage_tier += 1
 	GameState.bubbles_updated.connect(item.on_bubbles_updated)

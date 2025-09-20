@@ -41,8 +41,8 @@ func on_tier_updated(tier: int):
 		_buy_button.disabled = true
 		return
 	
-	var before_value = TierLookup.value_lookup(tier, lookup_array)
-	var after_value = TierLookup.value_lookup(tier + 1, lookup_array)
+	var before_value = UpgradeLookup.value_lookup(tier, lookup_array)
+	var after_value = UpgradeLookup.value_lookup(tier + 1, lookup_array)
 	_name_label.text = upgrade_name + " (" + str(before_value) + unit + "->" + str(after_value) + unit + ")"
-	_cost = TierLookup.cost_lookup(tier, lookup_array)
+	_cost = UpgradeLookup.cost_lookup(tier, lookup_array)
 	_buy_button.text = str(_cost)
