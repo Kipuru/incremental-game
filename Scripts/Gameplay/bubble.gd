@@ -3,16 +3,14 @@ class_name Bubble extends CharacterBody2D
 const bubble_scene = preload("uid://cqegup4gnccd3")
 const droplets_scene = preload("uid://dtcbmrnwmh1m6")
 
-const base_speed = 64
-const base_health = 50
-const base_decay_damage = 1
-const base_click_damage = 1
-const base_bounce_damage = 5
+const SPEED = 64
+const STARTING_HEALTH = 50
+const BOUNCE_DAMAGE = 5
 
 @onready var refraction: Sprite2D = %Refraction
 @onready var visual: Node2D = %Visual
 
-var health := base_health
+var health := STARTING_HEALTH
 var touching_mouse := false
 
 func _ready() -> void:
@@ -20,14 +18,30 @@ func _ready() -> void:
 	assert(droplets_scene.can_instantiate())
 	
 	assert(refraction)
+	assert(visual)
 	
-	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * base_speed
+	velocity = Vector2.from_angle(randf_range(0, 2 * PI)) * SPEED
 
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		handle_collision(collision)
 	position = position.round()
+
+func _input(event: InputEvent):
+	if touching_mouse and event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if not BubbleSpawner.touching_mouse: # small hack to prevent popping bubbles under the spawner
+				deal_click_damage()
+
+func _mouse_enter() -> void:
+	touching_mouse = true
+
+func _mouse_exit() -> void:
+	touching_mouse = false
+	
+func _on_decay_timer_timeout() -> void:
+	deal_decay_damage()
 
 func handle_collision(collision: KinematicCollision2D) -> void:
 	bounce(collision)
@@ -36,7 +50,7 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 	if collider is not Bubble:
 		return
 	
-	hurt(base_bounce_damage)
+	hurt(BOUNCE_DAMAGE)
 
 func bounce(collision: KinematicCollision2D) -> void:
 	var bounced = velocity.bounce(collision.get_normal())
@@ -50,7 +64,7 @@ func hurt(damage: int):
 	
 	# temp damage visualizer
 	shake(damage)
-	var c = (float(health) / base_health)
+	var c = (float(health) / STARTING_HEALTH)
 	modulate = Color(1., c, c)
 
 func handle_pop() -> void:
@@ -62,20 +76,17 @@ func handle_pop() -> void:
 	GameState.bubbles += 1
 	queue_free()
 
-func _input(event: InputEvent):
-	if touching_mouse and event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if not BubbleSpawner.touching_mouse: # small hack to prevent popping bubbles under the spawner
-				hurt(base_click_damage)
+func deal_click_damage():
+	var tier = GameState.bubble_click_damage_tier
+	var lua = TierHelper.bubble_click_damage_lua
+	var damage = TierHelper.value_lookup(tier, lua)
+	hurt(damage)
 
-func _mouse_enter() -> void:
-	touching_mouse = true
-
-func _mouse_exit() -> void:
-	touching_mouse = false
-	
-func _on_decay_timer_timeout() -> void:
-	hurt(base_decay_damage)
+func deal_decay_damage():
+	var tier = GameState.bubble_click_damage_tier
+	var lua = TierHelper.bubble_click_damage_lua
+	var damage = TierHelper.value_lookup(tier, lua)
+	hurt(damage)
 
 func shake(magnitude: int) -> void:
 	var duration := 0.1
