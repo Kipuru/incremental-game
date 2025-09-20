@@ -1,0 +1,32 @@
+class_name UpgradeItem extends PanelContainer
+
+@export var _name_label: Label
+@export var _buy_button: Button
+
+var lookup_array: Array
+var increment_tier: Callable
+var _cost: int
+
+func _ready() -> void:
+	assert(_name_label)
+	assert(_buy_button)
+
+func _on_buy_pressed() -> void:
+	GameState.decrease_bubbles(_cost)
+	increment_tier.call()
+
+# call this to properly set up the node
+func init(upgrade_name: String, current_tier: int):
+	assert(upgrade_name)
+	assert(lookup_array)
+	assert(increment_tier)
+	
+	_name_label.text = upgrade_name
+	on_tier_updated(current_tier)
+	on_bubbles_updated(GameState.get_bubbles())
+
+func on_bubbles_updated(bubbles: int):
+	_buy_button.disabled = bubbles < _cost
+
+func on_tier_updated(tier: int):
+	_cost = TierLookup.cost_lookup(tier, lookup_array)

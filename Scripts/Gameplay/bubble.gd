@@ -83,8 +83,8 @@ func deal_click_damage():
 	hurt(damage)
 
 func deal_decay_damage():
-	var tier = GameState.bubble_click_damage_tier
-	var lua = TierLookup.bubble_click_damage_lua
+	var tier = GameState.bubble_decay_damage_tier
+	var lua = TierLookup.bubble_decay_damage_lua
 	var damage = TierLookup.value_lookup(tier, lua)
 	hurt(damage)
 
