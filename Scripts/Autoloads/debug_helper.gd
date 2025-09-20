@@ -26,10 +26,15 @@ func _input(event):
 			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
 		KEY_F12:
 			# show debug
-			if debug_label == null:
-				add_debug()
+			toggle_debug()
 
-func add_debug():
+func toggle_debug():
+	if debug_label != null:
+		var temp = debug_label
+		debug_label = null
+		temp.queue_free()
+		return
+	
 	var canvas_layer = CanvasLayer.new()
 	get_tree().root.add_child(canvas_layer)
 	var label = Label.new()
