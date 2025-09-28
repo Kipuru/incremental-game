@@ -38,28 +38,28 @@ static var bubble_spawner_cooldown_lua = [
 static var bubble_decay_damage_name = "Increase Bubble Decay Damage"
 static var bubble_decay_damage_unit = ""
 static var bubble_decay_damage_lua = [
-	[1, 1],
-	[2, 2],
-	[3, 3],
-	[4, 4],
-	[5, 5],
-	[6, 6],
-	[7, 7],
-	[8, 8],
-	[9, 9],
-	[10, 10]
+	[2, 1],
+	[4, 2],
+	[6, 3],
+	[8, 4],
+	[10, 5],
+	[12, 6],
+	[14, 7],
+	[16, 8],
+	[18, 9],
+	[20, 10]
 ]
 static var bubble_click_damage_name = "Increase Bubble Click Damage"
 static var bubble_click_damage_unit = ""
 static var bubble_click_damage_lua = [
-	[1, 1],
-	[2, 2],
-	[3, 3],
-	[4, 4],
-	[5, 5],
-	[6, 6],
-	[7, 7],
-	[8, 8],
-	[9, 9],
-	[10, 10]
+	[2, 1],
+	[4, 2],
+	[6, 3],
+	[8, 4],
+	[10, 5],
+	[12, 6],
+	[14, 7],
+	[16, 8],
+	[18, 9],
+	[20, 10]
 ]

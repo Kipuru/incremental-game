@@ -7,7 +7,6 @@ func _ready() -> void:
 	var script := GameState.get_script() as GDScript
 	for variable in script.get_script_property_list():
 		game_state_var_names.append(variable.name)
-		print(variable.name)
 
 func _process(_delta: float) -> void:
 	if debug_label != null:
@@ -38,6 +37,7 @@ func toggle_debug():
 	var canvas_layer = CanvasLayer.new()
 	get_tree().root.add_child(canvas_layer)
 	var label = Label.new()
+	label.add_theme_color_override("font_color", Color.BLACK)
 	label.add_theme_font_size_override("font_size", 12)
 	canvas_layer.add_child(label)
 	canvas_layer.layer = 999

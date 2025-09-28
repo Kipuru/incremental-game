@@ -6,17 +6,14 @@ const ARRAY_LENGTH = EVALUATE_DURATION * TIMER_RATE
 const SHADER_SPEED = 0.5
 
 @export var timer: Timer
-@export var rate_label: Label
 
 var bubblebucks_history: Array[int]
 var threshold := PrestigeLookup.threshold_lua[0]
 var shader_tween: Tween
-var shader_target := 0.
 var shader_value := 0.
 
 func _ready() -> void:
 	assert(timer)
-	assert(rate_label)
 	
 	material.set_shader_parameter('fill', 0.)
 	timer.wait_time = 1. / TIMER_RATE
@@ -28,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var t = 1.0 - pow(0.001, delta * SHADER_SPEED)
-	shader_value = lerp(shader_value, shader_target, t) # smoothing
+	shader_value = lerp(shader_value, GameState.water_fill_ratio, t) # smoothing
 	material.set_shader_parameter('fill', shader_value)
 
 func _on_timer_timeout() -> void:
@@ -37,10 +34,11 @@ func _on_timer_timeout() -> void:
 	bubblebucks_history.push_back(now)
 	
 	var rate = calculate_rate(then, now)
-	shader_target = rate / threshold
-	rate_label.text = str(rate) + " bb/s"
+	var ratio = rate / threshold
+	GameState.bb_collection_rate = rate
+	GameState.water_fill_ratio = ratio
 	
-	if shader_target >= 1.:
+	if ratio >= 1.:
 		on_fill()
 
 func calculate_rate(then: int, now: int) -> float:

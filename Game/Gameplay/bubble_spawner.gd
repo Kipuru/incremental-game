@@ -30,6 +30,7 @@ func spawn_bubble():
 	assert(bubble_instance is PhysicsBody2D)
 	bubble_instance.global_position = global_position
 	bubble_container.add_child(bubble_instance)
+	GameState.bubbles += 1
 	cooldown = get_cooldown_duration()
 
 func tick_timer(delta: float) -> void:

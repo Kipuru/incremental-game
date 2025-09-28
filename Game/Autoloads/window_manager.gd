@@ -1,8 +1,10 @@
 class_name WindowManagerAutoload extends Node
 
+const BASE_SCREEN_SIZE = Vector2i(960, 540)
+
 # TEMP SOLUTION FOR ENFORCING WINDOW SIZE
 # Set up a variable for the window size with the value as the default resolution. 
-var window_size = Vector2i(960, 540)
+var window_size = BASE_SCREEN_SIZE
 
 func _process(_delta):
 	# check to see if the window size changes

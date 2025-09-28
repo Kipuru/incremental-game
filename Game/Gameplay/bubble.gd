@@ -3,9 +3,12 @@ class_name Bubble extends CharacterBody2D
 const bubble_scene = preload("uid://cqegup4gnccd3")
 const droplets_scene = preload("uid://dtcbmrnwmh1m6")
 
+const RADIUS = 32.
+const AREA = PI * (RADIUS ** 2)
+
 const SPEED = 64
-const STARTING_HEALTH = 50
-const BOUNCE_DAMAGE = 5
+const STARTING_HEALTH = 100
+const BOUNCE_DAMAGE = 1
 
 @onready var refraction: Sprite2D = %Refraction
 @onready var visual: Node2D = %Visual
@@ -67,13 +70,17 @@ func hurt(damage: int):
 	var c = (float(health) / STARTING_HEALTH)
 	modulate = Color(1., c, c)
 
-func handle_pop() -> void:
+func handle_pop(gain_bubblebucks: bool = true) -> void:
 	var droplets_instance = droplets_scene.instantiate()
 	assert(droplets_instance is GPUParticles2D)
 	droplets_instance.global_position = global_position
 	get_parent().add_child(droplets_instance)
 	droplets_instance.emitting = true
-	GameState.increase_bubblebucks(1)
+	GameState.bubbles -= 1
+	
+	if gain_bubblebucks:
+		GameState.increase_bubblebucks(1)
+	
 	queue_free()
 
 func deal_click_damage():

@@ -1,5 +1,7 @@
 class_name GameStateAutoload extends Node
 
+
+# private vars
 func increase_bubblebucks(amount: int) -> void:
 	_bubblebucks += amount
 	_total_bubblebucks += amount
@@ -10,7 +12,6 @@ func get_bubblebucks() -> int:
 func get_total_bubblebucks() -> int:
 	return _total_bubblebucks
 
-# private vars
 signal bubblebucks_updated(value: int)
 var _bubblebucks := 0:
 	set(value):
@@ -19,12 +20,26 @@ var _bubblebucks := 0:
 var _total_bubblebucks := 0
 
 # public vars
+signal bubbles_updated(value: int)
+var bubbles := 0:
+	set(value):
+		bubbles = value
+		bubbles_updated.emit(value)
+
+signal bb_collection_rate_updated(value: float)
+var bb_collection_rate := 0.:
+	set(value):
+		bb_collection_rate = value
+		bb_collection_rate_updated.emit(value)
+
+var water_fill_ratio := 0.
+var bubble_fill_ratio := 0.
+
 signal prestiege_points_updated(value: int) 
 var prestiege_points := 0:
 	set(value):
 		prestiege_points = value
 		prestiege_points_updated.emit(value) 
-
 signal stage_updated(value: int)
 var stage := 0:
 	set(value):
