@@ -1,4 +1,4 @@
-extends Node
+class_name WindowManagerAutoload extends Node
 
 # TEMP SOLUTION FOR ENFORCING WINDOW SIZE
 # Set up a variable for the window size with the value as the default resolution. 

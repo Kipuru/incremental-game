@@ -1,4 +1,4 @@
-extends Node
+class_name DebugHelperAutoload extends Node
 
 var debug_label: Label = null
 var game_state_var_names: Array[String] = []

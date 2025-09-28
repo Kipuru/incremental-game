@@ -1,4 +1,4 @@
-extends Node
+class_name GameStateAutoload extends Node
 
 func increase_bubbles(amount: int) -> void:
 	_bubbles += amount
