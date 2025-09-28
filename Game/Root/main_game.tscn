@@ -1,0 +1,141 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6qv4h7006s3o"]
+
+[ext_resource type="Texture2D" uid="uid://bu3rm6k5ogv4x" path="res://Assets/Backgrounds/IMG_0055.png" id="1_yboij"]
+[ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
+[ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Game/Gameplay/water_overlay.gd" id="3_oj68k"]
+[ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Game/Gameplay/bubble_spawner.tscn" id="4_yboij"]
+[ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Game/Windows/window.tscn" id="5_ruc4l"]
+[ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Taskbar/taskbar.tscn" id="6_nqh8o"]
+[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="7_byrwq"]
+[ext_resource type="Script" uid="uid://b1on52mnvvph4" path="res://Game/UI/bubble_counter.gd" id="8_oj68k"]
+[ext_resource type="Script" uid="uid://csxf7kbxtfsjf" path="res://Game/UI/prestige_counter.gd" id="9_yboij"]
+
+[sub_resource type="Gradient" id="Gradient_ohkr6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y3rpi"]
+gradient = SubResource("Gradient_ohkr6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d05bn"]
+size = Vector2(960, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyndk"]
+size = Vector2(32, 608)
+
+[node name="MainGame" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_yboij")
+expand_mode = 3
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="Underlay" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Water" type="TextureRect" parent="Underlay" node_paths=PackedStringArray("timer", "rate_label")]
+material = ExtResource("2_byrwq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_y3rpi")
+script = ExtResource("3_oj68k")
+timer = NodePath("Timer")
+rate_label = NodePath("../../Overlay/VBoxContainer/BubbleRate")
+
+[node name="Timer" type="Timer" parent="Underlay/Water"]
+wait_time = 0.25
+
+[node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("upgrades_window", "music_window") instance=ExtResource("6_nqh8o")]
+upgrades_window = NodePath("../../Windows/UpgradesWindow")
+music_window = NodePath("../../Windows/MusicPlayerWindow")
+
+[node name="Bubbles" type="Node2D" parent="."]
+
+[node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_yboij")]
+bubble_container = NodePath("../Bubbles")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 2
+metadata/_edit_lock_ = true
+
+[node name="Wall Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -286)
+shape = SubResource("RectangleShape2D_d05bn")
+
+[node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 286)
+shape = SubResource("RectangleShape2D_d05bn")
+
+[node name="Wall Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-496, 0)
+shape = SubResource("RectangleShape2D_fyndk")
+
+[node name="Wall Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(496, 0)
+shape = SubResource("RectangleShape2D_fyndk")
+
+[node name="Windows" type="Node2D" parent="."]
+
+[node name="UpgradesWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
+visible = false
+position = Vector2(-280, -168)
+window_icon = "uid://dv0l1mpllt0un"
+title = "Upgrades"
+scene_to_load = "uid://b5xi2ilu6u1g6"
+initial_size = Vector2(304, 128)
+minimum_size = Vector2(304, 128)
+
+[node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
+visible = false
+position = Vector2(24, -168)
+window_icon = "uid://dvy1d2j4t6lrf"
+title = "Music Player"
+scene_to_load = "uid://dwtelixwjtlsk"
+initial_size = Vector2(384, 192)
+minimum_size = Vector2(384, 192)
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="BubbleCounter" type="Label" parent="Overlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "0 bubbles"
+horizontal_alignment = 2
+script = ExtResource("8_oj68k")
+
+[node name="BubbleRate" type="Label" parent="Overlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "0 bub/s"
+horizontal_alignment = 2
+
+[node name="PrestigeCounter" type="Label" parent="Overlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "0 pp"
+horizontal_alignment = 2
+script = ExtResource("9_yboij")
+
+[connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6vwi8p5kam04"]
+
+[ext_resource type="Script" uid="uid://c0u5cuxoyad38" path="res://Game/Root/title_menu.gd" id="1_utq1p"]
+[ext_resource type="Theme" uid="uid://den4xpfesjdtm" path="res://Themes/primary_theme.tres" id="1_y6n0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1p23"]
+bg_color = Color(0.243771, 0.211623, 0.0623461, 0.215686)
+
+[node name="TitleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_utq1p")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y6n0q")
+
+[node name="OutermostMargin" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme = ExtResource("1_y6n0q")
+
+[node name="MenuOpacityPanel" type="PanelContainer" parent="Background/OutermostMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_b1p23")
+
+[node name="MenuMargin" type="MarginContainer" parent="Background/OutermostMargin/MenuOpacityPanel"]
+layout_mode = 2
+
+[node name="PrimaryVBox" type="VBoxContainer" parent="Background/OutermostMargin/MenuOpacityPanel/MenuMargin"]
+layout_mode = 2
+theme = ExtResource("1_y6n0q")
+
+[node name="TitleLabel" type="Label" parent="Background/OutermostMargin/MenuOpacityPanel/MenuMargin/PrimaryVBox"]
+custom_minimum_size = Vector2(700, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_y6n0q")
+text = "Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="Background/OutermostMargin/MenuOpacityPanel/MenuMargin/PrimaryVBox"]
+custom_minimum_size = Vector2(320, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_y6n0q")
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="Background/OutermostMargin/MenuOpacityPanel/MenuMargin/PrimaryVBox"]
+custom_minimum_size = Vector2(320, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_y6n0q")
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Background/OutermostMargin/MenuOpacityPanel/MenuMargin/PrimaryVBox"]
+custom_minimum_size = Vector2(320, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_y6n0q")
+text = "Quit"
+
+[connection signal="pressed" from="Background/OutermostMargin/MenuOpacityPanel/MenuMargin/PrimaryVBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Background/OutermostMargin/MenuOpacityPanel/MenuMargin/PrimaryVBox/QuitButton" to="." method="_on_quit_button_pressed"]

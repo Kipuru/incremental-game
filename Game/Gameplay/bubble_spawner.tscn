@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://do42kuyyeioyq"]
+
+[ext_resource type="Script" uid="uid://cmql2yym2c2g5" path="res://Game/Gameplay/bubble_spawner.gd" id="1_2iybu"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_550re"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci3uv"]
+size = Vector2(32, 32)
+
+[node name="BubbleSpawner" type="Area2D"]
+script = ExtResource("1_2iybu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ci3uv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.741176)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_550re")

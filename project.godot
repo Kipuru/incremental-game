@@ -18,9 +18,9 @@ config/icon="res://Assets/Icons/icon.svg"
 
 [autoload]
 
-DebugHelper="*res://Scripts/Autoloads/debug_helper.gd"
-GameState="*res://Scripts/Autoloads/game_state.gd"
-WindowManager="*res://Scripts/Autoloads/window_manager.gd"
+DebugHelper="*res://Game/Autoloads/debug_helper.gd"
+GameState="*res://Game/Autoloads/game_state.gd"
+WindowManager="*res://Game/Autoloads/window_manager.gd"
 
 [display]
 
