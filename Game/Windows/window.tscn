@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=10 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Game/Windows/window.gd" id="1_28hdt"]
+[ext_resource type="Script" uid="uid://cwb0qqoua5tlh" path="res://Game/Windows/title_bar.gd" id="2_o0r3s"]
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_vip54"]
 [ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="3_o7yh4"]
 [ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/Buttons/IMG_9937.PNG" id="3_vip54"]
@@ -35,12 +36,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rb4y1")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer"]
+[node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer" node_paths=PackedStringArray("window")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q6fkp")
+script = ExtResource("2_o0r3s")
+window = NodePath("../../..")
 
 [node name="TitleBarBG" type="TextureRect" parent="UI/VBoxContainer/TitleBar"]
 layout_mode = 2
@@ -91,6 +94,6 @@ custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 mouse_filter = 1
 
-[connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="." method="_on_title_bar_mouse_entered"]
-[connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="." method="_on_title_bar_mouse_exited"]
+[connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_exited"]
 [connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

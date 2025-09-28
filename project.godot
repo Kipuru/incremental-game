@@ -21,6 +21,7 @@ config/icon="res://Assets/Icons/icon.svg"
 DebugHelper="*res://Game/Autoloads/debug_helper.gd"
 GameState="*res://Game/Autoloads/game_state.gd"
 WindowManager="*res://Game/Autoloads/window_manager.gd"
+ClickManager="*res://Game/Autoloads/click_manager.gd"
 
 [display]
 

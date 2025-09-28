@@ -31,20 +31,17 @@ func _physics_process(delta: float) -> void:
 		handle_collision(collision)
 	position = position.round()
 
-func _input(event: InputEvent):
-	if touching_mouse and event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if not BubbleSpawner.touching_mouse: # small hack to prevent popping bubbles under the spawner
-				deal_click_damage()
-
 func _mouse_enter() -> void:
-	touching_mouse = true
+	ClickManager.register_hovered(self)
 
 func _mouse_exit() -> void:
-	touching_mouse = false
+	ClickManager.unregister_hovered(self)
 	
 func _on_decay_timer_timeout() -> void:
 	deal_decay_damage()
+
+func handle_mouse_click():
+	deal_click_damage()
 
 func handle_collision(collision: KinematicCollision2D) -> void:
 	bounce(collision)
