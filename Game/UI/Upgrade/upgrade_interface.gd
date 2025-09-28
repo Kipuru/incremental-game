@@ -15,6 +15,17 @@ func add_items() -> void:
 	var item: UpgradeItem
 	
 	item = create_upgrade_item()
+	item.upgrade_name = UpgradeLookup.hold_click_cooldown_name
+	item.unit = UpgradeLookup.hold_click_cooldown_unit
+	item.lookup_array = UpgradeLookup.hold_click_cooldown_lua
+	item.increment_tier = func():
+		GameState.hold_click_cooldown_tier += 1
+	item.init(GameState.hold_click_cooldown_tier)
+	GameState.bubblebucks_updated.connect(item.on_bubblebucks_updated)
+	GameState.hold_click_cooldown_tier_updated.connect(item.on_tier_updated)
+	container.add_child(item)
+	
+	item = create_upgrade_item()
 	item.upgrade_name = UpgradeLookup.bubble_spawner_cooldown_name
 	item.unit = UpgradeLookup.bubble_spawner_cooldown_unit
 	item.lookup_array = UpgradeLookup.bubble_spawner_cooldown_lua

@@ -46,6 +46,12 @@ var stage := 0:
 		stage = value
 		stage_updated.emit(value)
 
+signal hold_click_cooldown_tier_updated(value: int)
+var hold_click_cooldown_tier := 0:
+	set(value):
+		hold_click_cooldown_tier = value
+		hold_click_cooldown_tier_updated.emit(value)
+
 signal bubble_spawner_cooldown_tier_updated(value: int)
 var bubble_spawner_cooldown_tier := 0:
 	set(value):

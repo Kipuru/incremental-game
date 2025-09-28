@@ -21,6 +21,12 @@ static func cost_lookup(tier: int, lookup_array: Array) -> Variant:
 		return lookup_array[last_index][COST_INDEX]
 	return lookup_array[tier][COST_INDEX]
 
+static var hold_click_cooldown_name = "Hold Click"
+static var hold_click_cooldown_unit = "s"
+static var hold_click_cooldown_lua = [
+	[2**32, 1],
+	[0.25, 2]
+]
 static var bubble_spawner_cooldown_name = "Decrease Bubble Spawner Cooldown"
 static var bubble_spawner_cooldown_unit = "s"
 static var bubble_spawner_cooldown_lua = [
