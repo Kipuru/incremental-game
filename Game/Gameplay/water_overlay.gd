@@ -8,7 +8,7 @@ const SHADER_SPEED = 0.5
 @export var timer: Timer
 @export var rate_label: Label
 
-var bubbles_history: Array[int]
+var bubblebucks_history: Array[int]
 var threshold := PrestigeLookup.threshold_lua[0]
 var shader_tween: Tween
 var shader_target := 0.
@@ -24,7 +24,7 @@ func _ready() -> void:
 	timer.start()
 	
 	for i in range(ARRAY_LENGTH):
-		bubbles_history.push_back(0)
+		bubblebucks_history.push_back(0)
 
 func _physics_process(delta: float) -> void:
 	var t = 1.0 - pow(0.001, delta * SHADER_SPEED)
@@ -32,13 +32,13 @@ func _physics_process(delta: float) -> void:
 	material.set_shader_parameter('fill', shader_value)
 
 func _on_timer_timeout() -> void:
-	var then = bubbles_history.pop_front()
-	var now = GameState.get_total_bubbles()
-	bubbles_history.push_back(now)
+	var then = bubblebucks_history.pop_front()
+	var now = GameState.get_total_bubblebucks()
+	bubblebucks_history.push_back(now)
 	
 	var rate = calculate_rate(then, now)
 	shader_target = rate / threshold
-	rate_label.text = str(rate) + " bub/s"
+	rate_label.text = str(rate) + " bb/s"
 	
 	if shader_target >= 1.:
 		on_fill()

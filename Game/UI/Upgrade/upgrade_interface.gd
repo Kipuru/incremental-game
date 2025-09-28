@@ -21,7 +21,7 @@ func add_items() -> void:
 	item.increment_tier = func():
 		GameState.bubble_spawner_cooldown_tier += 1
 	item.init(GameState.bubble_spawner_cooldown_tier)
-	GameState.bubbles_updated.connect(item.on_bubbles_updated)
+	GameState.bubblebucks_updated.connect(item.on_bubblebucks_updated)
 	GameState.bubble_spawner_cooldown_tier_updated.connect(item.on_tier_updated)
 	container.add_child(item)
 	
@@ -32,7 +32,7 @@ func add_items() -> void:
 	item.increment_tier = func():
 		GameState.bubble_decay_damage_tier += 1
 	item.init(GameState.bubble_decay_damage_tier)
-	GameState.bubbles_updated.connect(item.on_bubbles_updated)
+	GameState.bubblebucks_updated.connect(item.on_bubblebucks_updated)
 	GameState.bubble_decay_damage_tier_updated.connect(item.on_tier_updated)
 	container.add_child(item)
 	
@@ -42,7 +42,7 @@ func add_items() -> void:
 	item.lookup_array = UpgradeLookup.bubble_click_damage_lua
 	item.increment_tier = func():
 		GameState.bubble_click_damage_tier += 1
-	GameState.bubbles_updated.connect(item.on_bubbles_updated)
+	GameState.bubblebucks_updated.connect(item.on_bubblebucks_updated)
 	GameState.bubble_click_damage_tier_updated.connect(item.on_tier_updated)
 	item.init(GameState.bubble_click_damage_tier)
 	container.add_child(item)

@@ -1,22 +1,22 @@
 class_name GameStateAutoload extends Node
 
-func increase_bubbles(amount: int) -> void:
-	_bubbles += amount
-	_total_bubbles += amount
-func decrease_bubbles(amount: int) -> void:
-	_bubbles -= amount
-func get_bubbles() -> int:
-	return _bubbles
-func get_total_bubbles() -> int:
-	return _total_bubbles
+func increase_bubblebucks(amount: int) -> void:
+	_bubblebucks += amount
+	_total_bubblebucks += amount
+func decrease_bubblebucks(amount: int) -> void:
+	_bubblebucks -= amount
+func get_bubblebucks() -> int:
+	return _bubblebucks
+func get_total_bubblebucks() -> int:
+	return _total_bubblebucks
 
 # private vars
-signal bubbles_updated(value: int)
-var _bubbles := 0:
+signal bubblebucks_updated(value: int)
+var _bubblebucks := 0:
 	set(value):
-		_bubbles = value
-		bubbles_updated.emit(value)
-var _total_bubbles := 0
+		_bubblebucks = value
+		bubblebucks_updated.emit(value)
+var _total_bubblebucks := 0
 
 # public vars
 signal prestiege_points_updated(value: int) 

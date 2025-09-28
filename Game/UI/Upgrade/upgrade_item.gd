@@ -16,7 +16,7 @@ func _ready() -> void:
 	assert(_buy_button)
 
 func _on_buy_pressed() -> void:
-	GameState.decrease_bubbles(_cost)
+	GameState.decrease_bubblebucks(_cost)
 	increment_tier.call()
 
 # call this to properly set up the node
@@ -27,13 +27,13 @@ func init(current_tier: int):
 	assert(increment_tier)
 	
 	on_tier_updated(current_tier)
-	on_bubbles_updated(GameState.get_bubbles())
+	on_bubblebucks_updated(GameState.get_bubblebucks())
 
-func on_bubbles_updated(bubbles: int):
+func on_bubblebucks_updated(bubblebucks: int):
 	if _buy_button.text == MAX_TEXT:
 		return
-	
-	_buy_button.disabled = bubbles < _cost
+
+	_buy_button.disabled = bubblebucks < _cost
 
 func on_tier_updated(tier: int):
 	if (tier >= lookup_array.size() - 1):
