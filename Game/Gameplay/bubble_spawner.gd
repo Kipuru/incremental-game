@@ -38,6 +38,6 @@ func _get_cooldown_duration() -> float:
 	var lua = UpgradeLookup.bubble_spawner_cooldown_lua
 	return UpgradeLookup.value_lookup(tier, lua)
 
-func handle_mouse_click() -> void:
+func handle_mouse_left_click() -> void:
 	if cooldown == 0.:
 		_spawn_bubble()

@@ -11,7 +11,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	ClickManager.unregister_hovered(self)
 
-func handle_mouse_click():
+func handle_mouse_left_click():
 	if window.drag_mode == GameWindow.DragModes.NONE:
 		# start move
 		window.original_state = window.position
@@ -19,7 +19,7 @@ func handle_mouse_click():
 		window.drag_mode = GameWindow.DragModes.MOVE
 		mouse_default_cursor_shape = Control.CursorShape.CURSOR_DRAG
 
-func handle_mouse_unclick():
+func handle_mouse_left_unclick():
 	if window.drag_mode != GameWindow.DragModes.MOVE:
 		return
 	

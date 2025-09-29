@@ -26,37 +26,51 @@ func _process(delta: float) -> void:
 		_hold_click_cooldown = 0.
 
 func _input(event: InputEvent):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			_handle_left_click()
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				_handle_left_click()
+			else:
+				_handle_left_unclick()
 		else:
-			_handle_left_unclick()
+			if event.pressed:
+				_handle_right_click()
 
 func _handle_left_click() -> void:
 	_mouse_left_down = true
 	if _hovered_window_corner:
-		_hovered_window_corner.handle_mouse_click()
+		_hovered_window_corner.handle_mouse_left_click()
 	elif _hovered_window_title_bar:
-		_hovered_window_title_bar.handle_mouse_click()
+		_hovered_window_title_bar.handle_mouse_left_click()
 	elif _hovered_spawner:
-		_hovered_spawner.handle_mouse_click()
+		_hovered_spawner.handle_mouse_left_click()
 	elif _hovered_bubble:
-		_hovered_bubble.handle_mouse_click()
+		_hovered_bubble.handle_mouse_left_click()
 
 func _handle_left_hold_click() -> void:
 	_hold_click_cooldown = _get_hold_click_cooldown_duration()
 	if _hovered_spawner:
-		_hovered_spawner.handle_mouse_click()
+		_hovered_spawner.handle_mouse_left_click()
 	elif _hovered_bubble:
-		_hovered_bubble.handle_mouse_click()
+		_hovered_bubble.handle_mouse_left_click()
 
 func _handle_left_unclick() -> void:
 	_mouse_left_down = false
 	if _hovered_window_corner:
 		Input.set_default_cursor_shape(Input.CursorShape.CURSOR_ARROW)
-		_hovered_window_corner.handle_mouse_unclick()
+		_hovered_window_corner.handle_mouse_left_unclick()
 	elif _hovered_window_title_bar:
-		_hovered_window_title_bar.handle_mouse_unclick()
+		_hovered_window_title_bar.handle_mouse_left_unclick()
+
+func _handle_right_click() -> void:
+	if _hovered_window_corner:
+		pass
+	elif _hovered_window_title_bar:
+		pass
+	elif _hovered_spawner:
+		pass
+	elif _hovered_bubble:
+		_hovered_bubble.handle_mouse_right_click()
 
 func _get_hold_click_cooldown_duration() -> float:
 	var tier = GameState.hold_click_cooldown_tier

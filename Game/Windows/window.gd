@@ -45,7 +45,7 @@ func _on_mouse_touching_corner() -> void:
 	ClickManager.register_hovered(self)
 
 func _on_mouse_untouching_corner() -> void:
-	handle_mouse_unclick()
+	handle_mouse_left_unclick()
 	ClickManager.unregister_hovered(self)
 
 func _on_close_button_pressed() -> void:
@@ -88,7 +88,7 @@ func _handle_resize():
 	var new_size = original_state + delta
 	content.custom_minimum_size = new_size.max(minimum_size)
 
-func handle_mouse_click():
+func handle_mouse_left_click():
 	if drag_mode != DragModes.NONE:
 		return
 	
@@ -98,7 +98,7 @@ func handle_mouse_click():
 	drag_mode = DragModes.RESIZE
 	Input.set_default_cursor_shape(Input.CursorShape.CURSOR_DRAG)
 
-func handle_mouse_unclick():
+func handle_mouse_left_unclick():
 	if drag_mode != DragModes.RESIZE:
 		return
 	
