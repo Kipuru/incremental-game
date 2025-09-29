@@ -42,6 +42,10 @@ func _mouse_exit() -> void:
 func _on_decay_timer_timeout() -> void:
 	deal_decay_damage()
 
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		GameState.bubbles -= 1
+
 func handle_mouse_left_click():
 	handle_mouse_right_click()
 	deal_click_damage()
@@ -80,7 +84,6 @@ func handle_pop(gain_bubblebucks: bool = true) -> void:
 	droplets_instance.global_position = global_position
 	get_parent().add_child(droplets_instance)
 	droplets_instance.emitting = true
-	GameState.bubbles -= 1
 	
 	if gain_bubblebucks:
 		GameState.increase_bubblebucks(1)
