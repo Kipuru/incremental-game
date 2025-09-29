@@ -8,7 +8,7 @@ const AREA = PI * (RADIUS ** 2)
 
 const SPEED = 64
 const MOUSE_PUSH_AMOUNT = 16
-const STARTING_HEALTH = 100
+const STARTING_HEALTH = 200
 const BOUNCE_DAMAGE = 1
 
 @onready var refraction: Sprite2D = %Refraction
