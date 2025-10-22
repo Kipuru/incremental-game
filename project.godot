@@ -12,21 +12,23 @@ config_version=5
 
 config/name="Incremental Game"
 run/main_scene="uid://c6qv4h7006s3o"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://Assets/Icons/icon.svg"
 
 [autoload]
 
-DebugHelper="*res://Scripts/debug_helper.gd"
+DebugHelper="*res://Game/Autoloads/debug_helper.gd"
+GameState="*res://Game/Autoloads/game_state.gd"
+WindowManager="*res://Game/Autoloads/window_manager.gd"
+ClickManager="*res://Game/Autoloads/click_manager.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=960
+window/size/viewport_height=540
 window/size/mode=3
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [layer_names]
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5xi2ilu6u1g6"]
+
+[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_iwe4s"]
+[ext_resource type="Script" uid="uid://by7pv62rv5ixb" path="res://Game/UI/Upgrade/upgrade_interface.gd" id="2_t5fco"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5fco"]
+bg_color = Color(0.95, 0.95, 0.95, 1)
+
+[node name="UpgradeInterface" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iwe4s")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t5fco")
+script = ExtResource("2_t5fco")
+
+[node name="UpgradeItems" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2

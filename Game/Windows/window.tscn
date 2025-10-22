@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccdqkc2ixgwur"]
+
+[ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Game/Windows/window.gd" id="1_28hdt"]
+[ext_resource type="Script" uid="uid://cwb0qqoua5tlh" path="res://Game/Windows/title_bar.gd" id="2_o0r3s"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_vip54"]
+[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="3_o7yh4"]
+[ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/Buttons/IMG_9937.PNG" id="3_vip54"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
+bg_color = Color(0.525668, 0.525668, 0.525667, 1)
+border_color = Color(0.793212, 0.793211, 0.793211, 1)
+shadow_color = Color(0, 0, 0, 0.101961)
+shadow_size = 5
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6fkp"]
+border_color = Color(0.792157, 0.792157, 0.792157, 1)
+
+[sub_resource type="Gradient" id="Gradient_sseq7"]
+offsets = PackedFloat32Array(0.0264901, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7prq6"]
+gradient = SubResource("Gradient_sseq7")
+
+[node name="Window" type="Node2D"]
+script = ExtResource("1_28hdt")
+
+[node name="UI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rb4y1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitleBar" type="PanelContainer" parent="UI/VBoxContainer" node_paths=PackedStringArray("window")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q6fkp")
+script = ExtResource("2_o0r3s")
+window = NodePath("../../..")
+
+[node name="TitleBarBG" type="TextureRect" parent="UI/VBoxContainer/TitleBar"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_7prq6")
+expand_mode = 1
+
+[node name="LeftSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/LeftSideMargin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Icon" type="TextureRect" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_vip54")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="TitleLabel" type="Label" parent="UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_o7yh4")
+theme_override_font_sizes/font_size = 16
+text = "Window Name"
+vertical_alignment = 1
+
+[node name="RightSideMargin" type="MarginContainer" parent="UI/VBoxContainer/TitleBar"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 2
+
+[node name="CloseButton" type="TextureButton" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_vip54")
+stretch_mode = 6
+
+[node name="Content" type="Control" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+mouse_filter = 1
+
+[connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

@@ -7,7 +7,7 @@ uniform sampler2D displacement_noise_height : repeat_enable;
 uniform float fill : hint_range(0, 1);
 
 bool is_equal_approx(float a, float b) {
-	const float range = 0.0005;
+	const float range = 0.001;
 
 	return abs(a - b) < range;
 }
@@ -31,7 +31,7 @@ vec2 displace_uv(vec2 uv) {
 float displace_height(float height, vec2 uv) {
 	const float scroll_speed =  1. / 30.;
 	const vec2 scroll_dir = vec2(1., 0.);
-	const float disp_scale = 1. / 10.;
+	const float disp_scale = 1. / 20.;
 
 	vec2 velocity = vec2(scroll_dir.x + (TIME * scroll_speed), scroll_dir.y + (TIME * scroll_speed));
 	vec2 sample_coord = vec2(uv.x + velocity.x, uv.y + velocity.y);
@@ -59,7 +59,7 @@ vec4 sample_with_blur(vec2 displaced_uv, vec2 screen_pixel_size) {
 	}
 	color = vec4(color.rgb / (quality * directions + 1.), 1.); // divide by number of iterations + 1
 
-	color = vec4(color.r * 0.6, color.g * 0.9, color.b, 1.); // tint blue
+	color = vec4(color.r * 0.8, color.g * 0.9, color.b, 1.); // tint blue
 	return color;
 }
 

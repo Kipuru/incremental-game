@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7bibqo7h508x"]
-
-[ext_resource type="Script" uid="uid://yxc7g76lebk5" path="res://Scripts/Audio/music_player.gd" id="1_k1lrl"]
-
-[node name="MusicPlayer" type="AudioStreamPlayer"]
-bus = &"Music"
-script = ExtResource("1_k1lrl")
-
-[connection signal="finished" from="." to="." method="_on_finished"]
