@@ -1,0 +1,18 @@
+extends HSlider
+
+@export
+var BusName: String
+
+var busIndex: int
+
+
+func _ready() -> void:
+	busIndex = AudioServer.get_bus_index(BusName)
+	value_changed.connect(_onvalchanged)
+	value = db_to_linear(AudioServer.get_bus_volume_db(busIndex))
+	
+	
+	
+func _onvalchanged(value:float) -> void:
+	AudioServer.set_bus_volume_db(busIndex,linear_to_db(value))
+ 
