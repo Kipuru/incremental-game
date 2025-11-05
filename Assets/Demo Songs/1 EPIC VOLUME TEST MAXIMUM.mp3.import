@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c36fv8jrkccb3"
+path="res://.godot/imported/1 EPIC VOLUME TEST MAXIMUM.mp3-314fb1266cc4a41a59645344f896528d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Demo Songs/1 EPIC VOLUME TEST MAXIMUM.mp3"
+dest_files=["res://.godot/imported/1 EPIC VOLUME TEST MAXIMUM.mp3-314fb1266cc4a41a59645344f896528d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
