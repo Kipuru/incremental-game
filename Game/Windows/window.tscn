@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=13 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Game/Windows/window.gd" id="1_28hdt"]
 [ext_resource type="Script" uid="uid://cwb0qqoua5tlh" path="res://Game/Windows/title_bar.gd" id="2_o0r3s"]
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_vip54"]
 [ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="3_o7yh4"]
 [ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/Buttons/IMG_9937.PNG" id="3_vip54"]
+[ext_resource type="PackedScene" uid="uid://bh05jgliy8rci" path="res://Game/UI/Music/VolSlider.tscn" id="6_cuhqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
@@ -22,7 +23,12 @@ offsets = PackedFloat32Array(0.0264901, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7prq6"]
 gradient = SubResource("Gradient_sseq7")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuhqe"]
+
+[sub_resource type="Theme" id="Theme_c3n73"]
+
 [node name="Window" type="Node2D"]
+position = Vector2(1, 2)
 script = ExtResource("1_28hdt")
 
 [node name="UI" type="PanelContainer" parent="."]
@@ -93,6 +99,44 @@ clip_contents = true
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(0.44910118, 1.4683453, 1.4683453, 1)
+offset_left = -1.0
+offset_top = 207.00008
+offset_right = 255.0
+offset_bottom = 344.00006
+scale = Vector2(0.7200002, 0.6145514)
+theme_override_styles/panel = SubResource("StyleBoxFlat_cuhqe")
+
+[node name="vol control" type="VBoxContainer" parent="PanelContainer"]
+modulate = Color(18.892157, 18.892157, 0, 1)
+layout_mode = 2
+theme = SubResource("Theme_c3n73")
+
+[node name="Label" type="Label" parent="PanelContainer/vol control"]
+layout_mode = 2
+text = "Master"
+
+[node name="Master" parent="PanelContainer/vol control" instance=ExtResource("6_cuhqe")]
+layout_mode = 2
+BusName = "Master"
+
+[node name="Label2" type="Label" parent="PanelContainer/vol control"]
+layout_mode = 2
+text = "Music"
+
+[node name="Music" parent="PanelContainer/vol control" instance=ExtResource("6_cuhqe")]
+layout_mode = 2
+BusName = "Music"
+
+[node name="Label3" type="Label" parent="PanelContainer/vol control"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFX" parent="PanelContainer/vol control" instance=ExtResource("6_cuhqe")]
+layout_mode = 2
+BusName = "SFX"
 
 [connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_exited"]
