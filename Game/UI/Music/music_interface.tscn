@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwtelixwjtlsk"]
+[gd_scene load_steps=11 format=3 uid="uid://dwtelixwjtlsk"]
 
 [ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_h6i6e"]
 [ext_resource type="PackedScene" uid="uid://b7bibqo7h508x" path="res://Game/Audio/music_player.tscn" id="2_wpb7c"]
+[ext_resource type="PackedScene" uid="uid://bh05jgliy8rci" path="res://Game/UI/Music/VolSlider.tscn" id="3_cwbwj"]
 [ext_resource type="Script" uid="uid://cyfrmaitlhhxu" path="res://Game/UI/Music/TopBar/currently_playing_label.gd" id="3_wiyj6"]
 [ext_resource type="PackedScene" uid="uid://c42f4mmycgf2n" path="res://Game/UI/Music/TopBar/playback_controls.tscn" id="4_vv0yo"]
 [ext_resource type="Script" uid="uid://bxatqxof3rnw4" path="res://Game/UI/Music/TopBar/seeker.gd" id="5_vv0yo"]
@@ -60,6 +61,16 @@ layout_mode = 2
 text = "0:00 / 0:00"
 clip_text = true
 script = ExtResource("6_vw141")
+
+[node name="MusicVolumeLabel" type="Label" parent="VBoxContainer/TopBar/HBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="MusicVolSlider" parent="VBoxContainer/TopBar/HBoxContainer" instance=ExtResource("3_cwbwj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 1
+BusName = "Music"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
