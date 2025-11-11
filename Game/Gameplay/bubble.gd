@@ -79,11 +79,12 @@ func hurt(damage: int):
 	modulate = Color(1., c, c)
 
 func handle_pop(gain_bubblebucks: bool = true) -> void:
-	var droplets_instance = droplets_scene.instantiate()
-	assert(droplets_instance is GPUParticles2D)
-	droplets_instance.global_position = global_position
-	get_parent().add_child(droplets_instance)
-	droplets_instance.emitting = true
+	for n in 16:
+		var droplets_instance = droplets_scene.instantiate()
+		assert(droplets_instance is GPUParticles2D)
+		droplets_instance.global_position = global_position
+		get_parent().add_child(droplets_instance)
+		droplets_instance.emitting = true
 	
 	if gain_bubblebucks:
 		GameState.increase_bubblebucks(1)

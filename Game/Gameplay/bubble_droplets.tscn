@@ -29,7 +29,7 @@ collision_mode = 2
 [node name="BubbleDroplets" type="GPUParticles2D"]
 material = SubResource("ShaderMaterial_1gj4l")
 emitting = false
-amount = 16
+amount = 1
 texture = SubResource("GradientTexture2D_3et2c")
 lifetime = 10.0
 one_shot = true
