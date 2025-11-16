@@ -62,13 +62,13 @@ func _init(
 	name: String, currency: Currency, unit: String, tier: WrappedInteger,
 	costs: Array[int], values: Array[Variant]
 ) -> void:
-	assert(costs.size() == values.size() + 1)
+	assert(costs.size() == values.size() - 1)
 	
 	_name = name
 	_currency = currency
 	_unit = unit
 	_tier = tier
-	_max_tier = costs.size() - 1
+	_max_tier = costs.size()
 	_costs = costs
 	_values = values
 	
@@ -83,11 +83,11 @@ func can_purchase() -> bool:
 	
 	match _currency:
 		Currency.BUBBLE_BUCK:
-			return cost >= GameState.get_bubblebucks()
+			return GameState.get_bubblebucks() >= cost
 		Currency.ICON_GUY:
-			return cost >= GameState.get_icon_guys()
+			return GameState.get_icon_guys() >= cost
 		_:
-			return cost >= GameState.get_prestige_points()
+			return GameState.get_prestige_points() >= cost
 
 func purchase() -> void:
 	assert(can_purchase())

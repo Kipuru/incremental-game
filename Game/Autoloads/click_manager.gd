@@ -10,17 +10,22 @@ var _hovered_bubble: Bubble = null
 
 func _ready() -> void:
 	_hold_click_cooldown = _get_hold_click_cooldown_duration()
-	GameState.hold_click_cooldown_tier_updated.connect(func (_value: int):
+	GameState.hold_click_tier.updated.connect(func (_value: int):
 		_hold_click_cooldown = _get_hold_click_cooldown_duration()
-		print(_hold_click_cooldown)
 	)
 
 func _process(delta: float) -> void:
+	# upgrade not purchased yet
+	if _hold_click_cooldown < 0:
+		return
+	
+	# click is ready
 	if _hold_click_cooldown == 0.: 
 		if _mouse_left_down:
 			_handle_left_hold_click()
 		return
 	
+	# tick cooldown
 	_hold_click_cooldown -= delta
 	if _hold_click_cooldown < 0.:
 		_hold_click_cooldown = 0.
@@ -73,9 +78,10 @@ func _handle_right_click() -> void:
 		_hovered_bubble.handle_mouse_right_click()
 
 func _get_hold_click_cooldown_duration() -> float:
-	var tier = GameState.hold_click_cooldown_tier
-	var lua = UpgradeLookup.hold_click_cooldown_lua
-	return UpgradeLookup.value_lookup(tier, lua)
+	var value = PurchaseableItems.hold_click.value
+	if value == null:
+		return -9999
+	return value
 
 func register_hovered(item):
 	if item is GameWindow:

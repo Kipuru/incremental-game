@@ -40,7 +40,7 @@ func _mouse_exit() -> void:
 	ClickManager.unregister_hovered(self)
 	
 func _on_decay_timer_timeout() -> void:
-	deal_decay_damage()
+	deal_damage(PurchaseableItems.bubble_decay_damage.value)
 
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
@@ -48,7 +48,7 @@ func _notification(what):
 
 func handle_mouse_left_click():
 	handle_mouse_right_click()
-	deal_click_damage()
+	deal_damage(PurchaseableItems.bubble_click_damage.value)
 
 func handle_mouse_right_click():
 	var mouse_pos = get_global_mouse_position()
@@ -62,13 +62,13 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 	if collider is not Bubble:
 		return
 	
-	hurt(BOUNCE_DAMAGE)
+	deal_damage(BOUNCE_DAMAGE)
 
 func bounce(collision: KinematicCollision2D) -> void:
 	var bounced = velocity.bounce(collision.get_normal())
 	velocity = bounced
 
-func hurt(damage: int):
+func deal_damage(damage: int):
 	health -= damage
 	if health <= 0:
 		handle_pop()
@@ -89,18 +89,6 @@ func handle_pop(gain_bubblebucks: bool = true) -> void:
 		GameState.increase_bubblebucks(1)
 	
 	queue_free()
-
-func deal_click_damage():
-	var tier = GameState.bubble_click_damage_tier
-	var lua = UpgradeLookup.bubble_click_damage_lua
-	var damage = UpgradeLookup.value_lookup(tier, lua)
-	hurt(damage)
-
-func deal_decay_damage():
-	var tier = GameState.bubble_decay_damage_tier
-	var lua = UpgradeLookup.bubble_decay_damage_lua
-	var damage = UpgradeLookup.value_lookup(tier, lua)
-	hurt(damage)
 
 func shake(magnitude: float) -> void:
 	var duration := 0.1

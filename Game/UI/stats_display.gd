@@ -13,7 +13,7 @@ func _ready() -> void:
 	
 	GameState.bubblebucks_updated.connect(on_bubblebucks_updated)
 	GameState.icon_guys_updated.connect(on_icon_guys_updated)
-	GameState.prestiege_points_updated.connect(on_prestige_points_updated)
+	GameState.prestige_points_updated.connect(on_prestige_points_updated)
 	GameState.bb_collection_rate_updated.connect(on_bb_collection_rate_updated)
 
 func on_bubblebucks_updated(value: int):
