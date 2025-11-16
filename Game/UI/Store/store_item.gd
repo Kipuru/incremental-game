@@ -46,6 +46,7 @@ func on_tier_updated(_tier: int = 0):
 	if _item.is_maxed():
 		_buy_button.text = str(MAX_TEXT)
 		_buy_button.disabled = true
+		_buy_button.icon = null
 		return
 	
 	var before_value = _item.value

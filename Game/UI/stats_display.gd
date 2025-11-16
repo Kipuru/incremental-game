@@ -26,4 +26,4 @@ func on_prestige_points_updated(value: int):
 	prestige_counter.text = str(value)
 
 func on_bb_collection_rate_updated(value: float):
-	bb_rate.text = str(value) + " bb/s"
+	bb_rate.text = str(value)

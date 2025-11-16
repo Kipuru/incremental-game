@@ -123,16 +123,16 @@ offset_bottom = 15.0
 grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("8_7ksg5")
-bb_counter = NodePath("BBCounter/Label")
-ig_counter = NodePath("IGCounter/Label")
-prestige_counter = NodePath("PrestigeCounter/Label")
-bb_rate = NodePath("BBRate")
+bb_counter = NodePath("BBCounter/Value")
+ig_counter = NodePath("IGCounter/Value")
+prestige_counter = NodePath("PrestigeCounter/Value")
+bb_rate = NodePath("BBRate/Value")
 
 [node name="BBCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Label" type="Label" parent="Overlay/StatsDisplay/BBCounter"]
+[node name="Value" type="Label" parent="Overlay/StatsDisplay/BBCounter"]
 layout_mode = 2
 theme = ExtResource("7_byrwq")
 text = "0"
@@ -147,7 +147,7 @@ stretch_mode = 3
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Label" type="Label" parent="Overlay/StatsDisplay/IGCounter"]
+[node name="Value" type="Label" parent="Overlay/StatsDisplay/IGCounter"]
 layout_mode = 2
 theme = ExtResource("7_byrwq")
 text = "0"
@@ -162,7 +162,7 @@ stretch_mode = 3
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Label" type="Label" parent="Overlay/StatsDisplay/PrestigeCounter"]
+[node name="Value" type="Label" parent="Overlay/StatsDisplay/PrestigeCounter"]
 layout_mode = 2
 theme = ExtResource("7_byrwq")
 text = "0"
@@ -173,10 +173,29 @@ layout_mode = 2
 texture = ExtResource("12_7ksg5")
 stretch_mode = 3
 
-[node name="BBRate" type="Label" parent="Overlay/StatsDisplay"]
+[node name="BBRate" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Value" type="Label" parent="Overlay/StatsDisplay/BBRate"]
 layout_mode = 2
 theme = ExtResource("7_byrwq")
-text = "0 bb/s"
+text = "0"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/StatsDisplay/BBRate"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/BBRate/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_nrt6e")
+stretch_mode = 3
+
+[node name="persecond" type="Label" parent="Overlay/StatsDisplay/BBRate/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "/s"
 horizontal_alignment = 2
 
 [connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]
