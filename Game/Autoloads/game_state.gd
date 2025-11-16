@@ -36,17 +36,18 @@ var _total_bubblebucks := 0
 signal bubblebucks_updated(value: int)
 
 
-func increase_icon_guys(amount: int) -> void:
-	_total_icon_guys += amount
+func set_total_icon_guys(amount: int) -> void:
+	_total_icon_guys = amount
 	_update_icon_guys()
 func increase_occupied_icon_guys(amount: int) -> void:
 	_occupied_icon_guys += amount
-	assert(_occupied_icon_guys <= _total_icon_guys)
 	_update_icon_guys()
 func get_icon_guys() -> int:
 	return _icon_guys
 func _update_icon_guys() -> void:
+	assert(_occupied_icon_guys <= _total_icon_guys)
 	_icon_guys = _total_icon_guys - _occupied_icon_guys
+	print(_icon_guys)
 
 var _total_icon_guys := 0
 var _occupied_icon_guys := 0
@@ -87,7 +88,15 @@ signal stage_updated(value: int)
 
 
 # *** purchases ***
+var icon_guy_tier := WrappedInteger.new(0)
 var hold_click_tier := WrappedInteger.new(0)
 var bubble_spawner_cooldown_tier := WrappedInteger.new(0)
 var bubble_decay_damage_tier := WrappedInteger.new(0)
 var bubble_click_damage_tier := WrappedInteger.new(0)
+
+
+func _ready() -> void:
+	var icon_guy_purchaseable = PurchaseableItems.icon_guy
+	icon_guy_purchaseable.purchased.connect(
+		func(): set_total_icon_guys(icon_guy_purchaseable.value)
+	)

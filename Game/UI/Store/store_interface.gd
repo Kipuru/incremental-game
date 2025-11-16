@@ -15,6 +15,10 @@ func add_items() -> void:
 	var item: StoreItem
 	
 	item = create_store_item()
+	item.init(PurchaseableItems.icon_guy)
+	container.add_child(item)
+	
+	item = create_store_item()
 	item.init(PurchaseableItems.hold_click)
 	container.add_child(item)
 	
