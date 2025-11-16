@@ -5,44 +5,51 @@ const MAX_TEXT = "MAX"
 @export var _name_label: Label
 @export var _buy_button: Button
 
-var upgrade_name: String
-var unit: String
-var lookup_array: Array
-var increment_tier: Callable
-var _cost: int
+var _item: PurchaseableItem
 
 func _ready() -> void:
 	assert(_name_label)
 	assert(_buy_button)
 
-func _on_buy_pressed() -> void:
-	GameState.decrease_bubblebucks(_cost)
-	increment_tier.call()
-
 # call this to properly set up the node
-func init(current_tier: int):
-	assert(upgrade_name)
-	assert(unit != null)
-	assert(lookup_array)
-	assert(increment_tier)
+func init(item: PurchaseableItem):
+	_item = item
 	
-	on_tier_updated(current_tier)
-	on_bubblebucks_updated(GameState.get_bubblebucks())
+	item.currency_updated.connect(on_currency_updated)
+	item.tier.updated.connect(on_tier_updated)
+	
+	on_currency_updated()
+	on_tier_updated()
 
-func on_bubblebucks_updated(bubblebucks: int):
-	if _buy_button.text == MAX_TEXT:
+func _on_buy_pressed() -> void:
+	_item.purchase()
+
+func on_currency_updated(_amount: int = 0):
+	if _item.is_maxed():
 		return
+	
+	_buy_button.disabled = not _item.can_purchase()
 
-	_buy_button.disabled = bubblebucks < _cost
-
-func on_tier_updated(tier: int):
-	if (tier >= lookup_array.size() - 1):
+func on_tier_updated(_tier: int = 0):
+	if _item.is_maxed():
 		_buy_button.text = str(MAX_TEXT)
 		_buy_button.disabled = true
 		return
 	
-	var before_value = UpgradeLookup.value_lookup(tier, lookup_array)
-	var after_value = UpgradeLookup.value_lookup(tier + 1, lookup_array)
-	_name_label.text = upgrade_name + " (" + str(before_value) + unit + "->" + str(after_value) + unit + ")"
-	_cost = UpgradeLookup.cost_lookup(tier, lookup_array)
-	_buy_button.text = str(_cost)
+	var before_value = _item.value
+	var after_value = _item.next_value
+	var before_null = before_value == null
+	var after_null = after_value == null
+	
+	_name_label.text = _item.name
+	if not (before_null and after_null):
+		_name_label.text += " ("
+	if not before_null:
+		_name_label.text += str(before_value) + _item.unit
+		_name_label.text += "->"
+	if not after_null:
+		_name_label.text += str(after_value) + _item.unit
+	if not (before_null and after_null):
+		_name_label.text += ")"
+	
+	_buy_button.text = str(_item.cost)

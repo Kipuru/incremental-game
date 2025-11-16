@@ -3,6 +3,9 @@ class_name PurchaseableItem
 const MAX_INT = 9223372036854775807
 enum Currency {BUBBLE_BUCK, ICON_GUY, PRESTIGE}
 
+signal purchased
+signal currency_updated(value: int)
+
 # readonly vars
 # setters do nothing
 var name: String:
@@ -18,6 +21,11 @@ var currency: Currency:
 var unit: String:
 	get():
 		return _unit
+	set(value):
+		return
+var tier: WrappedInteger:
+	get():
+		return _tier
 	set(value):
 		return
 var cost: int:
@@ -48,12 +56,11 @@ var _tier: WrappedInteger
 var _max_tier: int
 var _costs: Array[int]
 var _values: Array[Variant] # first item contains initial value, null if there is none
-var _on_purchase: Callable
 
 @warning_ignore("shadowed_variable")
 func _init(
 	name: String, currency: Currency, unit: String, tier: WrappedInteger,
-	costs: Array[int], values: Array[Variant], on_purchase: Callable = Callable()
+	costs: Array[int], values: Array[Variant]
 ) -> void:
 	assert(costs.size() == values.size() + 1)
 	
@@ -64,7 +71,8 @@ func _init(
 	_max_tier = costs.size() - 1
 	_costs = costs
 	_values = values
-	_on_purchase = on_purchase
+	
+	_connect_currency_updated()
 
 func is_maxed() -> bool:
 	return _tier.v == _max_tier
@@ -94,5 +102,16 @@ func purchase() -> void:
 	
 	_tier.v += 1
 	
-	if not _on_purchase.is_null():
-		_on_purchase.call()
+	purchased.emit()
+
+func _on_currency_updated(amount: int):
+	currency_updated.emit(amount)
+
+func _connect_currency_updated() -> void:
+	match _currency:
+		Currency.BUBBLE_BUCK:
+			GameState.bubblebucks_updated.connect(_on_currency_updated)
+		Currency.ICON_GUY:
+			GameState.icon_guys_updated.connect(_on_currency_updated)
+		Currency.PRESTIGE:
+			GameState.prestige_points_updated.connect(_on_currency_updated)
