@@ -52,6 +52,12 @@ func edit_debug():
 		var value = GameState.get(var_name)
 		if value == null:
 			continue
+		
+		if value is WrappedInteger:
+			text += var_name + ":  " + str(value.v)
+			text += "\n"
+			continue
+		 
 		text += var_name + ":  " + str(value)
 		text += "\n"
 	

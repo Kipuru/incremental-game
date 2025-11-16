@@ -34,9 +34,7 @@ func _tick_timer(delta: float) -> void:
 		cooldown = 0.
 
 func _get_cooldown_duration() -> float:
-	var tier = GameState.bubble_spawner_cooldown_tier
-	var lua = UpgradeLookup.bubble_spawner_cooldown_lua
-	return UpgradeLookup.value_lookup(tier, lua)
+	return PurchaseableItems.bubble_spawner_cooldown.value
 
 func handle_mouse_left_click() -> void:
 	if cooldown == 0.:

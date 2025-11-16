@@ -16,6 +16,7 @@ signal bb_collection_rate_updated(value: float)
 var water_fill_ratio := 0.
 var bubble_fill_ratio := 0.
 
+
 # *** currencies ***
 func increase_bubblebucks(amount: int) -> void:
 	_bubblebucks += amount
@@ -33,6 +34,7 @@ var _bubblebucks := 0:
 		bubblebucks_updated.emit(value)
 var _total_bubblebucks := 0
 signal bubblebucks_updated(value: int)
+
 
 func increase_icon_guys(amount: int) -> void:
 	_total_icon_guys += amount
@@ -54,40 +56,38 @@ var _icon_guys := 0:
 		icon_guys_updated.emit(value)
 signal icon_guys_updated(value: int)
 
-# *** upgrades ***
-var hold_click_cooldown_tier := 0:
-	set(value):
-		hold_click_cooldown_tier = value
-		hold_click_cooldown_tier_updated.emit(value)
-signal hold_click_cooldown_tier_updated(value: int)
 
-var bubble_spawner_cooldown_tier := 0:
-	set(value):
-		bubble_spawner_cooldown_tier = value
-		bubble_spawner_cooldown_tier_updated.emit(value)
-signal bubble_spawner_cooldown_tier_updated(value: int)
+func increase_prestige_points(amount: int) -> void:
+	_total_prestige_points += amount
+	_update_prestige_points()
+func update_used_prestige_points(amount: int) -> void:
+	_used_prestige_points += amount
+	assert(_used_prestige_points <= _total_prestige_points)
+	_update_prestige_points()
+func get_prestige_points() -> int:
+	return _icon_guys
+func _update_prestige_points() -> void:
+	_prestige_points = _total_prestige_points - _used_prestige_points
 
-var bubble_decay_damage_tier := 0:
+var _total_prestige_points := 0
+var _used_prestige_points := 0
+var _prestige_points := 0:
 	set(value):
-		bubble_decay_damage_tier = value
-		bubble_decay_damage_tier_updated.emit(value)
-signal bubble_decay_damage_tier_updated(value: int)
+		_prestige_points = value
+		prestige_points_updated.emit(value)
+signal prestige_points_updated(value: int)
 
-var bubble_click_damage_tier := 0:
-	set(value):
-		bubble_click_damage_tier = value
-		bubble_click_damage_tier_updated.emit(value)
-signal bubble_click_damage_tier_updated(value: int)
 
 # *** progression ***
-var prestiege_points := 0:
-	set(value):
-		prestiege_points = value
-		prestiege_points_updated.emit(value)
-signal prestiege_points_updated(value: int) 
-
 var stage := 0:
 	set(value):
 		stage = value
 		stage_updated.emit(value)
 signal stage_updated(value: int)
+
+
+# *** purchases ***
+var hold_click_tier := WrappedInteger.new(0)
+var bubble_spawner_cooldown_tier := WrappedInteger.new(0)
+var bubble_decay_damage_tier := WrappedInteger.new(0)
+var bubble_click_damage_tier := WrappedInteger.new(0)

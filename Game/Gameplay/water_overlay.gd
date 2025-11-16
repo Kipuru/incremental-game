@@ -46,5 +46,5 @@ func calculate_rate(then: int, now: int) -> float:
 	return float(delta) / EVALUATE_DURATION
 
 func on_fill():
-	GameState.prestiege_points += 1
-	threshold = PrestigeLookup.rate_lookup(GameState.prestiege_points)
+	GameState.increase_prestige_points(1)
+	threshold = PrestigeLookup.rate_lookup(GameState.prestige_points)
