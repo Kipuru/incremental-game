@@ -54,31 +54,6 @@ var _icon_guys := 0:
 		icon_guys_updated.emit(value)
 signal icon_guys_updated(value: int)
 
-# *** upgrades ***
-var hold_click_cooldown_tier := 0:
-	set(value):
-		hold_click_cooldown_tier = value
-		hold_click_cooldown_tier_updated.emit(value)
-signal hold_click_cooldown_tier_updated(value: int)
-
-var bubble_spawner_cooldown_tier := 0:
-	set(value):
-		bubble_spawner_cooldown_tier = value
-		bubble_spawner_cooldown_tier_updated.emit(value)
-signal bubble_spawner_cooldown_tier_updated(value: int)
-
-var bubble_decay_damage_tier := 0:
-	set(value):
-		bubble_decay_damage_tier = value
-		bubble_decay_damage_tier_updated.emit(value)
-signal bubble_decay_damage_tier_updated(value: int)
-
-var bubble_click_damage_tier := 0:
-	set(value):
-		bubble_click_damage_tier = value
-		bubble_click_damage_tier_updated.emit(value)
-signal bubble_click_damage_tier_updated(value: int)
-
 # *** progression ***
 var prestiege_points := 0:
 	set(value):
@@ -91,3 +66,9 @@ var stage := 0:
 		stage = value
 		stage_updated.emit(value)
 signal stage_updated(value: int)
+
+# *** purchases ***
+var hold_click_tier := WrappedInteger.new(0)
+var bubble_spawner_cooldown_tier := WrappedInteger.new(0)
+var bubble_decay_damage_tier := WrappedInteger.new(0)
+var bubble_click_damage_tier := WrappedInteger.new(0)
