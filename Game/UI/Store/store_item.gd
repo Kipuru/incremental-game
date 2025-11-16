@@ -1,4 +1,4 @@
-class_name UpgradeItem extends PanelContainer
+class_name StoreItem extends PanelContainer
 
 const MAX_TEXT = "MAX"
 
