@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=17 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://bu3rm6k5ogv4x" path="res://Assets/Backgrounds/IMG_0055.png" id="1_yboij"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Taskbar/taskbar.tscn" id="6_nqh8o"]
 [ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="7_byrwq"]
 [ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/stats_display.gd" id="8_7ksg5"]
+[ext_resource type="Texture2D" uid="uid://cari3pi0stwmv" path="res://Assets/Icons/bubble_trim.PNG" id="10_nrt6e"]
+[ext_resource type="Texture2D" uid="uid://dcdkwilpews08" path="res://Assets/Icon Guys/blue_small.png" id="11_3tx73"]
+[ext_resource type="Texture2D" uid="uid://cweqr10npopto" path="res://Assets/Icons/sparkle_TEMP.png" id="12_7ksg5"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
 
@@ -110,34 +113,70 @@ minimum_size = Vector2(384, 192)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay" node_paths=PackedStringArray("bb_counter", "bb_rate", "prestige_counter")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -53.0
-offset_bottom = 40.0
-grow_horizontal = 0
+[node name="StatsDisplay" type="HBoxContainer" parent="Overlay" node_paths=PackedStringArray("bb_counter", "ig_counter", "prestige_counter", "bb_rate")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_right = 55.0
+offset_bottom = 15.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
 script = ExtResource("8_7ksg5")
-bb_counter = NodePath("BBCounter")
+bb_counter = NodePath("BBCounter/Label")
+ig_counter = NodePath("IGCounter/Label")
+prestige_counter = NodePath("PrestigeCounter/Label")
 bb_rate = NodePath("BBRate")
-prestige_counter = NodePath("PrestigeCounter")
 
-[node name="BBCounter" type="Label" parent="Overlay/VBoxContainer"]
+[node name="BBCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="Overlay/StatsDisplay/BBCounter"]
 layout_mode = 2
 theme = ExtResource("7_byrwq")
-text = "0 bubblebucks"
+text = "0"
 horizontal_alignment = 2
 
-[node name="BBRate" type="Label" parent="Overlay/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/BBCounter"]
+layout_mode = 2
+texture = ExtResource("10_nrt6e")
+stretch_mode = 3
+
+[node name="IGCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="Overlay/StatsDisplay/IGCounter"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "0"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/IGCounter"]
+layout_mode = 2
+texture = ExtResource("11_3tx73")
+stretch_mode = 3
+
+[node name="PrestigeCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="Overlay/StatsDisplay/PrestigeCounter"]
+layout_mode = 2
+theme = ExtResource("7_byrwq")
+text = "0"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/PrestigeCounter"]
+layout_mode = 2
+texture = ExtResource("12_7ksg5")
+stretch_mode = 3
+
+[node name="BBRate" type="Label" parent="Overlay/StatsDisplay"]
 layout_mode = 2
 theme = ExtResource("7_byrwq")
 text = "0 bb/s"
-horizontal_alignment = 2
-
-[node name="PrestigeCounter" type="Label" parent="Overlay/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("7_byrwq")
-text = "0 pp"
 horizontal_alignment = 2
 
 [connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]
