@@ -2,6 +2,10 @@ class_name StoreItem extends PanelContainer
 
 const MAX_TEXT = "MAX"
 
+const BUBBLE_ICON: Texture2D = preload("uid://cari3pi0stwmv")
+const ICON_GUY_ICON: Texture2D = preload("uid://dcdkwilpews08")
+const SPARKLE_ICON: Texture2D = preload("uid://cweqr10npopto")
+
 @export var _name_label: Label
 @export var _buy_button: Button
 
@@ -14,6 +18,14 @@ func _ready() -> void:
 # call this to properly set up the node
 func init(item: PurchaseableItem):
 	_item = item
+	
+	match item.currency:
+		PurchaseableItem.Currency.BUBBLE_BUCK:
+			_buy_button.icon = BUBBLE_ICON
+		PurchaseableItem.Currency.ICON_GUY:
+			_buy_button.icon = ICON_GUY_ICON
+		PurchaseableItem.Currency.PRESTIGE_POINT:
+			_buy_button.icon = SPARKLE_ICON
 	
 	item.currency_updated.connect(on_currency_updated)
 	item.tier.updated.connect(on_tier_updated)

@@ -1,7 +1,7 @@
 class_name PurchaseableItem
 
 const MAX_INT = 9223372036854775807
-enum Currency {BUBBLE_BUCK, ICON_GUY, PRESTIGE}
+enum Currency {BUBBLE_BUCK, ICON_GUY, PRESTIGE_POINT}
 
 signal purchased
 signal currency_updated(value: int)
@@ -97,7 +97,7 @@ func purchase() -> void:
 			GameState.decrease_bubblebucks(cost)
 		Currency.ICON_GUY:
 			GameState.increase_occupied_icon_guys(cost)
-		Currency.PRESTIGE:
+		Currency.PRESTIGE_POINT:
 			GameState.update_used_prestige_points(cost)
 	
 	_tier.v += 1
@@ -113,5 +113,5 @@ func _connect_currency_updated() -> void:
 			GameState.bubblebucks_updated.connect(_on_currency_updated)
 		Currency.ICON_GUY:
 			GameState.icon_guys_updated.connect(_on_currency_updated)
-		Currency.PRESTIGE:
+		Currency.PRESTIGE_POINT:
 			GameState.prestige_points_updated.connect(_on_currency_updated)

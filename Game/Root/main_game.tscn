@@ -10,7 +10,7 @@
 [ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="7_byrwq"]
 [ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/stats_display.gd" id="8_7ksg5"]
 [ext_resource type="Texture2D" uid="uid://cari3pi0stwmv" path="res://Assets/Icons/bubble_trim.PNG" id="10_nrt6e"]
-[ext_resource type="Texture2D" uid="uid://dcdkwilpews08" path="res://Assets/Icon Guys/blue_small.png" id="11_3tx73"]
+[ext_resource type="Texture2D" uid="uid://dcdkwilpews08" path="res://Assets/Icons/icon_guy.png" id="11_3tx73"]
 [ext_resource type="Texture2D" uid="uid://cweqr10npopto" path="res://Assets/Icons/sparkle_TEMP.png" id="12_7ksg5"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
