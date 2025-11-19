@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bemb8kxvmmngc"]
+
+[ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="1_5ncn1"]
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_5ncn1")

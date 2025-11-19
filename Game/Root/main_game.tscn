@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://dewqnicnf7cl2" path="res://Game/Root/bubbles.gd" id="5_nrt6e"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Game/Windows/window.tscn" id="5_ruc4l"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Taskbar/taskbar.tscn" id="6_nqh8o"]
-[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="7_byrwq"]
-[ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/stats_display.gd" id="8_7ksg5"]
+[ext_resource type="Theme" uid="uid://bemb8kxvmmngc" path="res://Themes/currency_display_theme.tres" id="7_u8lh5"]
+[ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/currency_display.gd" id="8_7ksg5"]
 [ext_resource type="Texture2D" uid="uid://cari3pi0stwmv" path="res://Assets/Icons/bubble_trim.PNG" id="10_nrt6e"]
 [ext_resource type="Texture2D" uid="uid://dcdkwilpews08" path="res://Assets/Icons/icon_guy.png" id="11_3tx73"]
 [ext_resource type="Texture2D" uid="uid://cweqr10npopto" path="res://Assets/Icons/sparkle_TEMP.png" id="12_7ksg5"]
@@ -110,7 +110,7 @@ minimum_size = Vector2(384, 192)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
-[node name="StatsDisplay" type="HBoxContainer" parent="Overlay" node_paths=PackedStringArray("bb_counter", "ig_counter", "prestige_counter", "bb_rate")]
+[node name="CurencyDisplay" type="HBoxContainer" parent="Overlay" node_paths=PackedStringArray("bb_counter", "ig_counter", "prestige_counter", "bb_rate")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -118,6 +118,7 @@ offset_left = -55.0
 offset_right = 55.0
 offset_bottom = 15.0
 grow_horizontal = 2
+theme = ExtResource("7_u8lh5")
 theme_override_constants/separation = 8
 script = ExtResource("8_7ksg5")
 bb_counter = NodePath("BBCounter/Value")
@@ -125,73 +126,68 @@ ig_counter = NodePath("IGCounter/Value")
 prestige_counter = NodePath("PrestigeCounter/Value")
 bb_rate = NodePath("BBRate/Value")
 
-[node name="BBCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+[node name="BBCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Value" type="Label" parent="Overlay/StatsDisplay/BBCounter"]
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/BBCounter"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
 text = "0"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/BBCounter"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/BBCounter"]
 layout_mode = 2
 texture = ExtResource("10_nrt6e")
 stretch_mode = 3
 
-[node name="IGCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+[node name="IGCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Value" type="Label" parent="Overlay/StatsDisplay/IGCounter"]
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/IGCounter"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
 text = "0"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/IGCounter"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/IGCounter"]
 layout_mode = 2
 texture = ExtResource("11_3tx73")
 stretch_mode = 3
 
-[node name="PrestigeCounter" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+[node name="PrestigeCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Value" type="Label" parent="Overlay/StatsDisplay/PrestigeCounter"]
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/PrestigeCounter"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
 text = "0"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/PrestigeCounter"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/PrestigeCounter"]
 layout_mode = 2
 texture = ExtResource("12_7ksg5")
 stretch_mode = 3
 
-[node name="BBRate" type="HBoxContainer" parent="Overlay/StatsDisplay"]
+[node name="BBRate" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Value" type="Label" parent="Overlay/StatsDisplay/BBRate"]
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/BBRate"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
 text = "0"
 horizontal_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/StatsDisplay/BBRate"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/CurencyDisplay/BBRate"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="TextureRect" type="TextureRect" parent="Overlay/StatsDisplay/BBRate/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/BBRate/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("10_nrt6e")
 stretch_mode = 3
 
-[node name="persecond" type="Label" parent="Overlay/StatsDisplay/BBRate/HBoxContainer"]
+[node name="persecond" type="Label" parent="Overlay/CurencyDisplay/BBRate/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
 text = "/s"
 horizontal_alignment = 2
 
