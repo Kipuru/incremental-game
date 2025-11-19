@@ -22,7 +22,7 @@ gradient = SubResource("Gradient_ohkr6")
 size = Vector2(960, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fyndk"]
-size = Vector2(32, 608)
+size = Vector2(32, 569)
 
 [node name="MainGame" type="Node2D"]
 
@@ -51,6 +51,7 @@ material = ExtResource("2_byrwq")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -60,10 +61,6 @@ timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Underlay/Water"]
 wait_time = 0.25
-
-[node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("upgrades_window", "music_window") instance=ExtResource("6_nqh8o")]
-upgrades_window = NodePath("../../Windows/StoreWindow")
-music_window = NodePath("../../Windows/MusicPlayerWindow")
 
 [node name="Bubbles" type="Node2D" parent="."]
 script = ExtResource("5_nrt6e")
@@ -80,15 +77,15 @@ position = Vector2(0, -286)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 286)
+position = Vector2(0, 262)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Left" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-496, 0)
+position = Vector2(-496, -13)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Wall Right" type="CollisionShape2D" parent="Walls"]
-position = Vector2(496, 0)
+position = Vector2(496, -6.5)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Windows" type="Node2D" parent="."]
@@ -96,7 +93,7 @@ shape = SubResource("RectangleShape2D_fyndk")
 [node name="StoreWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 visible = false
 position = Vector2(-280, -168)
-window_icon = "uid://dv0l1mpllt0un"
+icon_resource = "uid://dv0l1mpllt0un"
 title = "Store"
 scene_to_load = "uid://b5xi2ilu6u1g6"
 initial_size = Vector2(304, 128)
@@ -105,7 +102,7 @@ minimum_size = Vector2(304, 128)
 [node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
 visible = false
 position = Vector2(24, -168)
-window_icon = "uid://dvy1d2j4t6lrf"
+icon_resource = "uid://dvy1d2j4t6lrf"
 title = "Music Player"
 scene_to_load = "uid://dwtelixwjtlsk"
 initial_size = Vector2(384, 192)
@@ -197,5 +194,9 @@ layout_mode = 2
 theme = ExtResource("7_byrwq")
 text = "/s"
 horizontal_alignment = 2
+
+[node name="Taskbar" parent="Overlay" node_paths=PackedStringArray("windows") instance=ExtResource("6_nqh8o")]
+offset_top = -26.0
+windows = [NodePath("../../Windows/StoreWindow"), NodePath("../../Windows/MusicPlayerWindow")]
 
 [connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]

@@ -1,55 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://rvnyestc2j4k"]
+[gd_scene load_steps=4 format=3 uid="uid://rvnyestc2j4k"]
 
 [ext_resource type="Script" uid="uid://c7oaoeuu4uo4g" path="res://Game/UI/Taskbar/taskbar.gd" id="1_00r8f"]
-[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_1g1x5"]
-[ext_resource type="Texture2D" uid="uid://dv0l1mpllt0un" path="res://Assets/Icons/up-arrow.png" id="2_48apg"]
-[ext_resource type="Texture2D" uid="uid://dvy1d2j4t6lrf" path="res://Assets/Icons/IMG_9938.PNG" id="3_48apg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00r8f"]
-bg_color = Color(0.1886, 0.346917, 0.46, 0.690196)
-border_color = Color(0.783558, 0.875897, 0.943141, 0.415686)
+[ext_resource type="Theme" uid="uid://e8ksd3con0sa" path="res://Themes/taskbar_theme.tres" id="1_wx635"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="3_wkpgv"]
 
 [node name="PanelContainer" type="PanelContainer"]
-custom_minimum_size = Vector2(224, 32)
+custom_minimum_size = Vector2(960, 16)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -112.0
-offset_top = -32.0
-offset_right = 112.0
+offset_left = -480.0
+offset_top = -16.0
+offset_right = 480.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_00r8f")
+theme = ExtResource("1_wx635")
 script = ExtResource("1_00r8f")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 25
-alignment = 1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
-[node name="UpgradesButton" type="TextureButton" parent="HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
+[node name="Items" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("2_48apg")
+theme_override_constants/separation = 2
+
+[node name="Apps" type="TextureButton" parent="MarginContainer/Items"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+texture_normal = ExtResource("3_wkpgv")
 ignore_texture_size = true
 stretch_mode = 4
-
-[node name="MusicButton" type="TextureButton" parent="HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture_normal = ExtResource("3_48apg")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="MenuButton" type="TextureButton" parent="HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture_normal = ExtResource("2_1g1x5")
-ignore_texture_size = true
-stretch_mode = 4
-
-[connection signal="pressed" from="HBoxContainer/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]

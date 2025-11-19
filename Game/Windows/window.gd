@@ -4,7 +4,7 @@ class_name GameWindow extends Node2D
 # without having to do sqrt which is expensive
 const corner_detection_rad_sq = 26. ** 2.
 
-@export var window_icon := "uid://b21msh4k62j8q"
+@export var icon_resource := "uid://b21msh4k62j8q"
 @export var title := "Window Name"
 @export var scene_to_load := "uid://bga3nuxnrcu7v"
 @export var initial_size := Vector2(512., 256.)
@@ -23,6 +23,7 @@ var original_mouse_pos: Vector2
 func _ready() -> void:
 	assert(ui and title_label and content and icon)
 	
+	print(icon_resource)
 	_setup_window_propreties()
 	_load_scene_into_content_node()
 
@@ -66,7 +67,7 @@ func _load_scene_into_content_node():
 func _setup_window_propreties():
 	content.custom_minimum_size = initial_size
 	title_label.text = title
-	var loaded_icon = load(window_icon)
+	var loaded_icon = load(icon_resource)
 	icon.set_texture(loaded_icon)
 
 func _mouse_is_touching_corner() -> bool:
