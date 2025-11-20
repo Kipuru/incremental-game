@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=18 format=3 uid="uid://c6qv4h7006s3o"]
 
 [ext_resource type="Texture2D" uid="uid://bu3rm6k5ogv4x" path="res://Assets/Backgrounds/IMG_0055.png" id="1_yboij"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
@@ -6,12 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Game/Gameplay/bubble_spawner.tscn" id="4_yboij"]
 [ext_resource type="Script" uid="uid://dewqnicnf7cl2" path="res://Game/Root/bubbles.gd" id="5_nrt6e"]
 [ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Game/Windows/window.tscn" id="5_ruc4l"]
-[ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Taskbar/taskbar.tscn" id="6_nqh8o"]
+[ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Overlay/taskbar.tscn" id="6_nqh8o"]
 [ext_resource type="Theme" uid="uid://bemb8kxvmmngc" path="res://Themes/currency_display_theme.tres" id="7_u8lh5"]
 [ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/currency_display.gd" id="8_7ksg5"]
 [ext_resource type="Texture2D" uid="uid://cari3pi0stwmv" path="res://Assets/Icons/bubble_trim.PNG" id="10_nrt6e"]
 [ext_resource type="Texture2D" uid="uid://dcdkwilpews08" path="res://Assets/Icons/icon_guy.png" id="11_3tx73"]
 [ext_resource type="Texture2D" uid="uid://cweqr10npopto" path="res://Assets/Icons/sparkle_TEMP.png" id="12_7ksg5"]
+[ext_resource type="PackedScene" uid="uid://c7d4r128oft8w" path="res://Game/UI/Overlay/launcher.tscn" id="13_u8lh5"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
 
@@ -191,8 +192,13 @@ layout_mode = 2
 text = "/s"
 horizontal_alignment = 2
 
-[node name="Taskbar" parent="Overlay" node_paths=PackedStringArray("windows") instance=ExtResource("6_nqh8o")]
+[node name="Taskbar" parent="Overlay" node_paths=PackedStringArray("windows", "launcher") instance=ExtResource("6_nqh8o")]
 offset_top = -26.0
 windows = [NodePath("../../Windows/StoreWindow"), NodePath("../../Windows/MusicPlayerWindow")]
+launcher = NodePath("../Launcher")
+
+[node name="Launcher" parent="Overlay" node_paths=PackedStringArray("windows", "taskbar") instance=ExtResource("13_u8lh5")]
+windows = NodePath("../../Windows")
+taskbar = NodePath("../Taskbar")
 
 [connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]

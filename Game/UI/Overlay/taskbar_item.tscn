@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpup7sctor3jd"]
 
-[ext_resource type="Script" uid="uid://c7ckkhvjteemi" path="res://Game/UI/Taskbar/taskbar_item.gd" id="1_y57pp"]
+[ext_resource type="Script" uid="uid://c7ckkhvjteemi" path="res://Game/UI/Overlay/taskbar_item.gd" id="1_y57pp"]
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_0sxjw"]
 
 [node name="TaskbarItem" type="Button"]
