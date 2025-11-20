@@ -4,16 +4,14 @@ class_name GameWindow extends Node2D
 # without having to do sqrt which is expensive
 const corner_detection_rad_sq = 26. ** 2.
 
-@export var icon_resource := "uid://b21msh4k62j8q"
-@export var title := "Window Name"
-@export var scene_to_load := "uid://bga3nuxnrcu7v"
-@export var initial_size := Vector2(512., 256.)
-@export var minimum_size := Vector2(512., 256.)
-
 @onready var ui: Control = %UI
 @onready var title_label: Label = %TitleLabel
 @onready var content: Control = %Content
 @onready var icon: TextureRect = $UI/VBoxContainer/TitleBar/LeftSideMargin/HBoxContainer/Icon
+
+var title: String
+var minimum_size: Vector2
+var _on_close: Callable
 
 enum DragModes { NONE, MOVE, RESIZE }
 var drag_mode: DragModes = DragModes.NONE
@@ -22,10 +20,28 @@ var original_mouse_pos: Vector2
 
 func _ready() -> void:
 	assert(ui and title_label and content and icon)
+
+# Call this to properly set up the script
+@warning_ignore("shadowed_variable")
+func initialize(
+	icon_resource: String, title: String, scene_to_load: String,
+	initial_size: Vector2, minimum_size: Vector2,
+	on_close: Callable
+) -> void:
+	var loaded_icon = load(icon_resource)
+	icon.set_texture(loaded_icon)
 	
-	print(icon_resource)
-	_setup_window_propreties()
-	_load_scene_into_content_node()
+	self.title = title
+	title_label.text = title
+	
+	self.minimum_size = minimum_size
+	content.custom_minimum_size = initial_size
+	
+	_on_close = on_close
+	
+	position = -initial_size / 2.
+	
+	_load_scene_into_content_node(scene_to_load)
 
 func _process(_delta: float) -> void:
 	if not visible:
@@ -49,10 +65,13 @@ func _on_mouse_untouching_corner() -> void:
 	handle_mouse_left_unclick()
 	ClickManager.unregister_hovered(self)
 
-func _on_close_button_pressed() -> void:
-	set_visible(false)
+func _on_minimize_button_pressed() -> void:
+	visible = false
 
-func _load_scene_into_content_node():
+func _on_close_button_pressed() -> void:
+	_on_close.call()
+
+func _load_scene_into_content_node(scene_to_load: String):
 	if not ResourceLoader.exists(scene_to_load):
 		print("Window '" + title + "' could not find scene to load.")
 		return
@@ -64,11 +83,6 @@ func _load_scene_into_content_node():
 	assert(scene_instance is Control)
 	content.add_child(scene_instance)
 
-func _setup_window_propreties():
-	content.custom_minimum_size = initial_size
-	title_label.text = title
-	var loaded_icon = load(icon_resource)
-	icon.set_texture(loaded_icon)
 
 func _mouse_is_touching_corner() -> bool:
 	var mouse_pos = get_global_mouse_position()

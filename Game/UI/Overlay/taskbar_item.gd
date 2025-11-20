@@ -15,5 +15,4 @@ func init():
 	
 	assert(window)
 	text = window.title
-	var loaded_icon = load(window.icon_resource)
-	icon = loaded_icon
+	icon = window.icon.texture

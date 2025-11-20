@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7d4r128oft8w"]
+
+[ext_resource type="Theme" uid="uid://ddvv3gpc3pgc2" path="res://Themes/launcher.tres" id="1_6fm8v"]
+[ext_resource type="Script" uid="uid://mxlnw3kbtag0" path="res://Game/UI/Overlay/launcher.gd" id="2_kfv1q"]
+[ext_resource type="Texture2D" uid="uid://dv0l1mpllt0un" path="res://Assets/Icons/up-arrow.png" id="2_wtog6"]
+[ext_resource type="Texture2D" uid="uid://dvy1d2j4t6lrf" path="res://Assets/Icons/IMG_9938.PNG" id="3_w5gp8"]
+[ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="4_jlp4s"]
+
+[node name="Launcher" type="PanelContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -226.0
+offset_right = 150.0
+offset_bottom = -26.0
+grow_vertical = 0
+theme = ExtResource("1_6fm8v")
+script = ExtResource("2_kfv1q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Items" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Store" type="Button" parent="MarginContainer/Items"]
+layout_mode = 2
+text = "Store"
+icon = ExtResource("2_wtog6")
+alignment = 0
+expand_icon = true
+
+[node name="Music Player" type="Button" parent="MarginContainer/Items"]
+layout_mode = 2
+text = "Music Player"
+icon = ExtResource("3_w5gp8")
+alignment = 0
+expand_icon = true
+
+[node name="Settings" type="Button" parent="MarginContainer/Items"]
+layout_mode = 2
+text = "Settings"
+icon = ExtResource("4_jlp4s")
+alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="MarginContainer/Items/Store" to="." method="_on_store_pressed"]
+[connection signal="pressed" from="MarginContainer/Items/Music Player" to="." method="_on_music_player_pressed"]
+[connection signal="pressed" from="MarginContainer/Items/Settings" to="." method="_on_settings_pressed"]
