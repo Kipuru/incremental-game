@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Game/Gameplay/water_overlay.gd" id="3_oj68k"]
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Game/Gameplay/bubble_spawner.tscn" id="4_yboij"]
 [ext_resource type="Script" uid="uid://dewqnicnf7cl2" path="res://Game/Root/bubbles.gd" id="5_nrt6e"]
-[ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Game/Windows/window.tscn" id="5_ruc4l"]
+[ext_resource type="Script" uid="uid://cih3fya2662qj" path="res://Game/Windows/manager.gd" id="6_13ch6"]
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Overlay/taskbar.tscn" id="6_nqh8o"]
 [ext_resource type="Theme" uid="uid://bemb8kxvmmngc" path="res://Themes/currency_display_theme.tres" id="7_u8lh5"]
 [ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/currency_display.gd" id="8_7ksg5"]
@@ -89,25 +89,9 @@ shape = SubResource("RectangleShape2D_fyndk")
 position = Vector2(496, -6.5)
 shape = SubResource("RectangleShape2D_fyndk")
 
-[node name="Windows" type="Node2D" parent="."]
-
-[node name="StoreWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-visible = false
-position = Vector2(-280, -168)
-icon_resource = "uid://dv0l1mpllt0un"
-title = "Store"
-scene_to_load = "uid://b5xi2ilu6u1g6"
-initial_size = Vector2(304, 128)
-minimum_size = Vector2(304, 128)
-
-[node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-visible = false
-position = Vector2(24, -168)
-icon_resource = "uid://dvy1d2j4t6lrf"
-title = "Music Player"
-scene_to_load = "uid://dwtelixwjtlsk"
-initial_size = Vector2(384, 192)
-minimum_size = Vector2(384, 192)
+[node name="Windows" type="Node2D" parent="." node_paths=PackedStringArray("taskbar")]
+script = ExtResource("6_13ch6")
+taskbar = NodePath("../Overlay/Taskbar")
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
@@ -192,13 +176,11 @@ layout_mode = 2
 text = "/s"
 horizontal_alignment = 2
 
-[node name="Taskbar" parent="Overlay" node_paths=PackedStringArray("windows", "launcher") instance=ExtResource("6_nqh8o")]
+[node name="Taskbar" parent="Overlay" node_paths=PackedStringArray("launcher") instance=ExtResource("6_nqh8o")]
 offset_top = -26.0
-windows = [NodePath("../../Windows/StoreWindow"), NodePath("../../Windows/MusicPlayerWindow")]
 launcher = NodePath("../Launcher")
 
-[node name="Launcher" parent="Overlay" node_paths=PackedStringArray("windows", "taskbar") instance=ExtResource("13_u8lh5")]
+[node name="Launcher" parent="Overlay" node_paths=PackedStringArray("windows") instance=ExtResource("13_u8lh5")]
 windows = NodePath("../../Windows")
-taskbar = NodePath("../Taskbar")
 
 [connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]
