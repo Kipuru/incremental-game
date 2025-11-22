@@ -67,9 +67,10 @@ layout_mode = 2
 text = "Volume"
 
 [node name="MusicVolSlider" parent="VBoxContainer/TopBar/HBoxContainer" instance=ExtResource("3_cwbwj")]
-custom_minimum_size = Vector2(128, 0)
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_vertical = 1
+value = 0.5
 BusName = "Music"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
