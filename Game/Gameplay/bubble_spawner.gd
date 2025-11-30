@@ -1,11 +1,16 @@
 class_name BubbleSpawner extends Area2D
 
 const bubble_scene = preload("uid://cqegup4gnccd3")
+const SQUISH_DURATION = 0.3 # secs
+const HEAD_OFFSET = Vector2(1, -14)
+
+@onready var anim := %AnimationPlayer
 
 @export var bubble_container: Node2D
 var cooldown = 0.
 
 func _ready() -> void:
+	assert(anim)
 	assert(bubble_scene.can_instantiate())
 
 func _process(delta: float) -> void:
@@ -22,9 +27,16 @@ func _mouse_exit() -> void:
 	ClickManager.unregister_hovered(self)
 
 func _spawn_bubble():
+	
+	var ratio = SQUISH_DURATION / _get_cooldown_duration()
+	var speed = 1
+	if ratio > 1:
+		speed = ratio
+	anim.play("squish_vertical", -1, speed)
+	
 	var bubble_instance = bubble_scene.instantiate()
 	assert(bubble_instance is PhysicsBody2D)
-	bubble_instance.global_position = global_position
+	bubble_instance.global_position = global_position + HEAD_OFFSET
 	bubble_container.add_child(bubble_instance)
 	GameState.bubbles += 1
 	cooldown = _get_cooldown_duration()
