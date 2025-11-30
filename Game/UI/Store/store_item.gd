@@ -2,9 +2,9 @@ class_name StoreItem extends PanelContainer
 
 const MAX_TEXT = "MAX"
 
-const BUBBLE_ICON: Texture2D = preload("uid://cari3pi0stwmv")
-const ICON_GUY_ICON: Texture2D = preload("uid://dcdkwilpews08")
-const SPARKLE_ICON: Texture2D = preload("uid://cweqr10npopto")
+const BUBBLE_ICON: Texture2D = preload("uid://c7o5a3pmu7ewm")
+const ICON_GUY_ICON: Texture2D = preload("uid://bwyjqiikjpsxx")
+const SPARKLE_ICON: Texture2D = preload("uid://bbd5c3w78mspl")
 
 @export var _name_label: Label
 @export var _buy_button: Button

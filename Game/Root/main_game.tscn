@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://c6qv4h7006s3o"]
 
-[ext_resource type="Texture2D" uid="uid://bu3rm6k5ogv4x" path="res://Assets/Backgrounds/IMG_0055.png" id="1_yboij"]
+[ext_resource type="Texture2D" uid="uid://ik7wwgnaggvc" path="res://Assets/Backgrounds/01.PNG" id="1_u8lh5"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Game/Gameplay/water_overlay.gd" id="3_oj68k"]
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Game/Gameplay/bubble_spawner.tscn" id="4_yboij"]
@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Overlay/taskbar.tscn" id="6_nqh8o"]
 [ext_resource type="Theme" uid="uid://bemb8kxvmmngc" path="res://Themes/currency_display_theme.tres" id="7_u8lh5"]
 [ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/currency_display.gd" id="8_7ksg5"]
-[ext_resource type="Texture2D" uid="uid://cari3pi0stwmv" path="res://Assets/Icons/bubble_trim.PNG" id="10_nrt6e"]
-[ext_resource type="Texture2D" uid="uid://dcdkwilpews08" path="res://Assets/Icons/icon_guy.png" id="11_3tx73"]
-[ext_resource type="Texture2D" uid="uid://cweqr10npopto" path="res://Assets/Icons/sparkle_TEMP.png" id="12_7ksg5"]
+[ext_resource type="Texture2D" uid="uid://bbd5c3w78mspl" path="res://Assets/Icons/icon prestige.PNG" id="9_3tx73"]
+[ext_resource type="Texture2D" uid="uid://bwyjqiikjpsxx" path="res://Assets/Icons/icon little guy.PNG" id="9_7ksg5"]
+[ext_resource type="Texture2D" uid="uid://c7o5a3pmu7ewm" path="res://Assets/Icons/icon bubble.PNG" id="9_u8lh5"]
 [ext_resource type="PackedScene" uid="uid://c7d4r128oft8w" path="res://Game/UI/Overlay/launcher.tscn" id="13_u8lh5"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
@@ -39,10 +39,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_yboij")
+texture = ExtResource("1_u8lh5")
 expand_mode = 3
 stretch_mode = 6
-metadata/_edit_lock_ = true
 
 [node name="Underlay" type="CanvasLayer" parent="."]
 layer = -1
@@ -122,7 +121,7 @@ horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/BBCounter"]
 layout_mode = 2
-texture = ExtResource("10_nrt6e")
+texture = ExtResource("9_u8lh5")
 stretch_mode = 3
 
 [node name="IGCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
@@ -136,7 +135,7 @@ horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/IGCounter"]
 layout_mode = 2
-texture = ExtResource("11_3tx73")
+texture = ExtResource("9_7ksg5")
 stretch_mode = 3
 
 [node name="PrestigeCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
@@ -150,7 +149,7 @@ horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/PrestigeCounter"]
 layout_mode = 2
-texture = ExtResource("12_7ksg5")
+texture = ExtResource("9_3tx73")
 stretch_mode = 3
 
 [node name="BBRate" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
@@ -168,7 +167,7 @@ theme_override_constants/separation = 1
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/BBRate/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("10_nrt6e")
+texture = ExtResource("9_u8lh5")
 stretch_mode = 3
 
 [node name="persecond" type="Label" parent="Overlay/CurencyDisplay/BBRate/HBoxContainer"]

@@ -10,7 +10,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_tick_timer(delta)
-	rotation = 2 * PI * cooldown / _get_cooldown_duration() # temp visual for timer
+	
+	# temp visual for timer
+	var t = (1 - cooldown / _get_cooldown_duration())
+	modulate = Color(1, t, t)
 
 func _mouse_enter() -> void:
 	ClickManager.register_hovered(self)

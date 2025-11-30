@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cweqr10npopto"
-path="res://.godot/imported/sparkle_TEMP.png-ca9f1ed7f5a69f7b2abe1f912d74d987.ctex"
+uid="uid://c7o5a3pmu7ewm"
+path="res://.godot/imported/icon bubble.PNG-e6543bc7ef0370c3db90ad356693127f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/sparkle_TEMP.png"
-dest_files=["res://.godot/imported/sparkle_TEMP.png-ca9f1ed7f5a69f7b2abe1f912d74d987.ctex"]
+source_file="res://Assets/Icons/icon bubble.PNG"
+dest_files=["res://.godot/imported/icon bubble.PNG-e6543bc7ef0370c3db90ad356693127f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cari3pi0stwmv"
-path="res://.godot/imported/bubble_trim.PNG-3eb4f0d2c6aadb5ec3d28ac74baff365.ctex"
+uid="uid://bbd5c3w78mspl"
+path="res://.godot/imported/icon prestige.PNG-89a52d3c3caad19988601c58304b3a01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/bubble_trim.PNG"
-dest_files=["res://.godot/imported/bubble_trim.PNG-3eb4f0d2c6aadb5ec3d28ac74baff365.ctex"]
+source_file="res://Assets/Icons/icon prestige.PNG"
+dest_files=["res://.godot/imported/icon prestige.PNG-89a52d3c3caad19988601c58304b3a01.ctex"]
 
 [params]
 
