@@ -66,7 +66,7 @@ wait_time = 0.25
 script = ExtResource("5_nrt6e")
 
 [node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_yboij")]
-position = Vector2(0, 224)
+position = Vector2(0, 221)
 bubble_container = NodePath("../Bubbles")
 
 [node name="Walls" type="StaticBody2D" parent="."]
