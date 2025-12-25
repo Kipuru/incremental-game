@@ -2,12 +2,12 @@
 
 [ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_h6i6e"]
 [ext_resource type="PackedScene" uid="uid://b7bibqo7h508x" path="res://Game/Audio/music_player.tscn" id="2_wpb7c"]
-[ext_resource type="PackedScene" uid="uid://bh05jgliy8rci" path="res://Game/UI/Music/VolSlider.tscn" id="3_cwbwj"]
 [ext_resource type="Script" uid="uid://cyfrmaitlhhxu" path="res://Game/UI/Music/TopBar/currently_playing_label.gd" id="3_wiyj6"]
 [ext_resource type="PackedScene" uid="uid://c42f4mmycgf2n" path="res://Game/UI/Music/TopBar/playback_controls.tscn" id="4_vv0yo"]
 [ext_resource type="Script" uid="uid://bxatqxof3rnw4" path="res://Game/UI/Music/TopBar/seeker.gd" id="5_vv0yo"]
 [ext_resource type="PackedScene" uid="uid://b205oftfnimor" path="res://Game/UI/Music/QueueDisplay/queue_display.tscn" id="6_vv0yo"]
 [ext_resource type="Script" uid="uid://b63xehxpycfcx" path="res://Game/UI/Music/TopBar/time_label.gd" id="6_vw141"]
+[ext_resource type="Script" uid="uid://cglmy3nr7b3r7" path="res://Game/UI/Music/vol_slider.gd" id="7_cwbwj"]
 [ext_resource type="PackedScene" uid="uid://ce87r5gr2kp3g" path="res://Game/UI/Music/SongsDisplay/songs_display.tscn" id="7_vw141"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66iin"]
@@ -66,12 +66,13 @@ script = ExtResource("6_vw141")
 layout_mode = 2
 text = "Volume"
 
-[node name="MusicVolSlider" parent="VBoxContainer/TopBar/HBoxContainer" instance=ExtResource("3_cwbwj")]
-custom_minimum_size = Vector2(64, 0)
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer/TopBar/HBoxContainer" node_paths=PackedStringArray("audioPlayer")]
+custom_minimum_size = Vector2(128, 24)
 layout_mode = 2
-size_flags_vertical = 1
-value = 0.5
-BusName = "Music"
+max_value = 1.0
+step = 0.05
+script = ExtResource("7_cwbwj")
+audioPlayer = NodePath("../../../../MusicPlayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
