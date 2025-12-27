@@ -7,7 +7,7 @@ const SHADER_SPEED = 0.5
 
 @export var timer: Timer
 
-var bubblebucks_history: Array[int]
+var droplets_history: Array[int]
 var threshold := PrestigeLookup.threshold_lua[0]
 var shader_tween: Tween
 var shader_value := 0.
@@ -21,7 +21,7 @@ func _ready() -> void:
 	timer.start()
 	
 	for i in range(ARRAY_LENGTH):
-		bubblebucks_history.push_back(0)
+		droplets_history.push_back(0)
 
 func _physics_process(delta: float) -> void:
 	var t = 1.0 - pow(0.001, delta * SHADER_SPEED)
@@ -29,11 +29,11 @@ func _physics_process(delta: float) -> void:
 	material.set_shader_parameter('fill', shader_value)
 
 func _on_timer_timeout() -> void:
-	var then = bubblebucks_history.pop_front()
-	var now = GameState.get_total_bubblebucks()
-	bubblebucks_history.push_back(now)
+	var then = droplets_history.pop_front()
+	var now = GameState.collected_droplets
+	droplets_history.push_back(now)
 	
-	var rate = calculate_rate(then, now)
+	var rate = calculate_rate(then, now) / Bubble.DROPLETS_PER_POP
 	var ratio = rate / threshold
 	GameState.bb_collection_rate = rate
 	GameState.water_fill_ratio = ratio

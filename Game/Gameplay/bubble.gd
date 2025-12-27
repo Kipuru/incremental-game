@@ -8,8 +8,10 @@ const AREA = PI * (RADIUS ** 2)
 
 const SPEED = 64
 const MOUSE_PUSH_AMOUNT = 16
-const STARTING_HEALTH = 200
+const STARTING_HEALTH = 10
 const BOUNCE_DAMAGE = 1
+
+const DROPLETS_PER_POP := 16
 
 @onready var refraction: Sprite2D = %Refraction
 @onready var visual: Node2D = %Visual
@@ -79,11 +81,11 @@ func deal_damage(damage: int):
 	modulate = Color(1., c, c)
 
 func handle_pop(gain_bubblebucks: bool = true) -> void:
-	var droplets_instance = droplets_scene.instantiate()
-	assert(droplets_instance is GPUParticles2D)
-	droplets_instance.global_position = global_position
-	get_parent().add_child(droplets_instance)
-	droplets_instance.emitting = true
+	for n in DROPLETS_PER_POP:
+		var droplets_instance = droplets_scene.instantiate()
+		assert(droplets_instance is RigidBody2D)
+		droplets_instance.global_position = global_position
+		get_parent().add_child(droplets_instance)
 	
 	if gain_bubblebucks:
 		GameState.increase_bubblebucks(1)
