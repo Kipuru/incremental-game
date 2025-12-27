@@ -16,6 +16,11 @@ signal bb_collection_rate_updated(value: float)
 var water_fill_ratio := 0.
 var bubble_fill_ratio := 0.
 
+var collected_droplets := 0:
+	set(value):
+		collected_droplets = value
+		droplets_updated.emit(value)
+signal droplets_updated(value: int)
 
 # *** currencies ***
 func increase_bubblebucks(amount: int) -> void:
