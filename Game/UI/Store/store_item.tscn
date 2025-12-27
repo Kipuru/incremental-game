@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://1vu12efbt1f1"]
+[gd_scene load_steps=5 format=3 uid="uid://1vu12efbt1f1"]
 
 [ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="1_jxyi2"]
-[ext_resource type="Script" uid="uid://b4ewdkq3snl35" path="res://Game/UI/Upgrade/upgrade_item.gd" id="2_bo3q1"]
+[ext_resource type="Script" uid="uid://b4ewdkq3snl35" path="res://Game/UI/Store/store_item.gd" id="2_bo3q1"]
+[ext_resource type="Texture2D" uid="uid://cari3pi0stwmv" path="res://Assets/Icons/bubble_trim.PNG" id="3_mf2rq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4difg"]
 bg_color = Color(0.93, 0.93, 0.93, 1)
 
-[node name="UpgradeItem" type="PanelContainer" node_paths=PackedStringArray("_name_label", "_buy_button")]
+[node name="StoreItem" type="PanelContainer" node_paths=PackedStringArray("_name_label", "_buy_button")]
 offset_right = 45.0
 offset_bottom = 22.0
 theme = ExtResource("1_jxyi2")
@@ -29,5 +30,7 @@ text = "Upgrade"
 [node name="Buy" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "1"
+icon = ExtResource("3_mf2rq")
+icon_alignment = 2
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buy" to="." method="_on_buy_pressed"]

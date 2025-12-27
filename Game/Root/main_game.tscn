@@ -1,14 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6qv4h7006s3o"]
+[gd_scene load_steps=18 format=3 uid="uid://c6qv4h7006s3o"]
 
-[ext_resource type="Texture2D" uid="uid://bu3rm6k5ogv4x" path="res://Assets/Backgrounds/IMG_0055.png" id="1_yboij"]
+[ext_resource type="Texture2D" uid="uid://ik7wwgnaggvc" path="res://Assets/Backgrounds/01.PNG" id="1_u8lh5"]
 [ext_resource type="Material" uid="uid://nct5sd4tep7m" path="res://Shaders/water_overlay.material" id="2_byrwq"]
 [ext_resource type="Script" uid="uid://cdmotl8jir4ya" path="res://Game/Gameplay/water_overlay.gd" id="3_oj68k"]
 [ext_resource type="PackedScene" uid="uid://do42kuyyeioyq" path="res://Game/Gameplay/bubble_spawner.tscn" id="4_yboij"]
 [ext_resource type="Script" uid="uid://dewqnicnf7cl2" path="res://Game/Root/bubbles.gd" id="5_nrt6e"]
-[ext_resource type="PackedScene" uid="uid://ccdqkc2ixgwur" path="res://Game/Windows/window.tscn" id="5_ruc4l"]
-[ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Taskbar/taskbar.tscn" id="6_nqh8o"]
-[ext_resource type="Theme" uid="uid://cypdfrldw1wws" path="res://Themes/music_interface_theme.tres" id="7_byrwq"]
-[ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/stats_display.gd" id="8_7ksg5"]
+[ext_resource type="Script" uid="uid://cih3fya2662qj" path="res://Game/Windows/manager.gd" id="6_13ch6"]
+[ext_resource type="PackedScene" uid="uid://rvnyestc2j4k" path="res://Game/UI/Overlay/taskbar.tscn" id="6_nqh8o"]
+[ext_resource type="Theme" uid="uid://bemb8kxvmmngc" path="res://Themes/currency_display_theme.tres" id="7_u8lh5"]
+[ext_resource type="Script" uid="uid://c7858gva6v2da" path="res://Game/UI/currency_display.gd" id="8_7ksg5"]
+[ext_resource type="Texture2D" uid="uid://bbd5c3w78mspl" path="res://Assets/Icons/icon prestige.PNG" id="9_3tx73"]
+[ext_resource type="Texture2D" uid="uid://bwyjqiikjpsxx" path="res://Assets/Icons/icon little guy.PNG" id="9_7ksg5"]
+[ext_resource type="Texture2D" uid="uid://c7o5a3pmu7ewm" path="res://Assets/Icons/icon bubble.PNG" id="9_u8lh5"]
+[ext_resource type="PackedScene" uid="uid://c7d4r128oft8w" path="res://Game/UI/Overlay/launcher.tscn" id="13_u8lh5"]
 
 [sub_resource type="Gradient" id="Gradient_ohkr6"]
 
@@ -19,7 +23,7 @@ gradient = SubResource("Gradient_ohkr6")
 size = Vector2(960, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fyndk"]
-size = Vector2(32, 608)
+size = Vector2(32, 569)
 
 [node name="MainGame" type="Node2D"]
 
@@ -35,10 +39,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_yboij")
+texture = ExtResource("1_u8lh5")
 expand_mode = 3
 stretch_mode = 6
-metadata/_edit_lock_ = true
 
 [node name="Underlay" type="CanvasLayer" parent="."]
 layer = -1
@@ -48,6 +51,7 @@ material = ExtResource("2_byrwq")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -58,14 +62,11 @@ timer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="Underlay/Water"]
 wait_time = 0.25
 
-[node name="Taskbar" parent="Underlay" node_paths=PackedStringArray("upgrades_window", "music_window") instance=ExtResource("6_nqh8o")]
-upgrades_window = NodePath("../../Windows/UpgradesWindow")
-music_window = NodePath("../../Windows/MusicPlayerWindow")
-
 [node name="Bubbles" type="Node2D" parent="."]
 script = ExtResource("5_nrt6e")
 
 [node name="BubbleSpawner" parent="." node_paths=PackedStringArray("bubble_container") instance=ExtResource("4_yboij")]
+position = Vector2(0, 221)
 bubble_container = NodePath("../Bubbles")
 
 [node name="Walls" type="StaticBody2D" parent="."]
@@ -77,67 +78,109 @@ position = Vector2(0, -286)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 286)
+position = Vector2(0, 262)
 shape = SubResource("RectangleShape2D_d05bn")
 
 [node name="Wall Left" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-496, 0)
+position = Vector2(-496, -13)
 shape = SubResource("RectangleShape2D_fyndk")
 
 [node name="Wall Right" type="CollisionShape2D" parent="Walls"]
-position = Vector2(496, 0)
+position = Vector2(496, -6.5)
 shape = SubResource("RectangleShape2D_fyndk")
 
-[node name="Windows" type="Node2D" parent="."]
-
-[node name="UpgradesWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-visible = false
-position = Vector2(-280, -168)
-window_icon = "uid://dv0l1mpllt0un"
-title = "Upgrades"
-scene_to_load = "uid://b5xi2ilu6u1g6"
-initial_size = Vector2(304, 128)
-minimum_size = Vector2(304, 128)
-
-[node name="MusicPlayerWindow" parent="Windows" instance=ExtResource("5_ruc4l")]
-visible = false
-position = Vector2(24, -168)
-window_icon = "uid://dvy1d2j4t6lrf"
-title = "Music Player"
-scene_to_load = "uid://dwtelixwjtlsk"
-initial_size = Vector2(384, 192)
-minimum_size = Vector2(384, 192)
+[node name="Windows" type="Node2D" parent="." node_paths=PackedStringArray("taskbar")]
+script = ExtResource("6_13ch6")
+taskbar = NodePath("../Overlay/Taskbar")
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay" node_paths=PackedStringArray("bb_counter", "bb_rate", "prestige_counter")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -53.0
-offset_bottom = 40.0
-grow_horizontal = 0
+[node name="CurencyDisplay" type="HBoxContainer" parent="Overlay" node_paths=PackedStringArray("bb_counter", "ig_counter", "prestige_counter", "bb_rate")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_right = 55.0
+offset_bottom = 15.0
+grow_horizontal = 2
+theme = ExtResource("7_u8lh5")
+theme_override_constants/separation = 8
 script = ExtResource("8_7ksg5")
-bb_counter = NodePath("BBCounter")
-bb_rate = NodePath("BBRate")
-prestige_counter = NodePath("PrestigeCounter")
+bb_counter = NodePath("BBCounter/Value")
+ig_counter = NodePath("IGCounter/Value")
+prestige_counter = NodePath("PrestigeCounter/Value")
+bb_rate = NodePath("BBRate/Value")
 
-[node name="BBCounter" type="Label" parent="Overlay/VBoxContainer"]
+[node name="BBCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
-text = "0 bubblebucks"
+theme_override_constants/separation = 2
+
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/BBCounter"]
+layout_mode = 2
+text = "0"
 horizontal_alignment = 2
 
-[node name="BBRate" type="Label" parent="Overlay/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/BBCounter"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
-text = "0 bb/s"
+texture = ExtResource("9_u8lh5")
+stretch_mode = 3
+
+[node name="IGCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/IGCounter"]
+layout_mode = 2
+text = "0"
 horizontal_alignment = 2
 
-[node name="PrestigeCounter" type="Label" parent="Overlay/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/IGCounter"]
 layout_mode = 2
-theme = ExtResource("7_byrwq")
-text = "0 pp"
+texture = ExtResource("9_7ksg5")
+stretch_mode = 3
+
+[node name="PrestigeCounter" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/PrestigeCounter"]
+layout_mode = 2
+text = "0"
 horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/PrestigeCounter"]
+layout_mode = 2
+texture = ExtResource("9_3tx73")
+stretch_mode = 3
+
+[node name="BBRate" type="HBoxContainer" parent="Overlay/CurencyDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Value" type="Label" parent="Overlay/CurencyDisplay/BBRate"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/CurencyDisplay/BBRate"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/CurencyDisplay/BBRate/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_u8lh5")
+stretch_mode = 3
+
+[node name="persecond" type="Label" parent="Overlay/CurencyDisplay/BBRate/HBoxContainer"]
+layout_mode = 2
+text = "/s"
+horizontal_alignment = 2
+
+[node name="Taskbar" parent="Overlay" node_paths=PackedStringArray("launcher") instance=ExtResource("6_nqh8o")]
+offset_top = -26.0
+launcher = NodePath("../Launcher")
+
+[node name="Launcher" parent="Overlay" node_paths=PackedStringArray("windows") instance=ExtResource("13_u8lh5")]
+windows = NodePath("../../Windows")
 
 [connection signal="timeout" from="Underlay/Water/Timer" to="Underlay/Water" method="_on_timer_timeout"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccdqkc2ixgwur"]
+[gd_scene load_steps=11 format=3 uid="uid://ccdqkc2ixgwur"]
 
 [ext_resource type="Script" uid="uid://dtvfmv5smm81w" path="res://Game/Windows/window.gd" id="1_28hdt"]
 [ext_resource type="Script" uid="uid://cwb0qqoua5tlh" path="res://Game/Windows/title_bar.gd" id="2_o0r3s"]
 [ext_resource type="Texture2D" uid="uid://b21msh4k62j8q" path="res://Assets/Icons/icon.svg" id="2_vip54"]
 [ext_resource type="FontFile" uid="uid://dqmmoferdi10i" path="res://Assets/Fonts/HelvetiPixel.ttf" id="3_o7yh4"]
 [ext_resource type="Texture2D" uid="uid://cjxv6pd8ceo12" path="res://Assets/Buttons/IMG_9937.PNG" id="3_vip54"]
+[ext_resource type="Texture2D" uid="uid://dt45nhim11f14" path="res://Assets/Buttons/IMG_9935.PNG" id="5_cuhqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4y1"]
 bg_color = Color(0.525668, 0.525668, 0.525667, 1)
@@ -78,8 +79,14 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TitleBar/RightSideMargin"]
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 1
 alignment = 2
+
+[node name="MinimizeButton" type="TextureButton" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_cuhqe")
+stretch_mode = 6
 
 [node name="CloseButton" type="TextureButton" parent="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer"]
 layout_mode = 2
@@ -96,4 +103,5 @@ mouse_filter = 1
 
 [connection signal="mouse_entered" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/VBoxContainer/TitleBar" to="UI/VBoxContainer/TitleBar" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/MinimizeButton" to="." method="_on_minimize_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/TitleBar/RightSideMargin/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
